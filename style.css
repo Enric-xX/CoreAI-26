@@ -1,43 +1,234 @@
 :root {
-    --bg: #f5f5f7;
-    --side: #ffffff;
-    --text: #1d1d1f;
-    --accent: #0071e3;
-    --brd: #d2d2d7;
+    --bg-light: #f5f5f7;
+    --sidebar-bg: #ffffff;
+    --accent: #0071e3; /* Azul Apple */
+    --text-main: #1d1d1f;
+    --text-dim: #86868b;
+    --border: #d2d2d7;
+    --card-bg: rgba(255, 255, 255, 0.8);
 }
 
-body.dark-mode {
-    --bg: #121212;
-    --side: #1c1c1e;
-    --text: #ffffff;
-    --brd: #333333;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-body { background: var(--bg); color: var(--text); height: 100vh; overflow: hidden; }
+body {
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    overflow: hidden; /* Evita scroll doble */
+}
 
-.app-container { display: flex; height: 100vh; }
+/* --- ESTRUCTURA PRINCIPAL --- */
+.app-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
 
-.sidebar { width: 250px; background: var(--side); border-right: 1px solid var(--brd); padding: 20px; display: flex; flex-direction: column; }
-.nav-logo { width: 30px; height: 30px; margin-right: 10px; border-radius: 5px; }
-.brand { font-weight: 700; margin-bottom: 25px; display: flex; align-items: center; }
+/* --- SIDEBAR (ELITE WHITE) --- */
+.sidebar {
+    width: 260px;
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
 
-.nav-item { width: 100%; padding: 12px; border: none; background: none; text-align: left; border-radius: 10px; cursor: pointer; color: #888; margin-bottom: 5px; }
-.nav-item.active { background: var(--accent); color: white; }
+/* NUEVO: ESTILO DEL LOGO */
+.brand {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: var(--text-main);
+}
 
-.content { flex: 1; padding: 30px; overflow-y: auto; }
-.section { display: none; }
-.section.active { display: block; }
+.nav-logo {
+    width: 32px;
+    height: 32px;
+    margin-right: 12px;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
 
-.card-elite { background: var(--side); padding: 20px; border-radius: 15px; border: 1px solid var(--brd); margin-bottom: 20px; }
-input { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--brd); background: transparent; color: inherit; }
+.brand span {
+    color: var(--accent);
+    margin-left: 4px;
+}
 
-.btn-elite-main, .btn-ia { background: var(--accent); color: white; border: none; padding: 12px; border-radius: 10px; cursor: pointer; width: 100%; font-weight: 600; }
-.code-box { background: rgba(0,0,0,0.05); padding: 15px; border-radius: 10px; margin-top: 10px; font-family: monospace; font-size: 13px; }
+/* NAVEGACIÓN */
+#main-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
 
-.buttons-row { display: flex; gap: 10px; }
-.btn-download-bat { flex: 1; background: #28a745; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer; }
-.btn-download-reg { flex: 1; background: #6f42c1; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer; }
+.nav-item {
+    background: none;
+    border: none;
+    padding: 12px 16px;
+    text-align: left;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-dim);
+    transition: all 0.2s;
+}
 
-.sidebar-footer { margin-top: auto; border-top: 1px solid var(--brd); padding-top: 15px; }
-.version-tag { font-size: 10px; text-align: center; margin-top: 10px; opacity: 0.5; }
+.nav-item:hover {
+    background: #f0f0f2;
+    color: var(--text-main);
+}
+
+.nav-item.active {
+    background: var(--accent);
+    color: white;
+}
+
+/* --- CONTENIDO PRINCIPAL --- */
+.content {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+    background: var(--bg-light);
+}
+
+.section {
+    display: none;
+    max-width: 900px;
+    margin: 0 auto;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+
+/* --- TARJETAS Y COMPONENTES --- */
+.card-elite {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 24px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.card-elite h3 {
+    margin-bottom: 10px;
+    color: var(--accent);
+}
+
+/* BOTONES */
+.btn-elite-main {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    transition: opacity 0.2s;
+}
+
+.btn-elite-main:hover {
+    opacity: 0.9;
+}
+
+/* PANEL PRO GRID */
+.pro-grid-elite {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.pro-item-elite {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 14px;
+}
+
+.pro-badge {
+    font-size: 10px;
+    text-transform: uppercase;
+    background: #e1e1e6;
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.code-wrapper {
+    background: #f8f8fa;
+    padding: 8px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+code {
+    font-family: 'Courier New', monospace;
+    color: #cf222e;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.copy-action {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+/* FORMULARIOS */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.input-group input, .input-group textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    outline: none;
+}
+
+.input-group.full { grid-column: span 2; }
