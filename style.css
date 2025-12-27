@@ -1,5 +1,6 @@
 :root {
     --bg-light: #f5f5f7;
+    --sidebar-bg: #ffffff;
     --accent: #0071e3;
     --text-main: #1d1d1f;
     --border: #d2d2d7;
@@ -7,41 +8,43 @@
 
 body.dark-mode {
     --bg-light: #121212;
-    --accent: #0071e3;
+    --sidebar-bg: #1c1c1e;
     --text-main: #ffffff;
     --border: #333333;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-body { background: var(--bg-light); color: var(--text-main); height: 100vh; overflow: hidden; }
+body { background: var(--bg-light); color: var(--text-main); height: 100vh; overflow: hidden; transition: 0.3s; }
 
 .app-container { display: flex; height: 100vh; }
 
-/* SIDEBAR */
-.sidebar { width: 260px; background: white; border-right: 1px solid var(--border); padding: 20px; display: flex; flex-direction: column; flex-shrink: 0; }
-body.dark-mode .sidebar { background: #1c1c1e; }
-
+.sidebar { width: 260px; background: var(--sidebar-bg); border-right: 1px solid var(--border); padding: 25px; display: flex; flex-direction: column; flex-shrink: 0; }
 .brand { font-weight: 700; font-size: 20px; margin-bottom: 30px; display: flex; align-items: center; }
-.nav-logo { width: 32px; height: 32px; margin-right: 10px; border-radius: 8px; object-fit: contain; }
+.nav-logo { width: 32px; height: 32px; margin-right: 10px; border-radius: 8px; }
 
-.nav-item { width: 100%; padding: 12px; margin-bottom: 8px; border: none; background: none; text-align: left; border-radius: 10px; cursor: pointer; color: #666; font-weight: 500; transition: 0.2s; }
+.nav-item { width: 100%; padding: 12px; border: none; background: none; text-align: left; border-radius: 12px; cursor: pointer; color: #888; font-weight: 500; margin-bottom: 5px; }
 .nav-item.active { background: var(--accent); color: white; }
 
-/* CONTENT */
 .content { flex: 1; padding: 40px; overflow-y: auto; }
 .section { display: none; }
-.section.active { display: block; animation: fadeIn 0.3s ease; }
+.section.active { display: block; animation: fadeIn 0.4s ease; }
 
-.card-elite { background: white; padding: 25px; border-radius: 18px; border: 1px solid var(--border); margin-bottom: 20px; }
-body.dark-mode .card-elite { background: #2c2c2e; }
+.card-elite { background: var(--sidebar-bg); padding: 25px; border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
 
-/* IA GENERATOR UI (CORREGIDO) */
-.ia-input-wrapper { display: flex; gap: 10px; margin-top: 15px; width: 100%; }
-.ia-input-wrapper input { flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--border); outline: none; background: transparent; color: inherit; }
-.btn-ia { background: var(--accent); color: white; padding: 0 20px; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; }
+.ia-input-wrapper { display: flex; gap: 10px; }
+.ia-input-wrapper input { flex: 1; padding: 12px; border-radius: 12px; border: 1px solid var(--border); background: transparent; color: inherit; }
+.btn-ia { background: var(--accent); color: white; border: none; padding: 0 20px; border-radius: 12px; cursor: pointer; font-weight: 600; }
 
-.download-section { display: flex; gap: 15px; margin-top: 20px; }
-.btn-download-bat { flex: 1; background: #28a745; color: white; padding: 15px; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; }
-.btn-download-reg { flex: 1; background: #6f42c1; color: white; padding: 15px; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; }
+.btn-download-bat { background: #28a745; color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 700; cursor: pointer; }
+.btn-download-reg { background: #6f42c1; color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 700; cursor: pointer; }
 
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; } }
+.code-wrapper code { font-family: monospace; color: var(--accent); font-size: 13px; }
+.copy-action { background: var(--accent); color: white; border: none; padding: 4px 10px; border-radius: 6px; cursor: pointer; font-size: 11px; }
+
+.ping-monitor { font-size: 12px; color: #888; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+.status-dot { width: 8px; height: 8px; background: #28a745; border-radius: 50%; }
+
+.sidebar-footer { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border); }
+.version-tag { font-size: 10px; text-align: center; margin-top: 10px; opacity: 0.5; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
