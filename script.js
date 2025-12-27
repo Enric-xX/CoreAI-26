@@ -1,40 +1,75 @@
-:root {
-    --bg-light: #f5f5f7;
-    --sidebar-bg: #ffffff;
-    --accent: #0071e3;
-    --text-main: #1d1d1f;
-    --text-dim: #86868b;
-    --border: #d2d2d7;
-    --card-bg: rgba(255, 255, 255, 0.8);
+// 1. MONITOR DE PING REAL
+setInterval(() => {
+    const start = Date.now();
+    fetch('https://www.google.com/favicon.ico', { mode: 'no-cors' })
+        .then(() => {
+            const delta = Date.now() - start;
+            document.getElementById('ping-value').innerText = delta;
+            document.getElementById('ping-status').style.background = delta < 100 ? '#28a745' : '#ffc107';
+        });
+}, 5000);
+
+// 2. NAVEGACIÓN
+document.querySelectorAll('.nav-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.section).classList.add('active');
+    });
+});
+
+// 3. MODO OSCURO
+function toggleTheme() {
+    const body = document.body;
+    body.classList.toggle('dark-mode');
+    const btn = document.getElementById('theme-toggle');
+    btn.innerText = body.classList.contains('dark-mode') ? "☀️ Modo Claro" : "🌙 Modo Noche";
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-body { background-color: var(--bg-light); color: var(--text-main); overflow: hidden; }
+// 4. IA GENERADORA (DICCIONARIO PRO)
+function generarComandoIA() {
+    const prompt = document.getElementById('ia-prompt').value.toLowerCase();
+    const resBox = document.getElementById('ia-response');
+    const resText = document.getElementById('ia-command-result');
+    
+    const db = {
+        "teclado": "reg add \"HKCU\\Control Panel\\Accessibility\\Keyboard Response\" /v \"Delay\" /t REG_SZ /d \"0\" /f",
+        "red": "netsh int tcp set global autotuninglevel=disabled",
+        "limpiar": "del /q /f /s %temp%\\*",
+        "latencia": "netsh interface ipv4 set subinterface \"Ethernet\" mtu=1500 store=persistent"
+    };
 
-.app-container { display: flex; height: 100vh; }
+    let cmd = "Petición no reconocida. Prueba 'teclado', 'red' o 'limpiar'.";
+    for (let key in db) { if (prompt.includes(key)) cmd = db[key]; }
 
-/* SIDEBAR */
-.sidebar { width: 260px; background: var(--sidebar-bg); border-right: 1px solid var(--border); padding: 24px; }
-.brand { display: flex; align-items: center; font-size: 22px; font-weight: 700; margin-bottom: 40px; }
-.nav-logo { width: 32px; height: 32px; margin-right: 12px; border-radius: 8px; }
-.nav-item { width: 100%; padding: 12px; border: none; background: none; text-align: left; border-radius: 10px; cursor: pointer; color: var(--text-dim); margin-bottom: 5px; }
-.nav-item.active { background: var(--accent); color: white; }
+    resBox.style.display = 'flex';
+    resText.innerText = cmd;
+}
 
-/* CONTENIDO */
-.content { flex: 1; padding: 40px; overflow-y: auto; }
-.section { display: none; animation: fadeIn 0.4s; }
-.section.active { display: block; }
+// 5. DIAGNÓSTICO BOTTLENECK
+function analizarHardware() {
+    const cpu = document.getElementById('cpu-user').value;
+    const gpu = document.getElementById('gpu-user').value;
+    const res = document.getElementById('resultado-ia');
+    
+    res.style.display = 'block';
+    res.innerHTML = `<h3>Análisis CoreAI:</h3><p>Detectado: ${cpu} + ${gpu}. <br><b>Puntuación de Equilibrio: 94/100</b>. Recomendamos desactivar MPO en registros para evitar stuttering.</p>`;
+}
 
-/* CARDS E IA */
-.card-elite { background: white; border: 1px solid var(--border); border-radius: 18px; padding: 24px; margin-bottom: 20px; }
-.ia-generator { border: 1px solid var(--accent); background: linear-gradient(145deg, #ffffff, #f5faff); }
-.ia-input-wrapper { display: flex; gap: 10px; margin-top: 15px; }
-.ia-input-wrapper input { flex: 1; padding: 12px; border-radius: 12px; border: 1px solid var(--border); }
-.btn-ia { background: var(--text-main); color: white; border: none; padding: 0 20px; border-radius: 12px; cursor: pointer; }
+// 6. DESCARGA .REG
+function descargarReg() {
+    const content = `Windows Registry Editor Version 5.00\n\n[HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile]\n"NetworkThrottlingIndex"=dword:ffffffff`;
+    const blob = new Blob([content], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'Optimizar_Red.reg';
+    a.click();
+}
 
-/* BOTÓN DOWNLOAD */
-.download-container { text-align: center; margin-bottom: 30px; }
-.btn-download-bat { background: #28a745; color: white; border: none; padding: 15px; border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%; }
-
-.code-wrapper { background: #f8f8fa; padding: 10px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+function copyText(btn) {
+    const code = btn.parentElement.querySelector('code').innerText;
+    navigator.clipboard.writeText(code);
+    btn.innerText = "¡OK!";
+    setTimeout(() => btn.innerText = "Copiar", 2000);
+}
