@@ -3,87 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CoreAI 26 | Elite Edition Pro</title>
+    <title>CoreAI 26 | Pro</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="light-mode">
+<body>
     <div class="app-container">
         <aside class="sidebar">
             <div class="brand">
                 <img src="logo.png" alt="Logo" class="nav-logo"> 
-                CoreAI <span>26</span>
+                <span>CoreAI 26</span>
             </div>
-            
-            <div class="ping-monitor">
-                <span id="ping-status" class="status-dot"></span>
-                Latencia: <span id="ping-value">--</span> ms
-            </div>
-
             <nav id="main-nav">
                 <button class="nav-item active" data-section="hardware">💻 Diagnóstico</button>
                 <button class="nav-item" data-section="optimizacion">🚀 Optimización</button>
-                <button class="nav-item" data-section="debloat">🗑️ Debloat Pro</button>
+                <button class="nav-item" data-section="debloat">🗑️ Debloat</button>
                 <button class="nav-item" data-section="panel-pro">⚙️ Panel IA</button>
             </nav>
-
             <div class="sidebar-footer">
                 <button id="theme-toggle" onclick="toggleTheme()">🌙 Modo Noche</button>
-                <div class="version-tag">v2.6.2 Stable</div>
+                <div class="version-tag">v2.6.2</div>
             </div>
         </aside>
 
         <main class="content">
             <section id="hardware" class="section active">
-                <h1>Análisis de Rendimiento</h1>
+                <h1>Diagnóstico</h1>
                 <div class="card-elite">
-                    <div class="form-grid" style="display: flex; gap: 10px; margin-bottom: 15px;">
-                        <input type="text" id="cpu-user" placeholder="CPU (ej: i7)" style="flex:1; padding:12px; border-radius:10px; border:1px solid var(--border);">
-                        <input type="text" id="gpu-user" placeholder="GPU (ej: RTX)" style="flex:1; padding:12px; border-radius:10px; border:1px solid var(--border);">
-                    </div>
-                    <button class="btn-elite-main" onclick="analizarHardware()">Analizar Cuello de Botella</button>
-                    <div id="resultado-ia" class="result-box-elite" style="display:none; margin-top:20px; padding:15px; background:#f0f7ff; border-radius:10px;"></div>
+                    <input type="text" id="cpu-user" placeholder="Modelo CPU">
+                    <input type="text" id="gpu-user" placeholder="Modelo GPU">
+                    <button class="btn-elite-main" onclick="analizarHardware()">Analizar</button>
+                    <div id="resultado-ia" class="result-box"></div>
                 </div>
             </section>
 
             <section id="optimizacion" class="section">
-                <h1>Optimización de Sistema</h1>
+                <h1>Optimización</h1>
                 <div class="card-elite">
-                    <h3>Máximo Rendimiento</h3>
-                    <p>Desbloquea el potencial oculto de tu procesador.</p>
-                    <div class="code-wrapper" style="margin-top:10px; background:#f4f4f6; padding:10px; border-radius:8px; display:flex; justify-content:space-between;">
-                        <code>powercfg -duplicatescheme e9a42b02...</code>
-                        <button class="copy-action" onclick="copyText(this)">Copiar</button>
+                    <p>Usa el comando de Máximo Rendimiento:</p>
+                    <div class="code-box">
+                        <code>powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61</code>
                     </div>
                 </div>
             </section>
 
             <section id="debloat" class="section">
-                <h1>Debloat Pro</h1>
+                <h1>Debloat</h1>
                 <div class="card-elite">
-                    <div class="pro-badge">PowerShell</div>
-                    <h3>Eliminar Apps Basura</h3>
-                    <div class="code-wrapper" style="margin-top:10px; background:#f4f4f6; padding:10px; border-radius:8px; display:flex; justify-content:space-between;">
+                    <p>Ejecutar en PowerShell como Admin:</p>
+                    <div class="code-box">
                         <code>iwr -useb https://christitus.com/win | iex</code>
-                        <button class="copy-action" onclick="copyText(this)">Copiar</button>
                     </div>
                 </div>
             </section>
 
             <section id="panel-pro" class="section">
-                <h1>IA Engine v2.6</h1>
-                <div class="card-elite ia-generator">
-                    <div class="ia-input-wrapper">
-                        <input type="text" id="ia-prompt" placeholder="Ej: 'optimizar red'...">
-                        <button onclick="generarComandoIA()" class="btn-ia">Generar</button>
-                    </div>
-                    <div id="ia-response" class="code-wrapper" style="display:none; margin-top:15px; background:rgba(0,0,0,0.05); padding:15px; border-radius:10px;">
+                <h1>Panel IA</h1>
+                <div class="card-elite">
+                    <input type="text" id="ia-prompt" placeholder="Ej: 'dns'...">
+                    <button onclick="generarComandoIA()" class="btn-ia">Generar</button>
+                    <div id="ia-response" class="code-box" style="display:none; margin-top:10px;">
                         <code id="ia-command-result"></code>
                     </div>
                 </div>
-                <div class="download-section" style="display:flex; gap:10px; margin-top:20px;">
-                    <button class="btn-download-bat" onclick="descargarOptimizador()" style="flex:1;">📥 Pack .BAT</button>
-                    <button class="btn-download-reg" onclick="descargarReg()" style="flex:1;">💎 Script .REG</button>
+                <div class="buttons-row">
+                    <button class="btn-download-bat" onclick="descargarOptimizador()">📥 .BAT</button>
+                    <button class="btn-download-reg" onclick="descargarReg()">💎 .REG</button>
                 </div>
             </section>
         </main>
