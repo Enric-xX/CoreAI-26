@@ -25,11 +25,25 @@
 
         <main class="content">
             
+            <section id="hardware" class="section active">
+                <h1>Diagnóstico de Sistema</h1>
+                <div class="card-elite info-box">
+                    <strong>¿Cómo ver tus componentes?</strong>
+                    <p>Presiona <b>Win + R</b>, escribe <code>dxdiag</code> y pulsa Enter.</p>
+                </div>
+                <div class="form-grid">
+                    <div class="input-group"><label>CPU</label><input type="text" id="cpu-user" placeholder="Ej: i7-13700K"></div>
+                    <div class="input-group"><label>GPU</label><input type="text" id="gpu-user" placeholder="Ej: RTX 4070"></div>
+                </div>
+                <button class="btn-elite-main" onclick="analizarHardware()">Generar Diagnóstico</button>
+                <div id="resultado-ia" class="result-box-elite" style="display:none;"></div>
+            </section>
+
             <section id="optimizacion" class="section">
                 <h1>Optimización de Rendimiento</h1>
                 <div class="card-elite">
                     <h3>1. Frecuencia de Refresco (Hz)</h3>
-                    <p>En <i>Configuración > Pantalla > Pantalla avanzada</i>, selecciona el valor más alto (<b>144Hz, 240Hz, etc.</b>) para una fluidez máxima.</p>
+                    <p>En <i>Configuración > Pantalla > Pantalla avanzada</i>, selecciona el valor más alto (<b>144Hz, 240Hz, etc.</b>).</p>
                 </div>
                 <div class="card-elite">
                     <h3>2. Gráficos de Windows (GPU)</h3>
@@ -45,22 +59,20 @@
                 </div>
                 <div class="card-elite">
                     <h3>Caché de Sombreadores</h3>
-                    <p>Usa el "Liberador de espacio en disco" en <b>C:</b> y marca <b>Caché del sombreador de DirectX</b>.</p>
+                    <p>Usa el "Liberador de espacio en disco" en <b>C:</b> y marca la casilla <b>Caché del sombreador de DirectX</b>.</p>
                 </div>
             </section>
 
             <section id="seguridad" class="section">
                 <h1>Seguridad Avanzada</h1>
-                <div class="card-elite sec-flex">
-                    <div>
-                        <h3>Análisis VirusTotal</h3>
-                        <p>Analiza archivos o URLs sospechosas con más de 70 motores antivirus profesionales.</p>
-                    </div>
+                <div class="card-elite">
+                    <h3>Análisis VirusTotal</h3>
+                    <p>Analiza archivos sospechosos con más de 70 motores antivirus profesionales.</p>
                     <a href="https://www.virustotal.com" target="_blank" class="btn-sec">🔍 Abrir VirusTotal</a>
                 </div>
                 <div class="card-elite">
                     <h3>Examen Offline de Microsoft Defender</h3>
-                    <p>Elimina malware profundo reiniciando el sistema antes de que cargue Windows en <i>Protección contra virus > Opciones de examen</i>.</p>
+                    <p>Elimina malware profundo reiniciando el sistema antes de cargar Windows en <i>Protección contra virus > Opciones de examen</i>.</p>
                 </div>
             </section>
 
@@ -71,7 +83,7 @@
                     <button class="btn-download-bat" onclick="descargarOptimizador()">
                         <span>📥</span> Descargar Script Elite CoreAI (.bat)
                     </button>
-                    <p class="disclaimer">Incluye Máximo Rendimiento y Limpieza de Kernel.</p>
+                    <p class="disclaimer">Ejecuta como administrador para aplicar los cambios de kernel.</p>
                 </div>
 
                 <h2 style="margin: 2rem 0 1rem; font-size: 1.5rem;">🎮 Centro de Controladores (GPU)</h2>
@@ -99,8 +111,10 @@
                     <div class="card-individual"><div class="card-header">🌐</div><h4>Red</h4><p>Optimización Netsh TCP.</p></div>
                 </div>
             </section>
+
         </main>
     </div>
     <script src="script.js"></script>
 </body>
 </html>
+
