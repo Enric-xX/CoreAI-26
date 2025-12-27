@@ -86,20 +86,55 @@
                 </div>
             </section>
 
-            <section id="panel-pro" class="section">
-                <h1>Panel de Control Pro</h1>
-                <p class="subtitle-elite">Consola de herramientas técnicas para optimización profunda.</p>
-                <div class="pro-grid-elite">
-                    <div class="pro-item-elite"><div class="pro-badge">Energía</div><h3>Máximo Rendimiento</h3><p>Plan oculto de energía.</p><div class="code-wrapper"><code>powercfg -duplicatescheme e9a42b02...</code><button class="copy-action" onclick="copyText(this)">Copiar</button></div></div>
-                    <div class="pro-item-elite"><div class="pro-badge">Sistema</div><h3>Reparar SFC</h3><p>Escaneo de archivos base.</p><div class="code-wrapper"><code>sfc /scannow</code><button class="copy-action" onclick="copyText(this)">Copiar</button></div></div>
-                    <div class="pro-item-elite"><div class="pro-badge">Imagen</div><h3>Limpieza DISM</h3><p>Reparación de imagen Win.</p><div class="code-wrapper"><code>dism /online /cleanup-image /startcomponentcleanup</code><button class="copy-action" onclick="copyText(this)">Copiar</button></div></div>
-                    <div class="pro-item-elite"><div class="pro-badge">Red</div><h3>Flush DNS</h3><p>Limpia caché de red.</p><div class="code-wrapper"><code>ipconfig /flushdns</code><button class="copy-action" onclick="copyText(this)">Copiar</button></div></div>
-                    <div class="pro-item-elite"><div class="pro-badge">Espacio</div><h3>Hibernación Off</h3><p>Recupera GB de disco.</p><div class="code-wrapper"><code>powercfg -h off</code><button class="copy-action" onclick="copyText(this)">Copiar</button></div></div>
-                    <div class="pro-item-elite"><div class="pro-badge">Ajustes</div><h3>Modo Dios</h3><p>Todo el panel de control.</p><div class="code-wrapper"><code>GodMode.{ED7BA470-8E54-465E-825C-99712043E01C}</code><button class="copy-action" onclick="copyText(this)">Copiar</button></div></div>
-                    <div class="pro-item-elite"><div class="pro-badge">Privacidad</div><h3>Telemetría Off</h3><p>Corta rastreo de datos.</p><div class="code-wrapper"><code>sc stop DiagTrack && sc config DiagTrack start=disabled</code><button class="copy-action" onclick="copyText(this)">Copiar</button></div></div>
-                    <div class="pro-item-elite"><div class="pro-badge">Software</div><h3>Update Apps</h3><p>Actualiza todo vía Winget.</p><div class="code-wrapper"><code>winget upgrade --all</code><button class="copy-action" onclick="copyText(this)">Copiar</button></div></div>
-                    <div class="pro-item-elite"><div class="pro-badge">Red</div><h3>Optimizar TCP</h3><p>Reduce latencia de red.</p><div class="code-wrapper"><code>netsh int tcp set global autotuninglevel=disabled</code><button class="copy-action" onclick="copyText(this)">Copiar</button></div></div>
-                    <div class="pro-item-elite"><div class="pro-badge">Disco</div><h3>Reparar Disco</h3><p>Chequeo chkdsk completo.</p><div class="code-wrapper"><code>chkdsk C: /f /r</code><button class="copy-action" onclick="copyText(this)">Copiar</button></div></div>
+         <section id="panel-pro" class="section">
+    <h1>Panel de Control Pro</h1>
+    <p class="subtitle-elite">Consola de herramientas técnicas para optimización profunda.</p>
+    
+    <div class="download-container">
+        <button class="btn-download-bat" onclick="descargarOptimizador()">
+            📥 Descargar Script de Optimización Completa (.bat)
+        </button>
+        <p class="disclaimer">Ejecuta el archivo como administrador para aplicar todos los cambios del panel.</p>
+    </div>
+
+    <div class="pro-grid-elite">
+        ```
+
+### 2. Actualización en `style.css`
+Añade estos estilos al final de tu archivo para que el botón se vea profesional:
+
+```css
+.download-container {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #eef7ff;
+    border-radius: 15px;
+    border: 1px dashed var(--accent);
+}
+
+.btn-download-bat {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s;
+}
+
+.btn-download-bat:hover {
+    transform: scale(1.02);
+    background: #218838;
+}
+
+.disclaimer {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 10px;
+}
                 </div>
             </section>
         </main>
@@ -113,3 +148,4 @@
     </script>
 </body>
 </html>
+
