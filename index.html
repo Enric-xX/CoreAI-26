@@ -27,58 +27,76 @@
             
             <section id="optimizacion" class="section">
                 <h1>Optimización de Rendimiento</h1>
-                
                 <div class="card-elite">
-                    <h3>1. Gráficos de Windows (GPU)</h3>
+                    <h3>1. Frecuencia de Refresco (Hz)</h3>
+                    <p>En <i>Configuración > Pantalla > Pantalla avanzada</i>, selecciona el valor más alto (<b>144Hz, 240Hz, etc.</b>) para una fluidez máxima.</p>
+                </div>
+                <div class="card-elite">
+                    <h3>2. Gráficos de Windows (GPU)</h3>
                     <p>Activa la <b>Programación de GPU acelerada</b> y las <b>Optimizaciones para juegos en ventana</b> en: <i>Configuración > Pantalla > Gráficos</i>.</p>
                 </div>
+            </section>
 
+            <section id="mantenimiento" class="section">
+                <h1>Mantenimiento de Sistema</h1>
                 <div class="card-elite info-box">
-                    <h3>2. Controladores de Video (Drivers)</h3>
-                    <p style="margin-bottom: 15px;">Descarga siempre los drivers oficiales de tu fabricante para máxima estabilidad:</p>
-                    <div class="drivers-container">
-                        <a href="https://www.nvidia.com/es-es/drivers/" target="_blank" class="btn-driver nvidia">🟢 NVIDIA</a>
-                        <a href="https://www.amd.com/es/support/download/drivers.html" target="_blank" class="btn-driver amd">🔴 AMD</a>
-                    </div>
+                    <h3>Limpieza de Archivos Temporales</h3>
+                    <p>Presiona <b>Win + R</b>, escribe <code>%temp%</code> y borra todo el contenido para eliminar basura acumulada.</p>
                 </div>
-
                 <div class="card-elite">
-                    <h3>3. Modo Juego</h3>
-                    <p>En equipos potentes, se recomienda mantener el <b>Modo Juego desactivado</b> para evitar que Windows limite recursos de procesos secundarios.</p>
+                    <h3>Caché de Sombreadores</h3>
+                    <p>Usa el "Liberador de espacio en disco" en <b>C:</b> y marca <b>Caché del sombreador de DirectX</b>.</p>
                 </div>
             </section>
 
             <section id="seguridad" class="section">
                 <h1>Seguridad Avanzada</h1>
+                <div class="card-elite sec-flex">
+                    <div>
+                        <h3>Análisis VirusTotal</h3>
+                        <p>Analiza archivos o URLs sospechosas con más de 70 motores antivirus profesionales.</p>
+                    </div>
+                    <a href="https://www.virustotal.com" target="_blank" class="btn-sec">🔍 Abrir VirusTotal</a>
+                </div>
                 <div class="card-elite">
                     <h3>Examen Offline de Microsoft Defender</h3>
-                    <p>Elimina malware profundo reiniciando el sistema antes de que cargue Windows.</p>
+                    <p>Elimina malware profundo reiniciando el sistema antes de que cargue Windows en <i>Protección contra virus > Opciones de examen</i>.</p>
                 </div>
-                <div class="card-elite">
-                    <h3>Privacidad de Cámara y Micro</h3>
-                    <p>Revisa qué aplicaciones tienen permiso para acceder a tus periféricos en <i>Privacidad y seguridad</i>.</p>
-                </div>
-                <div class="card-elite">
-                    <h3>Bloqueo PUA (Apps No Deseadas)</h3>
-                    <p>Activa la protección basada en reputación para bloquear software basura automáticamente.</p>
-                </div>
-                <a href="https://www.virustotal.com" target="_blank" class="btn-sec">🔍 Escanear Archivos en VirusTotal</a>
             </section>
 
             <section id="panel-pro" class="section">
                 <h1>Panel de Control Pro</h1>
+                
                 <div class="download-container">
                     <button class="btn-download-bat" onclick="descargarOptimizador()">
                         <span>📥</span> Descargar Script Elite CoreAI (.bat)
                     </button>
-                    <p class="disclaimer">Incluye limpieza de Kernel, Plan de Energía y activación de Anti-PUA.</p>
+                    <p class="disclaimer">Incluye Máximo Rendimiento y Limpieza de Kernel.</p>
                 </div>
 
+                <h2 style="margin: 2rem 0 1rem; font-size: 1.5rem;">🎮 Centro de Controladores (GPU)</h2>
+                <div class="drivers-grid-pro">
+                    <a href="https://www.nvidia.com/es-es/drivers/" target="_blank" class="driver-card nvidia">
+                        <div class="driver-icon">🟢</div>
+                        <div class="driver-info">
+                            <h4>NVIDIA GeForce</h4>
+                            <p>Drivers oficiales para RTX/GTX</p>
+                        </div>
+                    </a>
+                    <a href="https://www.amd.com/es/support/download/drivers.html" target="_blank" class="driver-card amd">
+                        <div class="driver-icon">🔴</div>
+                        <div class="driver-info">
+                            <h4>AMD Radeon</h4>
+                            <p>Drivers Adrenalin para RX</p>
+                        </div>
+                    </a>
+                </div>
+
+                <h2 style="margin: 2.5rem 0 1rem; font-size: 1.5rem;">⚙️ Ajustes Individuales</h2>
                 <div class="pro-grid-individual">
                     <div class="card-individual"><div class="card-header">⚡</div><h4>Energía</h4><p>Plan Máximo Rendimiento.</p></div>
                     <div class="card-individual"><div class="card-header">🛡️</div><h4>Anti-PUA</h4><p>Bloqueo de software basura.</p></div>
-                    <div class="card-individual"><div class="card-header">🌐</div><h4>Netsh TCP</h4><p>Optimización de red y lag.</p></div>
-                    <div class="card-individual"><div class="card-header">📦</div><h4>Winget</h4><p>Update masivo de apps.</p></div>
+                    <div class="card-individual"><div class="card-header">🌐</div><h4>Red</h4><p>Optimización Netsh TCP.</p></div>
                 </div>
             </section>
         </main>
