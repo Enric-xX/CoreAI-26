@@ -57,10 +57,18 @@ h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -
 
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
 .input-group.full { grid-column: span 2; }
-input, textarea { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #d2d2d7; background: white; }
+input, textarea { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #d2d2d7; background: white; font-size: 1rem; transition: var(--transition); }
 input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1); }
 
 .btn-elite-main { width: 100%; padding: 18px; border-radius: 14px; border: none; background: var(--primary); color: white; font-weight: 700; cursor: pointer; transition: var(--transition); }
+.btn-elite-main:hover { background: var(--primary-hover); transform: translateY(-2px); }
+
+/* --- SEGURIDAD BOTÓN --- */
+.btn-sec {
+    display: inline-block; background: var(--primary); color: white; text-decoration: none;
+    padding: 12px 24px; border-radius: 12px; font-weight: 600; transition: var(--transition);
+}
+.btn-sec:hover { background: var(--primary-hover); transform: scale(1.05); }
 
 /* --- PANEL PRO --- */
 .download-container {
@@ -81,7 +89,7 @@ input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px
 .card-individual { background: var(--glass-bg); padding: 1.5rem; border-radius: 18px; border: 1px solid var(--glass-border); box-shadow: var(--shadow); transition: var(--transition); }
 .card-individual:hover { transform: translateY(-5px); background: white; border-color: var(--primary); }
 .card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-.icon { background: rgba(0, 113, 227, 0.1); width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 8px; }
+.icon { background: rgba(0, 113, 227, 0.1); width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-size: 1.2rem; }
 
 @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -90,3 +98,4 @@ input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px
     .sidebar { width: 100%; height: auto; border-right: none; }
     .content { padding: 2rem 1.5rem; }
 }
+
