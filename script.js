@@ -65,3 +65,33 @@ function copyText(button) {
         console.error('Error al copiar: ', err);
     });
 }
+
+function descargarOptimizador() {
+    const comandos = `@echo off
+title CoreAI 26 - Optimizador Elite
+echo Optimizando sistema... por favor espere.
+echo.
+echo [1/5] Activando Maximo Rendimiento...
+powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
+echo [2/5] Limpiando cache DNS...
+ipconfig /flushdns
+echo [3/5] Desactivando Hibernacion...
+powercfg -h off
+echo [4/5] Optimizando TCP...
+netsh int tcp set global autotuninglevel=disabled
+echo [5/5] Buscando actualizaciones de apps...
+winget upgrade --all
+echo.
+echo Optimización completada con éxito.
+pause`;
+
+    const blob = new Blob([comandos], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Optimizar_CoreAI26.bat';
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+}
