@@ -3,75 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CoreAI 26 | Elite Edition</title>
+    <title>CoreAI 26 | Elite Edition Pro</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0071e3">
     <link rel="icon" type="image/png" href="logo.png">
 </head>
-<body>
-    <div class="app-container">
+<body class="light-mode"> <div class="app-container">
         <aside class="sidebar">
             <div class="brand">
                 <img src="logo.png" alt="Logo" class="nav-logo"> 
                 CoreAI <span>26</span>
             </div>
+            
+            <div class="ping-monitor">
+                <span id="ping-status" class="status-dot"></span>
+                Latencia: <span id="ping-value">--</span> ms
+            </div>
+
             <nav id="main-nav">
-                <button class="nav-item active" data-section="hardware">💻 Hardware</button>
+                <button class="nav-item active" data-section="hardware">💻 Diagnóstico</button>
                 <button class="nav-item" data-section="optimizacion">🚀 Optimización</button>
-                <button class="nav-item" data-section="mantenimiento">🧹 Limpieza</button>
-                <button class="nav-item" data-section="seguridad">🛡️ Seguridad</button>
-                <button class="nav-item" data-section="panel-pro">⚙️ Panel Pro</button>
+                <button class="nav-item" data-section="debloat">🗑️ Debloat Pro</button>
+                <button class="nav-item" data-section="panel-pro">⚙️ Panel IA</button>
             </nav>
+
+            <div class="sidebar-footer">
+                <button id="theme-toggle" onclick="toggleTheme()">🌙 Modo Noche</button>
+            </div>
         </aside>
 
         <main class="content">
             <section id="hardware" class="section active">
-                <h1>Diagnóstico de Sistema</h1>
-                <div class="card-elite info-box">
-                    <strong>¿Cómo ver tus componentes?</strong>
-                    <p>Presiona <b>Win + R</b>, escribe <b>dxdiag</b> y pulsa Enter.</p>
+                <h1>Análisis de Rendimiento</h1>
+                <div class="card-elite">
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label>Procesador (CPU)</label>
+                            <input type="text" id="cpu-user" placeholder="Ej: i5-12400F">
+                        </div>
+                        <div class="input-group">
+                            <label>Gráfica (GPU)</label>
+                            <input type="text" id="gpu-user" placeholder="Ej: RTX 3060">
+                        </div>
+                    </div>
+                    <button class="btn-elite-main" onclick="analizarHardware()">Calcular Equilibrio (Bottleneck)</button>
+                    <div id="resultado-ia" class="result-box-elite" style="display:none;"></div>
                 </div>
-                <div class="form-grid">
-                    <div class="input-group"><label>Modelo de CPU</label><input type="text" id="cpu-user" placeholder="Ej: i7-13700K"></div>
-                    <div class="input-group"><label>Modelo de GPU</label><input type="text" id="gpu-user" placeholder="Ej: RTX 4070"></div>
-                    <div class="input-group full"><label>Descripción del Problema</label><textarea id="issue-user" placeholder="Explica qué sucede..."></textarea></div>
+            </section>
+
+            <section id="debloat" class="section">
+                <h1>Debloat & Limpieza</h1>
+                <p>Elimina servicios innecesarios de Windows para liberar RAM.</p>
+                <div class="pro-grid-elite">
+                    <div class="pro-item-elite">
+                        <div class="pro-badge">PowerShell</div>
+                        <h3>Eliminar Bloatware</h3>
+                        <div class="code-wrapper">
+                            <code>iwr -useb https://christitus.com/win | iex</code>
+                            <button class="copy-action" onclick="copyText(this)">Copiar</button>
+                        </div>
+                    </div>
                 </div>
-                <button class="btn-elite-main" onclick="analizarHardware()">Generar Diagnóstico</button>
-                <div id="resultado-ia" class="result-box-elite" style="display:none;"></div>
             </section>
 
             <section id="panel-pro" class="section">
-                <h1>Panel de Control Pro</h1>
+                <h1>Panel Pro Intelligence</h1>
                 
                 <div class="card-elite ia-generator">
-                    <div class="pro-badge" style="background: var(--accent); color: white;">CoreAI Intelligence Engine</div>
-                    <h3>IA Command Generator</h3>
-                    <p>Describe tu necesidad técnica para generar el comando exacto.</p>
+                    <div class="pro-badge" style="background:var(--accent); color:white;">CoreAI Engine v2.6</div>
+                    <h3>Generador de Comandos & .REG</h3>
                     <div class="ia-input-wrapper">
-                        <input type="text" id="ia-prompt" placeholder="Ej: 'optimizar red', 'reparar windows'...">
-                        <button onclick="generarComandoIA()" class="btn-ia">Analizar</button>
+                        <input type="text" id="ia-prompt" placeholder="Ej: 'bajar lag teclado' o 'limpiar disco'...">
+                        <button onclick="generarComandoIA()" class="btn-ia">Generar</button>
                     </div>
-                    <div id="ia-response" class="code-wrapper" style="display:none; margin-top: 15px;">
+                    <div id="ia-response" class="code-wrapper" style="display:none;">
                         <code id="ia-command-result"></code>
                         <button class="copy-action" onclick="copyText(this)">Copiar</button>
                     </div>
                 </div>
 
-                <div class="download-container">
-                    <button class="btn-download-bat" onclick="descargarOptimizador()">📥 Descargar Script de Optimización (.bat)</button>
-                </div>
-
-                <div class="pro-grid-elite">
-                    <div class="pro-item-elite"><div class="pro-badge">Energía</div><h3>Máximo Rendimiento</h3><div class="code-wrapper"><code>powercfg -duplicatescheme e9a42b02...</code><button class="copy-action" onclick="copyText(this)">Copiar</button></div></div>
-                    <div class="pro-item-elite"><div class="pro-badge">Red</div><h3>Flush DNS</h3><div class="code-wrapper"><code>ipconfig /flushdns</code><button class="copy-action" onclick="copyText(this)">Copiar</button></div></div>
+                <div class="download-section">
+                    <button class="btn-download-bat" onclick="descargarOptimizador()">📥 Pack de Optimización (.bat)</button>
+                    <button class="btn-download-reg" onclick="descargarReg()">💎 Script de Registro (.reg)</button>
                 </div>
             </section>
-
-            </main>
+        </main>
     </div>
     <script src="script.js"></script>
-    <script>if ('serviceWorker' in navigator) { navigator.serviceWorker.register('./sw.js'); }</script>
 </body>
 </html>
+
