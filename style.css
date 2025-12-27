@@ -1,17 +1,16 @@
-/* --- VARIABLES DE DISEÑO --- */
+/* --- VARIABLES DE ESTILO --- */
 :root {
-    --bg-dark: #0a0c10;
-    --bg-card: #161b22;
-    --accent: #0071e3;
-    --accent-glow: rgba(0, 113, 227, 0.3);
-    --text-main: #f0f6fc;
-    --text-dim: #8b949e;
-    --success: #238636;
-    --sidebar-width: 260px;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --primary: #0071e3;
+    --primary-hover: #0077ed;
+    --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #d6e4f0 100%);
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --text-main: #1d1d1f;
+    --text-secondary: #48484a;
+    --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
 }
 
-/* --- RESET Y BASE --- */
+/* --- BASE Y FONDO --- */
 * {
     margin: 0;
     padding: 0;
@@ -20,93 +19,95 @@
 }
 
 body {
-    background-color: var(--bg-dark);
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    height: 100vh;
     color: var(--text-main);
-    line-height: 1.6;
-    overflow: hidden; /* Evita scroll doble con el main */
+    display: flex;
+    overflow: hidden;
 }
 
-/* --- ESTRUCTURA APP --- */
+/* --- CONTENEDOR PRINCIPAL --- */
 .app-container {
     display: flex;
+    width: 100%;
     height: 100vh;
-    width: 100vw;
 }
 
-/* --- SIDEBAR --- */
+/* --- SIDEBAR (EFECTO CRISTAL) --- */
 .sidebar {
-    width: var(--sidebar-width);
-    background: #0d1117;
-    border-right: 1px solid #30363d;
+    width: 280px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-right: 1px solid var(--glass-border);
+    padding: 2.5rem 1.5rem;
     display: flex;
     flex-direction: column;
-    padding: 2rem 1rem;
-    z-index: 100;
 }
 
 .brand {
     font-size: 1.5rem;
     font-weight: 800;
+    margin-bottom: 3rem;
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 3rem;
-    color: white;
 }
 
 .brand span {
-    color: var(--accent);
+    color: var(--primary);
 }
 
 .nav-logo {
     width: 32px;
     height: 32px;
-    filter: drop-shadow(0 0 5px var(--accent));
 }
 
+/* --- NAVEGACIÓN --- */
 #main-nav {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
 }
 
 .nav-item {
-    background: transparent;
+    padding: 14px 18px;
     border: none;
-    color: var(--text-dim);
-    padding: 12px 16px;
+    background: transparent;
+    border-radius: 12px;
     text-align: left;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 500;
     font-size: 0.95rem;
-    transition: var(--transition);
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .nav-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    color: white;
+    background: rgba(0, 0, 0, 0.04);
+    transform: translateX(5px);
 }
 
 .nav-item.active {
-    background: var(--accent);
+    background: var(--primary);
     color: white;
-    box-shadow: 0 4px 15px var(--accent-glow);
+    box-shadow: 0 4px 15px rgba(0, 113, 227, 0.3);
 }
 
-/* --- CONTENIDO PRINCIPAL --- */
+/* --- ÁREA DE CONTENIDO --- */
 .content {
     flex: 1;
-    padding: 3rem;
+    padding: 4rem;
     overflow-y: auto;
-    background: radial-gradient(circle at top right, #161b22, #0a0c10);
+    scroll-behavior: smooth;
 }
 
 .section {
     display: none;
     max-width: 900px;
     margin: 0 auto;
-    animation: fadeIn 0.4s ease-out;
+    animation: slideUp 0.6s ease;
 }
 
 .section.active {
@@ -114,35 +115,31 @@ body {
 }
 
 h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-size: 2.8rem;
+    font-weight: 800;
     margin-bottom: 2rem;
-    letter-spacing: -1px;
+    letter-spacing: -0.5px;
 }
 
-/* --- TARJETAS ELITE --- */
+/* --- TARJETAS (CARDS) --- */
 .card-elite {
-    background: var(--bg-card);
-    border: 1px solid #30363d;
-    border-radius: 12px;
-    padding: 1.5rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(4px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2rem;
     margin-bottom: 1.5rem;
-    transition: var(--transition);
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
 }
 
 .card-elite:hover {
-    border-color: var(--accent);
-    transform: translateY(-2px);
-}
-
-.card-elite h3 {
-    color: var(--accent);
-    margin-bottom: 0.5rem;
+    transform: translateY(-5px);
 }
 
 .info-box {
-    background: rgba(0, 113, 227, 0.1);
-    border-left: 4px solid var(--accent);
+    background: linear-gradient(135deg, #e0f2ff 0%, #f0f7ff 100%);
+    border-left: 5px solid var(--primary);
 }
 
 /* --- FORMULARIOS --- */
@@ -153,116 +150,71 @@ h1 {
     margin-bottom: 2rem;
 }
 
-.input-group.full { grid-column: span 2; }
-
 .input-group label {
     display: block;
     font-size: 0.85rem;
-    color: var(--text-dim);
-    margin-bottom: 8px;
     font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
 }
 
 input, textarea {
     width: 100%;
-    background: #0d1117;
-    border: 1px solid #30363d;
-    color: white;
-    padding: 12px;
-    border-radius: 8px;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #d2d2d7;
+    background: white;
     font-size: 1rem;
+    transition: border 0.3s ease;
+}
+
+input:focus {
     outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
 }
 
-input:focus, textarea:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px var(--accent-glow);
-}
-
-/* --- BOTONES --- */
+/* --- BOTONES DE ACCIÓN --- */
 .btn-elite-main {
     width: 100%;
-    background: var(--accent);
-    color: white;
+    padding: 18px;
+    border-radius: 14px;
     border: none;
-    padding: 16px;
-    border-radius: 12px;
+    background: var(--primary);
+    color: white;
     font-weight: 700;
     font-size: 1.1rem;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s ease;
 }
 
 .btn-elite-main:hover {
-    filter: brightness(1.2);
-    transform: translateY(-2px);
+    background: var(--primary-hover);
+    box-shadow: 0 10px 25px rgba(0, 113, 227, 0.2);
 }
 
-.btn-sec {
-    display: inline-block;
-    background: #30363d;
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: 600;
-    margin-top: 10px;
-}
-
-/* --- RESULTADOS IA --- */
+/* --- CAJA DE RESULTADOS --- */
 .result-box-elite {
     margin-top: 2rem;
     padding: 2rem;
-    background: #0d1117;
-    border: 1px solid var(--accent);
-    border-radius: 12px;
-    animation: slideIn 0.5s ease;
-}
-
-/* --- PANEL PRO --- */
-.download-container {
-    text-align: center;
-    background: linear-gradient(145deg, #161b22, #0d1117);
-    padding: 3rem;
+    background: #ffffff;
     border-radius: 20px;
-    border: 2px dashed #30363d;
-    margin-top: 2rem;
-}
-
-.btn-download-bat {
-    background: var(--success);
-    color: white;
-    border: none;
-    padding: 18px 32px;
-    border-radius: 12px;
-    font-weight: 800;
-    font-size: 1.1rem;
-    cursor: pointer;
-    box-shadow: 0 10px 20px rgba(35, 134, 54, 0.2);
-    transition: var(--transition);
-}
-
-.btn-download-bat:hover {
-    transform: scale(1.05);
-    background: #2ea043;
+    border: 2px solid #e0e0e0;
+    border-left: 8px solid #34c759;
+    box-shadow: var(--shadow);
 }
 
 /* --- ANIMACIONES --- */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes slideIn {
-    from { opacity: 0; height: 0; }
-    to { opacity: 1; height: auto; }
-}
-
-/* --- RESPONSIVE --- */
-@media (max-width: 768px) {
-    .app-container { flex-direction: column; }
-    .sidebar { width: 100%; height: auto; padding: 1rem; }
+/* --- RESPONSIVO --- */
+@media (max-width: 900px) {
+    .sidebar { width: 80px; padding: 1.5rem 0.5rem; }
+    .brand { font-size: 0; justify-content: center; }
+    .nav-item { text-align: center; font-size: 1.2rem; }
+    .content { padding: 2rem; }
     .form-grid { grid-template-columns: 1fr; }
-    .input-group.full { grid-column: span 1; }
-    .content { padding: 1.5rem; }
 }
