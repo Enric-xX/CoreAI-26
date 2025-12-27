@@ -24,26 +24,15 @@
         </aside>
 
         <main class="content">
-            
             <section id="hardware" class="section active">
                 <h1>Diagnóstico de Sistema</h1>
                 <div class="card-elite info-box">
                     <strong>¿Cómo ver tus componentes?</strong>
-                    <p>Presiona <b>Win + R</b>, escribe <code>dxdiag</code> y pulsa Enter. Introduce los datos aquí:</p>
+                    <p>Presiona <b>Win + R</b>, escribe <code>dxdiag</code> y pulsa Enter.</p>
                 </div>
                 <div class="form-grid">
-                    <div class="input-group">
-                        <label>Modelo de CPU</label>
-                        <input type="text" id="cpu-user" placeholder="Ej: i7-13700K">
-                    </div>
-                    <div class="input-group">
-                        <label>Modelo de GPU</label>
-                        <input type="text" id="gpu-user" placeholder="Ej: RTX 4070">
-                    </div>
-                    <div class="input-group full">
-                        <label>Descripción del Problema</label>
-                        <textarea id="issue-user" placeholder="Explica qué sucede con tu PC..."></textarea>
-                    </div>
+                    <div class="input-group"><label>CPU</label><input type="text" id="cpu-user" placeholder="Ej: i7-13700K"></div>
+                    <div class="input-group"><label>GPU</label><input type="text" id="gpu-user" placeholder="Ej: RTX 4070"></div>
                 </div>
                 <button class="btn-elite-main" onclick="analizarHardware()">Generar Diagnóstico</button>
                 <div id="resultado-ia" class="result-box-elite" style="display:none;"></div>
@@ -52,71 +41,57 @@
             <section id="optimizacion" class="section">
                 <h1>Optimización de Rendimiento</h1>
                 <div class="card-elite">
-                    <h3>1. Rendimiento Visual (sysdm.cpl)</h3>
-                    <p>Presiona <b>Win + R</b>, escribe <code>sysdm.cpl</code> y ve a: <i>Opciones avanzadas > Rendimiento > Configuración</i>. Marca: <b>"Ajustar para obtener el mejor rendimiento"</b>.</p>
+                    <h3>1. Programación de GPU Acelerada</h3>
+                    <p>Ve a <i>Configuración > Pantalla > Gráficos > Cambiar configuración de gráficos predeterminada</i>. Activa <b>Programación de GPU acelerada por hardware</b> para reducir la latencia.</p>
                 </div>
                 <div class="card-elite">
-                    <h3>2. Frecuencia de Refresco (Hz)</h3>
-                    <p>En <i>Configuración > Pantalla > Pantalla avanzada</i>, selecciona el valor más alto (144Hz, 240Hz, etc.).</p>
+                    <h3>2. Optimización para Juegos en Ventana</h3>
+                    <p>En el mismo menú anterior, activa <b>Optimizaciones para juegos en ventana</b>. Esto mejora el rendimiento si no juegas a pantalla completa.</p>
+                </div>
+                <div class="card-elite">
+                    <h3>3. Desactivar Modo Juego</h3>
+                    <p>Busca "Modo de Juego" en Windows y asegúrate de que esté <b>Desactivado</b> para evitar que el sistema limite procesos en segundo plano necesarios.</p>
                 </div>
             </section>
 
             <section id="mantenimiento" class="section">
-                <h1>Limpieza Paso a Paso</h1>
+                <h1>Limpieza de Sistema</h1>
                 <div class="card-elite">
-                    <h3>Archivos Temporales (%temp%)</h3>
-                    <p>Presiona <b>Win + R</b>, escribe <code>%temp%</code> y borra todo el contenido para agilizar el sistema.</p>
-                </div>
-                <div class="card-elite">
-                    <h3>Caché de Sombreadores de DirectX</h3>
-                    <p>Usa el "Liberador de espacio en disco" en <b>C:</b> y marca la casilla <b>Caché del sombreador de DirectX</b>.</p>
+                    <h3>Liberar Espacio Total</h3>
+                    <p>Usa <code>cleanmgr</code> en el buscador, selecciona C: y marca <b>Limpieza de archivos de sistema</b> para borrar restos de actualizaciones viejas.</p>
                 </div>
             </section>
 
             <section id="seguridad" class="section">
-                <h1>Seguridad Cloud</h1>
+                <h1>Seguridad Avanzada</h1>
                 <div class="card-elite">
-                    <h3>Análisis VirusTotal</h3>
-                    <p style="margin-bottom: 20px;">Analiza archivos sospechosos con más de 70 motores antivirus profesionales.</p>
-                    <a href="https://www.virustotal.com" target="_blank" class="btn-sec">🔍 Abrir VirusTotal</a>
+                    <h3>1. Examen de Microsoft Defender sin Conexión</h3>
+                    <p>Si sospechas de un virus persistente: <i>Seguridad de Windows > Protección contra virus > Opciones de examen</i> y elige <b>Examen de Microsoft Defender sin conexión</b>. Reiniciará y limpiará el PC antes de cargar Windows.</p>
+                </div>
+                <div class="card-elite">
+                    <h3>2. Control de Privacidad (Cámara/Mic)</h3>
+                    <p>Ve a <i>Configuración > Privacidad y seguridad > Permisos de la aplicación</i>. Revisa qué apps tienen acceso a tu <b>Cámara y Micrófono</b> y desactiva las innecesarias.</p>
+                </div>
+                <div class="card-elite">
+                    <h3>3. Bloqueo de Apps Potencialmente no Deseadas</h3>
+                    <p>En <i>Seguridad de Windows > Control de aplicaciones y navegador > Configuración de protección basada en reputación</i>, activa <b>Bloqueo de aplicaciones potencialmente no deseadas (PUA)</b>.</p>
                 </div>
             </section>
 
             <section id="panel-pro" class="section">
                 <h1>Panel de Control Pro</h1>
-                <p class="subtitle-elite">Herramientas técnicas para optimización profunda del kernel.</p>
-                
                 <div class="download-container">
                     <button class="btn-download-bat" onclick="descargarOptimizador()">
-                        <span>📥</span> Descargar Script de Optimización (.bat)
+                        <span>📥</span> Descargar Script Elite CoreAI (.bat)
                     </button>
-                    <p class="disclaimer">Ejecuta como administrador para aplicar los cambios automáticamente.</p>
                 </div>
-
-                <h2 style="margin: 2rem 0 1rem; font-size: 1.5rem;">⚙️ Ajustes Individuales</h2>
                 <div class="pro-grid-individual">
-                    <div class="card-individual">
-                        <div class="card-header"><span class="icon">⚡</span><h4>Rendimiento</h4></div>
-                        <p>Desbloquea el plan de energía oculto de Windows para la CPU.</p>
-                    </div>
-                    <div class="card-individual">
-                        <div class="card-header"><span class="icon">🌐</span><h4>Red TCP</h4></div>
-                        <p>Ajusta el autotuning para estabilizar la latencia en juegos.</p>
-                    </div>
-                    <div class="card-individual">
-                        <div class="card-header"><span class="icon">🧹</span><h4>Caché DNS</h4></div>
-                        <p>Limpia registros de red y archivos de hibernación innecesarios.</p>
-                    </div>
-                    <div class="card-individual">
-                        <div class="card-header"><span class="icon">📦</span><h4>Updates</h4></div>
-                        <p>Actualiza programas instalados vía terminal (Winget).</p>
-                    </div>
+                    <div class="card-individual"><div class="card-header">⚡</div><h4>Power Plan</h4><p>Activa el modo Máximo Rendimiento.</p></div>
+                    <div class="card-individual"><div class="card-header">🛡️</div><h4>Anti-PUA</h4><p>Activa el bloqueo de software basura vía comandos.</p></div>
                 </div>
             </section>
-
         </main>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
