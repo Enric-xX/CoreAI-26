@@ -29,12 +29,21 @@
                 <h1>Diagnóstico de Sistema</h1>
                 <div class="card-elite info-box">
                     <strong>¿Cómo ver tus componentes?</strong>
-                    <p>Presiona <b>Win + R</b>, escribe **dxdiag** y pulsa Enter. Introduce los datos aquí:</p>
+                    <p>Presiona <b>Win + R</b>, escribe <code>dxdiag</code> y pulsa Enter. Introduce los datos aquí:</p>
                 </div>
                 <div class="form-grid">
-                    <div class="input-group"><label>Modelo de CPU</label><input type="text" id="cpu-user" placeholder="Ej: i7-13700K"></div>
-                    <div class="input-group"><label>Modelo de GPU</label><input type="text" id="gpu-user" placeholder="Ej: RTX 4070"></div>
-                    <div class="input-group full"><label>Descripción del Problema</label><textarea id="issue-user" placeholder="Explica qué sucede con tu PC..."></textarea></div>
+                    <div class="input-group">
+                        <label>Modelo de CPU</label>
+                        <input type="text" id="cpu-user" placeholder="Ej: i7-13700K">
+                    </div>
+                    <div class="input-group">
+                        <label>Modelo de GPU</label>
+                        <input type="text" id="gpu-user" placeholder="Ej: RTX 4070">
+                    </div>
+                    <div class="input-group full">
+                        <label>Descripción del Problema</label>
+                        <textarea id="issue-user" placeholder="Explica qué sucede con tu PC..."></textarea>
+                    </div>
                 </div>
                 <button class="btn-elite-main" onclick="analizarHardware()">Generar Diagnóstico</button>
                 <div id="resultado-ia" class="result-box-elite" style="display:none;"></div>
@@ -44,11 +53,11 @@
                 <h1>Optimización de Rendimiento</h1>
                 <div class="card-elite">
                     <h3>1. Rendimiento Visual (sysdm.cpl)</h3>
-                    <p>Presiona <b>Win + R</b>, escribe **sysdm.cpl** y ve a: <i>Opciones avanzadas > Rendimiento > Configuración</i>. Marca: <b>"Ajustar para obtener el mejor rendimiento"</b>.</p>
+                    <p>Presiona <b>Win + R</b>, escribe <code>sysdm.cpl</code> y ve a: <i>Opciones avanzadas > Rendimiento > Configuración</i>. Marca: <b>"Ajustar para obtener el mejor rendimiento"</b>.</p>
                 </div>
                 <div class="card-elite">
                     <h3>2. Frecuencia de Refresco (Hz)</h3>
-                    <p>En <i>Configuración > Pantalla > Pantalla avanzada</i>, selecciona el valor más alto (**144Hz**, **240Hz**, etc.).</p>
+                    <p>En <i>Configuración > Pantalla > Pantalla avanzada</i>, selecciona el valor más alto (144Hz, 240Hz, etc.).</p>
                 </div>
             </section>
 
@@ -56,59 +65,58 @@
                 <h1>Limpieza Paso a Paso</h1>
                 <div class="card-elite">
                     <h3>Archivos Temporales (%temp%)</h3>
-                    <p>Presiona <b>Win + R</b>, escribe **%temp%** y borra todo el contenido para agilizar el sistema.</p>
+                    <p>Presiona <b>Win + R</b>, escribe <code>%temp%</code> y borra todo el contenido para agilizar el sistema.</p>
                 </div>
                 <div class="card-elite">
                     <h3>Caché de Sombreadores de DirectX</h3>
-                    <p>Usa el "Liberador de espacio en disco" en **C:** y marca la casilla **Caché del sombreador de DirectX**.</p>
+                    <p>Usa el "Liberador de espacio en disco" en <b>C:</b> y marca la casilla <b>Caché del sombreador de DirectX</b>.</p>
                 </div>
             </section>
 
             <section id="seguridad" class="section">
                 <h1>Seguridad Cloud</h1>
-                <div class="card-elite sec-flex">
-                    <div style="margin-bottom: 20px;">
-                        <h3>Análisis VirusTotal</h3>
-                        <p>Analiza archivos sospechosos con más de 70 motores antivirus profesionales.</p>
-                    </div>
+                <div class="card-elite">
+                    <h3>Análisis VirusTotal</h3>
+                    <p style="margin-bottom: 20px;">Analiza archivos sospechosos con más de 70 motores antivirus profesionales.</p>
                     <a href="https://www.virustotal.com" target="_blank" class="btn-sec">🔍 Abrir VirusTotal</a>
                 </div>
             </section>
 
             <section id="panel-pro" class="section">
                 <h1>Panel de Control Pro</h1>
-                <p class="subtitle-elite">Consola de herramientas técnicas para optimización profunda.</p>
+                <p class="subtitle-elite">Herramientas técnicas para optimización profunda del kernel.</p>
                 
                 <div class="download-container">
                     <button class="btn-download-bat" onclick="descargarOptimizador()">
-                        <span>📥</span> Descargar Script de Optimización Completa (.bat)
+                        <span>📥</span> Descargar Script de Optimización (.bat)
                     </button>
-                    <p class="disclaimer">Ejecuta el archivo como administrador para aplicar todos los cambios del panel.</p>
+                    <p class="disclaimer">Ejecuta como administrador para aplicar los cambios automáticamente.</p>
                 </div>
 
-                <h2 style="margin: 2.5rem 0 1rem; font-size: 1.5rem;">⚙️ Ajustes Individuales</h2>
+                <h2 style="margin: 2rem 0 1rem; font-size: 1.5rem;">⚙️ Ajustes Individuales</h2>
                 <div class="pro-grid-individual">
                     <div class="card-individual">
-                        <div class="card-header"><span class="icon">⚡</span><h4>Máximo Rendimiento</h4></div>
-                        <p>Desbloquea el plan de energía oculto de Windows para eliminar el ahorro de energía en la CPU.</p>
+                        <div class="card-header"><span class="icon">⚡</span><h4>Rendimiento</h4></div>
+                        <p>Desbloquea el plan de energía oculto de Windows para la CPU.</p>
                     </div>
                     <div class="card-individual">
-                        <div class="card-header"><span class="icon">🌐</span><h4>Optimización TCP</h4></div>
-                        <p>Ajusta el nivel de autotuning para estabilizar la latencia (ping) en juegos y streaming.</p>
+                        <div class="card-header"><span class="icon">🌐</span><h4>Red TCP</h4></div>
+                        <p>Ajusta el autotuning para estabilizar la latencia en juegos.</p>
                     </div>
                     <div class="card-individual">
-                        <div class="card-header"><span class="icon">🧹</span><h4>Limpieza de Kernel</h4></div>
-                        <p>Elimina archivos de hibernación y caché DNS para refrescar la memoria del sistema.</p>
+                        <div class="card-header"><span class="icon">🧹</span><h4>Caché DNS</h4></div>
+                        <p>Limpia registros de red y archivos de hibernación innecesarios.</p>
                     </div>
                     <div class="card-individual">
-                        <div class="card-header"><span class="icon">📦</span><h4>Winget Upgrade</h4></div>
-                        <p>Actualiza todos los programas instalados a su última versión estable automáticamente.</p>
+                        <div class="card-header"><span class="icon">📦</span><h4>Updates</h4></div>
+                        <p>Actualiza programas instalados vía terminal (Winget).</p>
                     </div>
                 </div>
             </section>
 
         </main>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
