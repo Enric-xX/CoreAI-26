@@ -4,15 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CoreAI 26 | Elite Edition</title>
-    
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0071e3">
-    <link rel="apple-touch-icon" href="logo.png">
-    
-    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="app-container">
@@ -57,59 +50,42 @@
                     <h3>2. Frecuencia de Refresco (Hz)</h3>
                     <p>En <i>Configuración > Pantalla > Pantalla avanzada</i>, selecciona el valor más alto (**144Hz**, **240Hz**, etc.).</p>
                 </div>
-                <div class="card-elite">
-                    <h3>3. Desactivar Modo Juego</h3>
-                    <p>En ajustes de Windows, busca <b>Modo de Juego</b> y cámbialo a <b>Desactivado</b>. Activa también la <b>"Programación de GPU acelerada"</b>.</p>
-                </div>
             </section>
 
-            <section id="mantenimiento" class="section">
-                <h1>Limpieza Paso a Paso</h1>
-                <div class="card-elite">
-                    <h3>Archivos Temporales (%temp%)</h3>
-                    <p>Presiona <b>Win + R</b>, escribe **%temp%** y borra todo el contenido para agilizar el sistema.</p>
+            <section id="panel-pro" class="section">
+                <h1>Panel de Control Pro</h1>
+                <p class="subtitle-elite">Consola de herramientas técnicas para optimización profunda.</p>
+                
+                <div class="download-container">
+                    <button class="btn-download-bat" onclick="descargarOptimizador()">
+                        <span>📥</span> Descargar Script de Optimización Completa (.bat)
+                    </button>
+                    <p class="disclaimer">Ejecuta el archivo como administrador para aplicar todos los cambios del panel.</p>
                 </div>
-                <div class="card-elite">
-                    <h3>Caché de Sombreadores de DirectX</h3>
-                    <p>Usa el "Liberador de espacio en disco" en **C:** y marca la casilla **Caché del sombreador de DirectX**.</p>
-                </div>
-            </section>
 
-            <section id="seguridad" class="section">
-                <h1>Seguridad Cloud</h1>
-                <div class="card-elite sec-flex">
-                    <div>
-                        <h3>Análisis VirusTotal</h3>
-                        <p>Analiza archivos sospechosos con más de 70 motores antivirus profesionales.</p>
+                <h2 style="margin: 2.5rem 0 1rem; font-size: 1.5rem;">⚙️ Ajustes Individuales</h2>
+                <div class="pro-grid-individual">
+                    <div class="card-individual">
+                        <div class="card-header"><span class="icon">⚡</span><h4>Máximo Rendimiento</h4></div>
+                        <p>Desbloquea el plan de energía oculto de Windows para eliminar el ahorro de energía en la CPU.</p>
                     </div>
-                    <a href="https://www.virustotal.com" target="_blank" class="btn-sec">🔍 Abrir VirusTotal</a>
+                    <div class="card-individual">
+                        <div class="card-header"><span class="icon">🌐</span><h4>Optimización TCP</h4></div>
+                        <p>Ajusta el nivel de autotuning para estabilizar la latencia (ping) en juegos y streaming.</p>
+                    </div>
+                    <div class="card-individual">
+                        <div class="card-header"><span class="icon">🧹</span><h4>Limpieza de Kernel</h4></div>
+                        <p>Elimina archivos de hibernación y caché DNS para refrescar la memoria del sistema.</p>
+                    </div>
+                    <div class="card-individual">
+                        <div class="card-header"><span class="icon">📦</span><h4>Winget Upgrade</h4></div>
+                        <p>Actualiza todos los programas instalados a su última versión estable automáticamente.</p>
+                    </div>
                 </div>
             </section>
 
-         <section id="panel-pro" class="section">
-    <h1>Panel de Control Pro</h1>
-    <p class="subtitle-elite">Consola de herramientas técnicas para optimización profunda.</p>
-    
-    <div class="download-container">
-        <button class="btn-download-bat" onclick="descargarOptimizador()">
-            📥 Descargar Script de Optimización Completa (.bat)
-        </button>
-        <p class="disclaimer">Ejecuta el archivo como administrador para aplicar todos los cambios del panel.</p>
-    </div>
-
-    <div class="pro-grid-elite">
-                </div>
-            </section>
         </main>
     </div>
-
     <script src="script.js"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./sw.js');
-        }
-    </script>
 </body>
 </html>
-
-
