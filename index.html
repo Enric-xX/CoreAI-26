@@ -13,7 +13,7 @@
     <div class="app-container">
         <aside class="sidebar">
             <div class="brand">
-                <img src="logo.png" alt="Logo" class="nav-logo"> 
+                <img src="logo.png" alt="CoreAI Logo" class="nav-logo"> 
                 CoreAI <span>26</span>
             </div>
             
@@ -41,43 +41,54 @@
                 <div class="card-elite">
                     <div class="form-grid">
                         <div class="input-group">
-                            <label>Procesador (CPU)</label>
-                            <input type="text" id="cpu-user" placeholder="Ej: i5-12400F">
+                            <label>CPU</label>
+                            <input type="text" id="cpu-user" placeholder="i7-13700K">
                         </div>
                         <div class="input-group">
-                            <label>Gráfica (GPU)</label>
-                            <input type="text" id="gpu-user" placeholder="Ej: RTX 3060">
+                            <label>GPU</label>
+                            <input type="text" id="gpu-user" placeholder="RTX 4070">
                         </div>
                     </div>
-                    <button class="btn-elite-main" onclick="analizarHardware()">Calcular Equilibrio</button>
+                    <button class="btn-elite-main" onclick="analizarHardware()">Analizar Cuello de Botella</button>
                     <div id="resultado-ia" class="result-box-elite" style="display:none; margin-top:20px;"></div>
+                </div>
+            </section>
+
+            <section id="debloat" class="section">
+                <h1>Debloat & Limpieza</h1>
+                <div class="card-elite">
+                    <div class="pro-badge">PowerShell</div>
+                    <h3>Scripts de Limpieza Profunda</h3>
+                    <div class="code-wrapper">
+                        <code>iwr -useb https://christitus.com/win | iex</code>
+                        <button class="copy-action" onclick="copyText(this)">Copiar</button>
+                    </div>
                 </div>
             </section>
 
             <section id="panel-pro" class="section">
                 <h1>Panel Pro Intelligence</h1>
                 <div class="card-elite ia-generator">
-                    <div class="pro-badge" style="background:var(--accent); color:white;">CoreAI Engine v2.6</div>
-                    <h3>Generador de Comandos & .REG</h3>
+                    <div class="pro-badge" style="background:var(--accent); color:white;">CoreAI Engine</div>
+                    <h3>IA Command Generator</h3>
                     <div class="ia-input-wrapper">
-                        <input type="text" id="ia-prompt" placeholder="Ej: 'bajar lag teclado'...">
+                        <input type="text" id="ia-prompt" placeholder="Ej: 'optimizar internet'...">
                         <button onclick="generarComandoIA()" class="btn-ia">Generar</button>
                     </div>
-                    <div id="ia-response" class="code-wrapper" style="display:none;">
+                    <div id="ia-response" class="code-wrapper" style="display:none; margin-top:15px;">
                         <code id="ia-command-result"></code>
                         <button class="copy-action" onclick="copyText(this)">Copiar</button>
                     </div>
                 </div>
                 <div class="download-section">
                     <button class="btn-download-bat" onclick="descargarOptimizador()">📥 Pack .bat</button>
-                    <button class="btn-download-reg" onclick="descargarReg()">💎 Script .reg</button>
+                    <button class="btn-download-reg" onclick="descargarReg()">💎 Registro .reg</button>
                 </div>
             </section>
         </main>
     </div>
 
     <script src="script.js"></script>
-    
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -86,7 +97,6 @@
                         const installingWorker = reg.installing;
                         installingWorker.onstatechange = () => {
                             if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
-                                // Forzar recarga silenciosa cuando hay nueva versión
                                 window.location.reload();
                             }
                         };
@@ -97,5 +107,3 @@
     </script>
 </body>
 </html>
-
-
