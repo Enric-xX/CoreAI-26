@@ -9,7 +9,8 @@
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" href="logo.png">
 </head>
-<body class="light-mode"> <div class="app-container">
+<body class="light-mode">
+    <div class="app-container">
         <aside class="sidebar">
             <div class="brand">
                 <img src="logo.png" alt="Logo" class="nav-logo"> 
@@ -30,6 +31,7 @@
 
             <div class="sidebar-footer">
                 <button id="theme-toggle" onclick="toggleTheme()">🌙 Modo Noche</button>
+                <div class="version-tag">v2.6.0 Stable</div>
             </div>
         </aside>
 
@@ -47,34 +49,18 @@
                             <input type="text" id="gpu-user" placeholder="Ej: RTX 3060">
                         </div>
                     </div>
-                    <button class="btn-elite-main" onclick="analizarHardware()">Calcular Equilibrio (Bottleneck)</button>
-                    <div id="resultado-ia" class="result-box-elite" style="display:none;"></div>
-                </div>
-            </section>
-
-            <section id="debloat" class="section">
-                <h1>Debloat & Limpieza</h1>
-                <p>Elimina servicios innecesarios de Windows para liberar RAM.</p>
-                <div class="pro-grid-elite">
-                    <div class="pro-item-elite">
-                        <div class="pro-badge">PowerShell</div>
-                        <h3>Eliminar Bloatware</h3>
-                        <div class="code-wrapper">
-                            <code>iwr -useb https://christitus.com/win | iex</code>
-                            <button class="copy-action" onclick="copyText(this)">Copiar</button>
-                        </div>
-                    </div>
+                    <button class="btn-elite-main" onclick="analizarHardware()">Calcular Equilibrio</button>
+                    <div id="resultado-ia" class="result-box-elite" style="display:none; margin-top:20px;"></div>
                 </div>
             </section>
 
             <section id="panel-pro" class="section">
                 <h1>Panel Pro Intelligence</h1>
-                
                 <div class="card-elite ia-generator">
                     <div class="pro-badge" style="background:var(--accent); color:white;">CoreAI Engine v2.6</div>
                     <h3>Generador de Comandos & .REG</h3>
                     <div class="ia-input-wrapper">
-                        <input type="text" id="ia-prompt" placeholder="Ej: 'bajar lag teclado' o 'limpiar disco'...">
+                        <input type="text" id="ia-prompt" placeholder="Ej: 'bajar lag teclado'...">
                         <button onclick="generarComandoIA()" class="btn-ia">Generar</button>
                     </div>
                     <div id="ia-response" class="code-wrapper" style="display:none;">
@@ -82,15 +68,34 @@
                         <button class="copy-action" onclick="copyText(this)">Copiar</button>
                     </div>
                 </div>
-
                 <div class="download-section">
-                    <button class="btn-download-bat" onclick="descargarOptimizador()">📥 Pack de Optimización (.bat)</button>
-                    <button class="btn-download-reg" onclick="descargarReg()">💎 Script de Registro (.reg)</button>
+                    <button class="btn-download-bat" onclick="descargarOptimizador()">📥 Pack .bat</button>
+                    <button class="btn-download-reg" onclick="descargarReg()">💎 Script .reg</button>
                 </div>
             </section>
         </main>
     </div>
+
     <script src="script.js"></script>
+    
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').then(reg => {
+                    reg.onupdatefound = () => {
+                        const installingWorker = reg.installing;
+                        installingWorker.onstatechange = () => {
+                            if (installingWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                // Forzar recarga silenciosa cuando hay nueva versión
+                                window.location.reload();
+                            }
+                        };
+                    };
+                });
+            });
+        }
+    </script>
 </body>
 </html>
+
 
