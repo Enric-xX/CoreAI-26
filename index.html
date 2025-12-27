@@ -24,58 +24,45 @@
         </aside>
 
         <main class="content">
-            <section id="hardware" class="section active">
-                <h1>Diagnóstico de Sistema</h1>
-                <div class="card-elite info-box">
-                    <strong>¿Cómo ver tus componentes?</strong>
-                    <p>Presiona <b>Win + R</b>, escribe <code>dxdiag</code> y pulsa Enter.</p>
-                </div>
-                <div class="form-grid">
-                    <div class="input-group"><label>CPU</label><input type="text" id="cpu-user" placeholder="Ej: i7-13700K"></div>
-                    <div class="input-group"><label>GPU</label><input type="text" id="gpu-user" placeholder="Ej: RTX 4070"></div>
-                </div>
-                <button class="btn-elite-main" onclick="analizarHardware()">Generar Diagnóstico</button>
-                <div id="resultado-ia" class="result-box-elite" style="display:none;"></div>
-            </section>
-
+            
             <section id="optimizacion" class="section">
                 <h1>Optimización de Rendimiento</h1>
+                
                 <div class="card-elite">
-                    <h3>1. Programación de GPU Acelerada</h3>
-                    <p>Ve a <i>Configuración > Pantalla > Gráficos > Cambiar configuración de gráficos predeterminada</i>. Activa <b>Programación de GPU acelerada por hardware</b> para reducir la latencia.</p>
+                    <h3>1. Gráficos de Windows (GPU)</h3>
+                    <p>Activa la <b>Programación de GPU acelerada</b> y las <b>Optimizaciones para juegos en ventana</b> en: <i>Configuración > Pantalla > Gráficos</i>.</p>
                 </div>
-                <div class="card-elite">
-                    <h3>2. Optimización para Juegos en Ventana</h3>
-                    <p>En el mismo menú anterior, activa <b>Optimizaciones para juegos en ventana</b>. Esto mejora el rendimiento si no juegas a pantalla completa.</p>
-                </div>
-                <div class="card-elite">
-                    <h3>3. Desactivar Modo Juego</h3>
-                    <p>Busca "Modo de Juego" en Windows y asegúrate de que esté <b>Desactivado</b> para evitar que el sistema limite procesos en segundo plano necesarios.</p>
-                </div>
-            </section>
 
-            <section id="mantenimiento" class="section">
-                <h1>Limpieza de Sistema</h1>
+                <div class="card-elite info-box">
+                    <h3>2. Controladores de Video (Drivers)</h3>
+                    <p style="margin-bottom: 15px;">Descarga siempre los drivers oficiales de tu fabricante para máxima estabilidad:</p>
+                    <div class="drivers-container">
+                        <a href="https://www.nvidia.com/es-es/drivers/" target="_blank" class="btn-driver nvidia">🟢 NVIDIA</a>
+                        <a href="https://www.amd.com/es/support/download/drivers.html" target="_blank" class="btn-driver amd">🔴 AMD</a>
+                    </div>
+                </div>
+
                 <div class="card-elite">
-                    <h3>Liberar Espacio Total</h3>
-                    <p>Usa <code>cleanmgr</code> en el buscador, selecciona C: y marca <b>Limpieza de archivos de sistema</b> para borrar restos de actualizaciones viejas.</p>
+                    <h3>3. Modo Juego</h3>
+                    <p>En equipos potentes, se recomienda mantener el <b>Modo Juego desactivado</b> para evitar que Windows limite recursos de procesos secundarios.</p>
                 </div>
             </section>
 
             <section id="seguridad" class="section">
                 <h1>Seguridad Avanzada</h1>
                 <div class="card-elite">
-                    <h3>1. Examen de Microsoft Defender sin Conexión</h3>
-                    <p>Si sospechas de un virus persistente: <i>Seguridad de Windows > Protección contra virus > Opciones de examen</i> y elige <b>Examen de Microsoft Defender sin conexión</b>. Reiniciará y limpiará el PC antes de cargar Windows.</p>
+                    <h3>Examen Offline de Microsoft Defender</h3>
+                    <p>Elimina malware profundo reiniciando el sistema antes de que cargue Windows.</p>
                 </div>
                 <div class="card-elite">
-                    <h3>2. Control de Privacidad (Cámara/Mic)</h3>
-                    <p>Ve a <i>Configuración > Privacidad y seguridad > Permisos de la aplicación</i>. Revisa qué apps tienen acceso a tu <b>Cámara y Micrófono</b> y desactiva las innecesarias.</p>
+                    <h3>Privacidad de Cámara y Micro</h3>
+                    <p>Revisa qué aplicaciones tienen permiso para acceder a tus periféricos en <i>Privacidad y seguridad</i>.</p>
                 </div>
                 <div class="card-elite">
-                    <h3>3. Bloqueo de Apps Potencialmente no Deseadas</h3>
-                    <p>En <i>Seguridad de Windows > Control de aplicaciones y navegador > Configuración de protección basada en reputación</i>, activa <b>Bloqueo de aplicaciones potencialmente no deseadas (PUA)</b>.</p>
+                    <h3>Bloqueo PUA (Apps No Deseadas)</h3>
+                    <p>Activa la protección basada en reputación para bloquear software basura automáticamente.</p>
                 </div>
+                <a href="https://www.virustotal.com" target="_blank" class="btn-sec">🔍 Escanear Archivos en VirusTotal</a>
             </section>
 
             <section id="panel-pro" class="section">
@@ -84,10 +71,14 @@
                     <button class="btn-download-bat" onclick="descargarOptimizador()">
                         <span>📥</span> Descargar Script Elite CoreAI (.bat)
                     </button>
+                    <p class="disclaimer">Incluye limpieza de Kernel, Plan de Energía y activación de Anti-PUA.</p>
                 </div>
+
                 <div class="pro-grid-individual">
-                    <div class="card-individual"><div class="card-header">⚡</div><h4>Power Plan</h4><p>Activa el modo Máximo Rendimiento.</p></div>
-                    <div class="card-individual"><div class="card-header">🛡️</div><h4>Anti-PUA</h4><p>Activa el bloqueo de software basura vía comandos.</p></div>
+                    <div class="card-individual"><div class="card-header">⚡</div><h4>Energía</h4><p>Plan Máximo Rendimiento.</p></div>
+                    <div class="card-individual"><div class="card-header">🛡️</div><h4>Anti-PUA</h4><p>Bloqueo de software basura.</p></div>
+                    <div class="card-individual"><div class="card-header">🌐</div><h4>Netsh TCP</h4><p>Optimización de red y lag.</p></div>
+                    <div class="card-individual"><div class="card-header">📦</div><h4>Winget</h4><p>Update masivo de apps.</p></div>
                 </div>
             </section>
         </main>
