@@ -22,25 +22,25 @@
             </nav>
             <div class="sidebar-footer">
                 <button id="theme-toggle" onclick="toggleTheme()">🌙 Modo Noche</button>
-                <div class="version-tag">v2.6.2</div>
+                <div class="version-tag">v2.6.2 Stable</div>
             </div>
         </aside>
 
         <main class="content">
             <section id="hardware" class="section active">
-                <h1>Diagnóstico</h1>
+                <h1>Diagnóstico de Sistema</h1>
                 <div class="card-elite">
-                    <input type="text" id="cpu-user" placeholder="Modelo CPU">
-                    <input type="text" id="gpu-user" placeholder="Modelo GPU">
-                    <button class="btn-elite-main" onclick="analizarHardware()">Analizar</button>
-                    <div id="resultado-ia" class="result-box"></div>
+                    <input type="text" id="cpu-user" placeholder="Modelo de Procesador">
+                    <input type="text" id="gpu-user" placeholder="Modelo de Gráfica">
+                    <button class="btn-elite-main" onclick="analizarHardware()">Analizar Equipo</button>
+                    <div id="resultado-ia" class="result-box" style="display:none; margin-top:15px; padding:10px; background:#f0f7ff; border-radius:8px;"></div>
                 </div>
             </section>
 
             <section id="optimizacion" class="section">
                 <h1>Optimización</h1>
                 <div class="card-elite">
-                    <p>Usa el comando de Máximo Rendimiento:</p>
+                    <p>Activar Plan de Máximo Rendimiento:</p>
                     <div class="code-box">
                         <code>powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61</code>
                     </div>
@@ -48,9 +48,9 @@
             </section>
 
             <section id="debloat" class="section">
-                <h1>Debloat</h1>
+                <h1>Debloat Pro</h1>
                 <div class="card-elite">
-                    <p>Ejecutar en PowerShell como Admin:</p>
+                    <p>Eliminar telemetría y apps basura (PowerShell):</p>
                     <div class="code-box">
                         <code>iwr -useb https://christitus.com/win | iex</code>
                     </div>
@@ -58,17 +58,19 @@
             </section>
 
             <section id="panel-pro" class="section">
-                <h1>Panel IA</h1>
+                <h1>Panel Pro Intelligence</h1>
                 <div class="card-elite">
-                    <input type="text" id="ia-prompt" placeholder="Ej: 'dns'...">
-                    <button onclick="generarComandoIA()" class="btn-ia">Generar</button>
-                    <div id="ia-response" class="code-box" style="display:none; margin-top:10px;">
+                    <div class="ia-input-wrapper" style="display:flex; gap:10px;">
+                        <input type="text" id="ia-prompt" placeholder="Ej: 'dns' o 'limpiar'...">
+                        <button onclick="generarComandoIA()" class="btn-ia">Generar</button>
+                    </div>
+                    <div id="ia-response" class="code-box" style="display:none; margin-top:15px;">
                         <code id="ia-command-result"></code>
                     </div>
                 </div>
-                <div class="buttons-row">
-                    <button class="btn-download-bat" onclick="descargarOptimizador()">📥 .BAT</button>
-                    <button class="btn-download-reg" onclick="descargarReg()">💎 .REG</button>
+                <div class="buttons-row" style="display:flex; gap:10px; margin-top:20px;">
+                    <button class="btn-download-bat" onclick="descargarOptimizador()">📥 Pack .BAT</button>
+                    <button class="btn-download-reg" onclick="descargarReg()">💎 Script .REG</button>
                 </div>
             </section>
         </main>
