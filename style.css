@@ -2,35 +2,27 @@
 :root {
     --primary: #0071e3;
     --primary-hover: #0077ed;
-    --success: #28a745;
     --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #d6e4f0 100%);
     --glass-bg: rgba(255, 255, 255, 0.7);
     --glass-border: rgba(255, 255, 255, 0.4);
     --text-main: #1d1d1f;
     --text-secondary: #48484a;
     --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-    --sidebar-width: 280px;
 }
 
 /* --- BASE --- */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
 body { background: var(--bg-gradient); background-attachment: fixed; height: 100vh; overflow: hidden; display: flex; color: var(--text-main); }
 
-/* --- ESTRUCTURA --- */
 .app-container { display: flex; width: 100%; height: 100vh; }
 
+/* --- SIDEBAR --- */
 .sidebar {
-    width: var(--sidebar-width);
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    border-right: 1px solid var(--glass-border);
-    padding: 2.5rem 1.5rem;
-    display: flex; flex-direction: column;
+    width: 280px; background: var(--glass-bg); backdrop-filter: blur(12px);
+    border-right: 1px solid var(--glass-border); padding: 2.5rem 1.5rem; display: flex; flex-direction: column;
 }
-
 .brand { font-size: 1.5rem; font-weight: 800; margin-bottom: 3rem; display: flex; align-items: center; gap: 10px; }
 .brand span { color: var(--primary); }
-.nav-logo { width: 32px; height: 32px; }
 
 #main-nav { display: flex; flex-direction: column; gap: 8px; }
 .nav-item {
@@ -43,39 +35,44 @@ body { background: var(--bg-gradient); background-attachment: fixed; height: 100
 .content { flex: 1; padding: 4rem; overflow-y: auto; scroll-behavior: smooth; }
 .section { display: none; max-width: 900px; margin: 0 auto; animation: slideUp 0.6s ease; }
 .section.active { display: block; }
-
 h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 2rem; }
 
 /* --- CARDS --- */
 .card-elite { background: var(--glass-bg); padding: 2rem; border-radius: 20px; border: 1px solid var(--glass-border); box-shadow: var(--shadow); margin-bottom: 1.5rem; }
 .info-box { background: linear-gradient(135deg, #eef7ff 0%, #f0f7ff 100%); border-left: 5px solid var(--primary); }
 
-/* --- BOTONES DRIVERS --- */
-.drivers-container { display: flex; gap: 15px; margin-top: 15px; }
-.btn-driver {
-    flex: 1; padding: 12px; border-radius: 12px; text-decoration: none; color: white;
-    font-weight: 700; text-align: center; transition: 0.3s;
+/* --- HUB DE DRIVERS (PANEL PRO) --- */
+.drivers-grid-pro {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;
 }
-.btn-driver.nvidia { background: #76b900; box-shadow: 0 4px 12px rgba(118, 185, 0, 0.2); }
-.btn-driver.amd { background: #ed1c24; box-shadow: 0 4px 12px rgba(237, 28, 36, 0.2); }
-.btn-driver:hover { transform: translateY(-3px); filter: brightness(1.1); }
+.driver-card {
+    display: flex; align-items: center; gap: 15px; padding: 1.5rem; border-radius: 18px;
+    text-decoration: none; color: inherit; background: white; border: 1px solid #e1e8ed; transition: 0.3s;
+}
+.driver-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+.driver-card.nvidia { border-left: 6px solid #76b900; }
+.driver-card.amd { border-left: 6px solid #ed1c24; }
+.driver-icon { font-size: 1.5rem; }
+.driver-info h4 { font-weight: 700; margin-bottom: 2px; }
+.driver-info p { font-size: 0.8rem; color: var(--text-secondary); }
 
-/* --- PANEL PRO BOTÓN --- */
+/* --- BOTÓN SEGURIDAD Y DESCARGA --- */
+.btn-sec {
+    display: inline-block; background: var(--primary); color: white; text-decoration: none;
+    padding: 12px 24px; border-radius: 10px; font-weight: 600; margin-top: 1rem; transition: 0.3s;
+}
+.btn-sec:hover { background: var(--primary-hover); transform: scale(1.05); }
+
 .download-container {
     text-align: center; padding: 40px; background: white; border-radius: 24px;
-    box-shadow: var(--shadow); border: 2px solid #e1e8ed; margin: 2rem 0;
+    box-shadow: var(--shadow); border: 2px solid #e1e8ed; margin-bottom: 2rem;
 }
 .btn-download-bat {
     background: linear-gradient(45deg, #28a745, #34d058); padding: 20px 40px;
     border-radius: 16px; border: none; color: white; font-weight: 800; font-size: 1.1rem;
-    cursor: pointer; transition: 0.4s ease;
+    cursor: pointer; transition: 0.4s;
 }
 .btn-download-bat:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(40, 167, 69, 0.2); }
-
-/* --- AJUSTES INDIVIDUALES --- */
-.pro-grid-individual { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
-.card-individual { background: var(--glass-bg); padding: 1.2rem; border-radius: 15px; border: 1px solid var(--glass-border); transition: 0.3s; }
-.card-individual:hover { transform: translateY(-5px); background: white; border-color: var(--primary); }
 
 @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -83,5 +80,6 @@ h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 2rem; }
 @media (max-width: 900px) {
     .app-container { flex-direction: column; overflow-y: auto; }
     .sidebar { width: 100%; height: auto; }
-    .content { padding: 2rem; }
+    .drivers-grid-pro { grid-template-columns: 1fr; }
 }
+
