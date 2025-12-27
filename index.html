@@ -11,8 +11,7 @@
     <div class="app-container">
         <aside class="sidebar">
             <div class="brand">
-                <img src="logo.png" alt="Logo" class="nav-logo"> 
-                CoreAI <span>26</span>
+                <span>CoreAI</span> 26
             </div>
             <nav id="main-nav">
                 <button class="nav-item active" data-section="hardware">💻 Hardware</button>
@@ -28,12 +27,18 @@
             <section id="hardware" class="section active">
                 <h1>Diagnóstico de Sistema</h1>
                 <div class="card-elite info-box">
-                    <strong>¿Cómo ver tus componentes?</strong>
-                    <p>Presiona <b>Win + R</b>, escribe <code>dxdiag</code> y pulsa Enter.</p>
+                    <strong>Información del Sistema:</strong>
+                    <p>Usa <b>Win + R</b> y escribe <code>dxdiag</code> para obtener los datos de tu PC.</p>
                 </div>
                 <div class="form-grid">
-                    <div class="input-group"><label>CPU</label><input type="text" id="cpu-user" placeholder="Ej: i7-13700K"></div>
-                    <div class="input-group"><label>GPU</label><input type="text" id="gpu-user" placeholder="Ej: RTX 4070"></div>
+                    <div class="input-group">
+                        <label>Modelo de CPU</label>
+                        <input type="text" id="cpu-user" placeholder="Ej: i7-13700K">
+                    </div>
+                    <div class="input-group">
+                        <label>Modelo de GPU</label>
+                        <input type="text" id="gpu-user" placeholder="Ej: RTX 4070">
+                    </div>
                 </div>
                 <button class="btn-elite-main" onclick="analizarHardware()">Generar Diagnóstico</button>
                 <div id="resultado-ia" class="result-box-elite" style="display:none;"></div>
@@ -42,37 +47,37 @@
             <section id="optimizacion" class="section">
                 <h1>Optimización de Rendimiento</h1>
                 <div class="card-elite">
-                    <h3>1. Frecuencia de Refresco (Hz)</h3>
-                    <p>En <i>Configuración > Pantalla > Pantalla avanzada</i>, selecciona el valor más alto (<b>144Hz, 240Hz, etc.</b>).</p>
+                    <h3>Frecuencia de Refresco (Hz)</h3>
+                    <p>Ve a <i>Configuración > Pantalla > Pantalla avanzada</i> y activa los máximos hercios (144Hz, 240Hz, etc.).</p>
                 </div>
                 <div class="card-elite">
-                    <h3>2. Gráficos de Windows (GPU)</h3>
-                    <p>Activa la <b>Programación de GPU acelerada</b> y las <b>Optimizaciones para juegos en ventana</b> en: <i>Configuración > Pantalla > Gráficos</i>.</p>
+                    <h3>GPU y Juegos</h3>
+                    <p>Activa la <b>Programación de GPU acelerada</b> y las <b>Optimizaciones para juegos en ventana</b> en los ajustes de gráficos de Windows.</p>
                 </div>
             </section>
 
             <section id="mantenimiento" class="section">
-                <h1>Mantenimiento de Sistema</h1>
+                <h1>Limpieza y Mantenimiento</h1>
                 <div class="card-elite info-box">
-                    <h3>Limpieza de Archivos Temporales</h3>
-                    <p>Presiona <b>Win + R</b>, escribe <code>%temp%</code> y borra todo el contenido para eliminar basura acumulada.</p>
+                    <h3>Archivos Temporales (%temp%)</h3>
+                    <p>Presiona <b>Win + R</b>, escribe <code>%temp%</code> y borra todo el contenido de la carpeta.</p>
                 </div>
                 <div class="card-elite">
-                    <h3>Caché de Sombreadores</h3>
-                    <p>Usa el "Liberador de espacio en disco" en <b>C:</b> y marca la casilla <b>Caché del sombreador de DirectX</b>.</p>
+                    <h3>Sombreadores DirectX</h3>
+                    <p>Usa el "Liberador de espacio en disco" y limpia la caché del sombreador para ganar FPS.</p>
                 </div>
             </section>
 
             <section id="seguridad" class="section">
-                <h1>Seguridad Avanzada</h1>
+                <h1>Seguridad y Privacidad</h1>
                 <div class="card-elite">
                     <h3>Análisis VirusTotal</h3>
-                    <p>Analiza archivos sospechosos con más de 70 motores antivirus profesionales.</p>
-                    <a href="https://www.virustotal.com" target="_blank" class="btn-sec">🔍 Abrir VirusTotal</a>
+                    <p>Analiza archivos sospechosos en la nube con múltiples motores antivirus.</p>
+                    <a href="https://www.virustotal.com" target="_blank" class="btn-sec">🔍 Ir a VirusTotal</a>
                 </div>
                 <div class="card-elite">
-                    <h3>Examen Offline de Microsoft Defender</h3>
-                    <p>Elimina malware profundo reiniciando el sistema antes de cargar Windows en <i>Protección contra virus > Opciones de examen</i>.</p>
+                    <h3>Examen Offline Microsoft Defender</h3>
+                    <p>Protección contra virus persistentes. Se encuentra en: <i>Seguridad de Windows > Opciones de examen</i>.</p>
                 </div>
             </section>
 
@@ -81,40 +86,37 @@
                 
                 <div class="download-container">
                     <button class="btn-download-bat" onclick="descargarOptimizador()">
-                        <span>📥</span> Descargar Script Elite CoreAI (.bat)
+                        <span>📥</span> Descargar Script Elite (.bat)
                     </button>
-                    <p class="disclaimer">Ejecuta como administrador para aplicar los cambios de kernel.</p>
+                    <p class="disclaimer">Ejecuta como administrador para aplicar los ajustes de kernel.</p>
                 </div>
 
-                <h2 style="margin: 2rem 0 1rem; font-size: 1.5rem;">🎮 Centro de Controladores (GPU)</h2>
+                <h2 style="margin: 20px 0;">🎮 Centro de Controladores (Drivers)</h2>
                 <div class="drivers-grid-pro">
                     <a href="https://www.nvidia.com/es-es/drivers/" target="_blank" class="driver-card nvidia">
-                        <div class="driver-icon">🟢</div>
-                        <div class="driver-info">
+                        <span>🟢</span>
+                        <div>
                             <h4>NVIDIA GeForce</h4>
-                            <p>Drivers oficiales para RTX/GTX</p>
+                            <p>Drivers para tarjetas RTX / GTX</p>
                         </div>
                     </a>
                     <a href="https://www.amd.com/es/support/download/drivers.html" target="_blank" class="driver-card amd">
-                        <div class="driver-icon">🔴</div>
-                        <div class="driver-info">
+                        <span>🔴</span>
+                        <div>
                             <h4>AMD Radeon</h4>
-                            <p>Drivers Adrenalin para RX</p>
+                            <p>Drivers para tarjetas RX</p>
                         </div>
                     </a>
                 </div>
 
-                <h2 style="margin: 2.5rem 0 1rem; font-size: 1.5rem;">⚙️ Ajustes Individuales</h2>
+                <h2 style="margin: 20px 0;">⚙️ Ajustes Individuales</h2>
                 <div class="pro-grid-individual">
-                    <div class="card-individual"><div class="card-header">⚡</div><h4>Energía</h4><p>Plan Máximo Rendimiento.</p></div>
-                    <div class="card-individual"><div class="card-header">🛡️</div><h4>Anti-PUA</h4><p>Bloqueo de software basura.</p></div>
-                    <div class="card-individual"><div class="card-header">🌐</div><h4>Red</h4><p>Optimización Netsh TCP.</p></div>
+                    <div class="card-individual"><h4>⚡ Energía</h4><p>Plan Máximo Rendimiento.</p></div>
+                    <div class="card-individual"><h4>🛡️ Anti-PUA</h4><p>Bloqueo de software basura.</p></div>
+                    <div class="card-individual"><h4>🌐 Red</h4><p>Optimización TCP.</p></div>
                 </div>
             </section>
 
-        </main>
-    </div>
-    <script src="script.js"></script>
+        </main> </div> <script src="script.js"></script>
 </body>
 </html>
-
