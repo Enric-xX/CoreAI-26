@@ -3,150 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CoreAI 26 Elite Edition: Optimización de sistema de alto nivel.">
-    <title>CoreAI 26 | Elite Edition</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@600&display=swap" rel="stylesheet">
-    
+    <title>CoreAI 26 | Elite System OS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/png" href="logo.png">
-    <meta name="theme-color" content="#0d0d0d">
 </head>
 <body>
-
-    <div class="app-container">
-        <aside class="sidebar" role="navigation">
-            <div class="brand">
-                <img src="logo.png" alt="CoreAI" class="nav-logo" onerror="this.style.display='none'">
-                <h1 class="app-title">CoreAI <span>26</span></h1>
+    <div class="glass-bg"></div>
+    
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="logo-area">
+                <div class="logo-hex">C26</div>
+                <div class="logo-text">CORE<span>AI</span></div>
             </div>
-            <nav id="main-nav">
-                <button class="nav-item active" data-section="dashboard">📊 Dashboard</button>
-                <button class="nav-item" data-section="hardware">💻 Hardware</button>
-                <button class="nav-item" data-section="optimizacion">🚀 Optimización</button>
-                <button class="nav-item" data-section="limpieza">🧹 Limpieza</button>
-                <button class="nav-item" data-section="seguridad">🛡️ Seguridad</button>
-                <button class="nav-item" data-section="panel-pro">⚙️ Panel Pro</button>
+            
+            <nav class="side-nav">
+                <button class="nav-btn active" data-tab="dash"><span>📊</span> Dashboard</button>
+                <button class="nav-btn" data-tab="opti"><span>🚀</span> Optimización</button>
+                <button class="nav-btn" data-tab="diag"><span>🔍</span> Diagnóstico</button>
+                <button class="nav-btn" data-tab="cmds"><span>⌨️</span> Terminal Pro</button>
             </nav>
-            <div class="sidebar-footer">
-                <p>&copy; 2025 CoreAI Elite</p>
+
+            <div class="system-status">
+                <div class="status-dot online"></div>
+                <span>Motor IA Activo</span>
             </div>
         </aside>
 
-        <main class="content">
+        <main class="workspace">
+            <section id="dash" class="tab-content active">
+                <header class="ws-header">
+                    <h1>Estado del Sistema</h1>
+                    <div class="badge">Elite Edition v26.0</div>
+                </header>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="label">Latencia de Red</span>
+                        <div class="value" id="net-val">-- ms</div>
+                        <div class="progress-mini"><div class="bar" style="width: 85%"></div></div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="label">Carga de GPU (Sim)</span>
+                        <div class="value" id="gpu-val">0%</div>
+                        <div class="progress-mini"><div class="bar" id="gpu-bar"></div></div>
+                    </div>
+                </div>
+
+                <div class="hero-card">
+                    <h3>Acciones Rápidas</h3>
+                    <div class="btn-group">
+                        <button class="action-btn" onclick="openWinSetting('ms-settings:gaming-gamemode')">Activar Modo Juego</button>
+                        <button class="action-btn" onclick="openWinSetting('ms-settings:display-advancedgraphics')">Ajustes de GPU</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="opti" class="tab-content">
+                <h2>Optimización en un Clic</h2>
+                <div class="opti-list">
+                    <div class="opti-item">
+                        <div class="opti-info">
+                            <h4>Limpieza de Temporales</h4>
+                            <p>Elimina basura del sistema y caché de sombreadores.</p>
+                        </div>
+                        <button class="run-btn" onclick="generateBatch()">Generar .BAT</button>
+                    </div>
+                    <div class="opti-item">
+                        <div class="opti-info">
+                            <h4>Plan de Energía Pro</h4>
+                            <p>Desbloquea el Máximo Rendimiento oculto.</p>
+                        </div>
+                        <button class="run-btn" onclick="copyToClipboard('powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61')">Copiar Comando</button>
+                    </div>
+                </div>
+            </section>
             
-            <section id="dashboard" class="section active">
-                <header class="section-header">
-                    <h2>Panel Principal <span class="header-badge">Elite</span></h2>
-                </header>
-                <div class="grid-layout">
-                    <div class="card-elite big-card">
-                        <h3>Estado del Sistema</h3>
-                        <div class="status-indicator optimal">Óptimo</div>
-                        <p>Todos los módulos están listos para la optimización.</p>
-                        <button class="btn-primary" onclick="analizarSistemaGlobal()">Analizar Ahora</button>
-                    </div>
-                </div>
-            </section>
-
-            <section id="hardware" class="section">
-                <header class="section-header">
-                    <h2>Diagnóstico de Hardware</h2>
-                </header>
-                <div class="card-elite">
-                    <div class="form-grid">
-                        <div class="input-group">
-                            <label for="cpu-user">CPU</label>
-                            <input type="text" id="cpu-user" placeholder="Ej: i7-13700K">
-                        </div>
-                        <div class="input-group">
-                            <label for="gpu-user">GPU</label>
-                            <input type="text" id="gpu-user" placeholder="Ej: RTX 4070">
-                        </div>
-                        <div class="input-group full">
-                            <label for="issue-user">Descripción</label>
-                            <textarea id="issue-user" rows="3" placeholder="¿Qué problema tienes?"></textarea>
-                        </div>
-                    </div>
-                    <button class="btn-primary" onclick="analizarHardware()">Generar Diagnóstico IA</button>
-                    <div id="resultado-ia" class="result-box-elite" style="display:none;"></div>
-                </div>
-            </section>
-
-            <section id="optimizacion" class="section">
-                <header class="section-header">
-                    <h2>Optimización de Rendimiento</h2>
-                </header>
-                <div class="grid-layout">
-                    <div class="card-elite">
-                        <h3>Plan de Energía</h3>
-                        <p>Activa el plan oculto de Máximo Rendimiento.</p>
-                        <div class="code-block">
-                            <code>powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61</code>
-                            <button class="copy-btn" onclick="copyCommand(this)">Copiar</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="limpieza" class="section">
-                <header class="section-header">
-                    <h2>Herramientas de Limpieza</h2>
-                </header>
-                <div class="card-elite">
-                    <h3>Archivos Temporales</h3>
-                    <p>Limpia el exceso de basura en %temp%.</p>
-                    <button class="btn-secondary" onclick="descargarOptimizador()">Descargar .BAT de Limpieza</button>
-                </div>
-            </section>
-
-            <section id="seguridad" class="section">
-                <header class="section-header">
-                    <h2>Centro de Seguridad</h2>
-                </header>
-                <div class="card-elite">
-                    <h3>Análisis VirusTotal</h3>
-                    <p>Usa la base de datos más grande del mundo para analizar archivos.</p>
-                    <a href="https://www.virustotal.com" target="_blank" rel="noopener noreferrer" class="btn-primary-link">Abrir VirusTotal</a>
-                </div>
-            </section>
-
-            <section id="panel-pro" class="section">
-                <header class="section-header">
-                    <h2>Panel de Comandos Pro</h2>
-                </header>
-                <div class="command-grid">
-                    <div class="command-item card-elite">
-                        <span class="command-badge">Sistema</span>
-                        <h4>Reparar SFC</h4>
-                        <div class="code-block">
-                            <code>sfc /scannow</code>
-                            <button class="copy-btn" onclick="copyCommand(this)">Copiar</button>
-                        </div>
-                    </div>
-                    <div class="command-item card-elite">
-                        <span class="command-badge">Software</span>
-                        <h4>Actualizar Apps</h4>
-                        <div class="code-block">
-                            <code>winget upgrade --all</code>
-                            <button class="copy-btn" onclick="copyCommand(this)">Copiar</button>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
+            </main>
     </div>
 
-    <script src="script.js" defer></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js').catch(() => {});
-            });
-        }
-    </script>
+    <div id="toast-container"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>
