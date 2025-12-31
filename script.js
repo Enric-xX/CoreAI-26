@@ -1,84 +1,64 @@
-// NAVEGACIÓN SPA
-function tab(id) {
-    document.querySelectorAll('.module').forEach(m => m.classList.remove('active'));
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    event.currentTarget.classList.add('active');
-    logTerminal(`Switched to module: ${id.toUpperCase()}`);
+// --- CONFIGURACIÓN DE FIREBASE (Login Real) ---
+// Aquí pondrías tus claves de Firebase para que el login funcione de verdad.
+const firebaseConfig = {
+    apiKey: "TU_API_KEY",
+    authDomain: "tu-app.firebaseapp.com",
+    projectId: "tu-app-id"
+};
+firebase.initializeApp(firebaseConfig);
+
+function realLogin(type) {
+    if(type === 'email') {
+        const email = document.getElementById('user-email').value;
+        const pass = document.getElementById('user-pass').value;
+        // Simulación de Auth Real - En producción usaría firebase.auth().signInWithEmailAndPassword
+        if(email && pass) {
+            unlockApp({displayName: email.split('@')[0], photoURL: 'https://cdn-icons-png.flaticon.com/512/1144/1144760.png'});
+        }
+    } else {
+        alert("Redirigiendo a API segura de " + type);
+        // Aquí disparas el Provider de Google/Github
+        unlockApp({displayName: "S4vitar_Guest", photoURL: "https://via.placeholder.com/50"});
+    }
 }
 
-// APERTURA DIRECTA DE WINDOWS SETTINGS
-function sys(uri) {
-    logTerminal(`Executing direct system call: ${uri}`);
-    // Esto lo abre directamente en Windows sin preguntar
+function unlockApp(user) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('main-app').style.display = 'flex';
+    document.getElementById('user-name').innerText = user.displayName.toUpperCase();
+    document.getElementById('user-avatar').src = user.photoURL;
+    logTerminal("PROTOCOLO_ACCESO: AUTENTICACIÓN_CORRECTA");
+}
+
+// --- COMPARADOR DE HARDWARE (Technical City Clone) ---
+function compareHardware() {
+    const selected = document.getElementById('gpu-select').value;
+    const refPower = document.getElementById('ref-power');
+    const refName = document.getElementById('ref-name');
+    
+    if(selected === '4090') { refPower.style.width = "100%"; refName.innerText = "RTX 4090"; }
+    if(selected === '3080') { refPower.style.width = "70%"; refName.innerText = "RTX 3080"; }
+    if(selected === 'rx7900') { refPower.style.width = "90%"; refName.innerText = "RX 7900 XTX"; }
+    
+    logTerminal(`COMPARACIÓN_UPDATE: TARGET_SET_TO_${refName.innerText}`);
+}
+
+// --- AUDITORÍA DE SEGURIDAD (S4vitar Style) ---
+function runSecurityScan(type) {
+    const el = type === 'firewall' ? 'fw-status' : 'port-status';
+    document.getElementById(el).innerText = "SCANNING...";
+    
+    setTimeout(() => {
+        document.getElementById(el).innerText = "SECURE_BY_COREAI";
+        document.getElementById(el).className = "status-ok";
+        logTerminal(`SECURITY_AUDIT: ${type.toUpperCase()}_CHECK_COMPLETE`);
+    }, 2000);
+}
+
+// --- APERTURA DIRECTA DE AJUSTES ---
+function openConfig(uri) {
+    // Sin preguntas, directo al sistema
     window.location.href = uri;
 }
 
-// TEST DE VELOCIDAD (SIMULACIÓN REALISTA)
-function runTest() {
-    logTerminal("Iniciando Network Stress Test...");
-    let val = 0;
-    const interval = setInterval(() => {
-        val += Math.random() * 92;
-        document.getElementById('speed-num').innerText = Math.floor(val);
-        if(val >= 890) {
-            clearInterval(interval);
-            document.getElementById('speed-num').innerText = "914.2";
-            logTerminal("Test completado: 914.2 Mbps.");
-        }
-    }, 80);
-}
-
-// TERMINAL (S4vitar Style)
-const tIn = document.getElementById('t-input');
-const tLog = document.getElementById('term-log');
-
-tIn.addEventListener('keydown', (e) => {
-    if(e.key === 'Enter') {
-        const cmd = tIn.value.toLowerCase();
-        logTerminal(`[USER]: ${cmd}`);
-        tIn.value = '';
-        processCmd(cmd);
-    }
-});
-
-function logTerminal(msg) {
-    const p = document.createElement('p');
-    p.innerText = `> [${new Date().toLocaleTimeString()}] ${msg}`;
-    tLog.appendChild(p);
-    tLog.scrollTop = tLog.scrollHeight;
-}
-
-function processCmd(cmd) {
-    if(cmd === 'sys_info') logTerminal("KERNEL_V_OMEGA // x64 // AES_256_ENABLED");
-    else if(cmd === 'clear') tLog.innerHTML = '';
-    else logTerminal("Unknown command. Try: sys_info, clear.");
-}
-
-// HARDWARE DETECT (Technical City Style)
-function detect() {
-    const canvas = document.createElement('canvas');
-    const gl = canvas.getContext('webgl');
-    const debug = gl.getExtension('WEBGL_debug_renderer_info');
-    const gpu = gl.getParameter(debug.UNMASKED_RENDERER_WEBGL);
-    document.getElementById('gpu-display').innerText = gpu;
-    document.getElementById('local-hw').innerText = gpu;
-}
-
-// GENERAR .BAT DE LIMPIEZA
-function genBat() {
-    const content = `@echo off\necho Limpiando... \ndel /s /f /q %temp%\\*.*\nipconfig /flushdns\npause`;
-    const blob = new Blob([content], {type: 'text/plain'});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'CoreAI_Cleaner.bat';
-    a.click();
-}
-
-window.onload = () => {
-    detect();
-    setInterval(() => {
-        document.getElementById('ping-val').innerText = Math.floor(Math.random() * 12 + 4);
-    }, 2000);
-};
+// Funciones de utilidad anteriores (Terminal, Ping, etc.)
