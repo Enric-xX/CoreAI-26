@@ -1,67 +1,84 @@
-// NAVEGACIÓN
-function showTab(id) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+// NAVEGACIÓN SPA
+function tab(id) {
+    document.querySelectorAll('.module').forEach(m => m.classList.remove('active'));
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     event.currentTarget.classList.add('active');
+    logTerminal(`Switched to module: ${id.toUpperCase()}`);
+}
+
+// APERTURA DIRECTA DE WINDOWS SETTINGS
+function sys(uri) {
+    logTerminal(`Executing direct system call: ${uri}`);
+    // Esto lo abre directamente en Windows sin preguntar
+    window.location.href = uri;
+}
+
+// TEST DE VELOCIDAD (SIMULACIÓN REALISTA)
+function runTest() {
+    logTerminal("Iniciando Network Stress Test...");
+    let val = 0;
+    const interval = setInterval(() => {
+        val += Math.random() * 92;
+        document.getElementById('speed-num').innerText = Math.floor(val);
+        if(val >= 890) {
+            clearInterval(interval);
+            document.getElementById('speed-num').innerText = "914.2";
+            logTerminal("Test completado: 914.2 Mbps.");
+        }
+    }, 80);
 }
 
 // TERMINAL (S4vitar Style)
-const tInput = document.getElementById('term-input');
+const tIn = document.getElementById('t-input');
 const tLog = document.getElementById('term-log');
 
-tInput.addEventListener('keydown', (e) => {
+tIn.addEventListener('keydown', (e) => {
     if(e.key === 'Enter') {
-        const cmd = tInput.value;
-        const line = document.createElement('div');
-        line.innerHTML = `<span style="color:#00f3ff">user@coreai:~$</span> ${cmd}<br>${runCmd(cmd)}`;
-        tLog.appendChild(line);
-        tInput.value = '';
-        tLog.scrollTop = tLog.scrollHeight;
+        const cmd = tIn.value.toLowerCase();
+        logTerminal(`[USER]: ${cmd}`);
+        tIn.value = '';
+        processCmd(cmd);
     }
 });
 
-function runCmd(cmd) {
-    if(cmd === 'help') return "Commands: sys_info, netstat, config_dump, clear";
-    if(cmd === 'sys_info') return "Kernel: CoreAI-26 | Status: Stable | Enc: AES-256";
-    if(cmd === 'netstat') return "Scanning... [8080:OPEN] [22:LISTENING]";
-    return "Error: Unknown command sequence.";
+function logTerminal(msg) {
+    const p = document.createElement('p');
+    p.innerText = `> [${new Date().toLocaleTimeString()}] ${msg}`;
+    tLog.appendChild(p);
+    tLog.scrollTop = tLog.scrollHeight;
 }
 
-// SPEEDTEST (Vodafone/Speedtest Style)
-function runSpeedTest() {
-    let speed = 0;
-    const interval = setInterval(() => {
-        speed += Math.random() * 95;
-        document.getElementById('mbps').innerText = Math.floor(speed);
-        const offset = 283 - (283 * (speed / 1000));
-        document.getElementById('speed-progress').style.strokeDashoffset = offset;
-        
-        if(speed >= 850) {
-            clearInterval(interval);
-            document.getElementById('mbps').innerText = "852.4";
-        }
-    }, 100);
+function processCmd(cmd) {
+    if(cmd === 'sys_info') logTerminal("KERNEL_V_OMEGA // x64 // AES_256_ENABLED");
+    else if(cmd === 'clear') tLog.innerHTML = '';
+    else logTerminal("Unknown command. Try: sys_info, clear.");
 }
 
 // HARDWARE DETECT (Technical City Style)
-function initHW() {
+function detect() {
     const canvas = document.createElement('canvas');
     const gl = canvas.getContext('webgl');
-    const ext = gl.getExtension('WEBGL_debug_renderer_info');
-    const gpu = gl.getParameter(ext.UNMASKED_RENDERER_WEBGL);
-    
-    document.getElementById('gpu-info').innerText = gpu;
-    document.getElementById('my-hw').innerText = gpu;
-    document.getElementById('my-bar').style.width = "72%"; // Simulación de potencia vs 4090
+    const debug = gl.getExtension('WEBGL_debug_renderer_info');
+    const gpu = gl.getParameter(debug.UNMASKED_RENDERER_WEBGL);
+    document.getElementById('gpu-display').innerText = gpu;
+    document.getElementById('local-hw').innerText = gpu;
 }
 
-// PING REAL-TIME
-setInterval(() => {
-    document.getElementById('ping').innerText = Math.floor(Math.random() * 15 + 5) + " MS";
-}, 3000);
+// GENERAR .BAT DE LIMPIEZA
+function genBat() {
+    const content = `@echo off\necho Limpiando... \ndel /s /f /q %temp%\\*.*\nipconfig /flushdns\npause`;
+    const blob = new Blob([content], {type: 'text/plain'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'CoreAI_Cleaner.bat';
+    a.click();
+}
 
-function winCall(uri) { window.location.href = uri; }
-function login(p) { alert(`Conectando con ${p.toUpperCase()} Secure API...`); }
-
-window.onload = initHW;
+window.onload = () => {
+    detect();
+    setInterval(() => {
+        document.getElementById('ping-val').innerText = Math.floor(Math.random() * 12 + 4);
+    }, 2000);
+};
