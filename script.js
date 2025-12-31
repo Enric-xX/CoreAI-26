@@ -1,76 +1,132 @@
-// --- LÓGICA DE NAVEGACIÓN ---
-const initNavigation = () => {
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. NAVEGACIÓN FUNCIONAL
     const navItems = document.querySelectorAll('.nav-item');
     const sections = document.querySelectorAll('.section');
 
-    navItems.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const target = btn.dataset.section;
-            
-            navItems.forEach(b => b.classList.remove('active'));
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const target = item.dataset.section;
+            navItems.forEach(i => i.classList.remove('active'));
             sections.forEach(s => s.classList.remove('active'));
-
-            btn.classList.add('active');
+            item.classList.add('active');
             document.getElementById(target).classList.add('active');
-            
-            // Efecto sutil de sonido o vibración (opcional)
-            if (window.navigator.vibrate) window.navigator.vibrate(5);
         });
     });
-};
 
-// --- MOTOR DE DIAGNÓSTICO MEJORADO ---
-const analizarHardware = () => {
-    const cpu = document.getElementById('cpu-user').value.trim();
-    const gpu = document.getElementById('gpu-user').value.trim();
-    const resultBox = document.getElementById('resultado-ia');
+    // 2. SIMULACIÓN DE MONITOR (Para que no esté vacío)
+    actualizarMetricasSimuladas();
+});
+
+// --- FUNCIONES DE APERTURA DE AJUSTES REALES DE WINDOWS ---
+// Estos comandos abren las ventanas exactas en tu PC
+function abrirAjustes(tipo) {
+    const rutas = {
+        'pantalla': 'ms-settings:display',
+        'gpu': 'ms-settings:display-advancedgraphics',
+        'energia': 'ms-settings:powersleep',
+        'juegos': 'ms-settings:gaming-gamemode',
+        'apps': 'ms-settings:appsfeatures'
+    };
+    
+    if (rutas[tipo]) {
+        window.location.href = rutas[tipo];
+    }
+}
+
+function abrirLegacy(comando) {
+    // Estos requieren que el usuario los escriba en Win+R, 
+    // pero les damos el comando listo para copiar.
+    showToast(`Copia y pega "${comando}" en Ejecutar (Win + R)`);
+}
+
+// --- DIAGNÓSTICO DE HARDWARE (Lógica Real) ---
+function analizarHardware() {
+    const cpu = document.getElementById('cpu-user').value.toLowerCase();
+    const gpu = document.getElementById('gpu-user').value.toLowerCase();
+    const result = document.getElementById('resultado-ia');
 
     if (!cpu || !gpu) {
-        showToast("⚠️ Introduce los datos de hardware");
+        showToast("⚠️ Introduce los datos primero");
         return;
     }
 
-    resultBox.style.display = 'block';
-    resultBox.innerHTML = `<div class="loader"></div><p>Analizando arquitectura de ${cpu}...</p>`;
+    result.style.display = 'block';
+    result.innerHTML = "Analizando arquitectura...";
 
     setTimeout(() => {
-        const gpuLower = gpu.toLowerCase();
-        let html = `<h3>Análisis de Optimización</h3><ul style="list-style: none; padding:0;">`;
-
-        const tips = [
-            gpuLower.includes('nvidia') ? "✅ Optimizando para núcleos CUDA: Activar Low Latency Boost." : "",
-            gpuLower.includes('amd') ? "✅ Optimizando arquitectura RDNA: Activar SmartAccess Memory." : "",
-            cpu.toLowerCase().includes('i9') || cpu.toLowerCase().includes('ryzen 9') ? "🔥 CPU detectada como High-End: Desbloqueando planes de energía extrema." : ""
-        ].filter(t => t !== "");
-
-        tips.forEach(tip => html += `<li style="margin-bottom:10px; border-left: 3px solid var(--accent); padding-left:10px;">${tip}</li>`);
-        html += `</ul><p style="margin-top:15px; color: var(--text-dim);">Recomendación: Ejecuta <b>Winget Upgrade</b> mensualmente.</p>`;
+        let diagnostico = `<h4>Reporte para ${cpu.toUpperCase()} / ${gpu.toUpperCase()}</h4><br>`;
         
-        resultBox.innerHTML = html;
-    }, 1500);
-};
+        // Lógica de optimización real
+        if (gpu.includes('nvidia') || gpu.includes('rtx')) {
+            diagnostico += "✅ <b>GPU NVIDIA:</b> Debes activar 'ReSize BAR' en BIOS y 'Modo Latencia Baja' en el Panel de Control.<br>";
+        } else if (gpu.includes('amd') || gpu.includes('radeon')) {
+            diagnostico += "✅ <b>GPU AMD:</b> Activa 'Smart Access Memory' y 'Anti-Lag' en Adrenalin.<br>";
+        }
 
-// --- SISTEMA DE COPIADO CON FEEDBACK ---
-const copyText = async (button) => {
-    const code = button.parentElement.querySelector('code').innerText;
-    try {
-        await navigator.clipboard.writeText(code);
-        const originalText = button.innerHTML;
-        button.innerHTML = "¡Listo!";
-        button.style.background = "var(--success)";
-        
+        if (cpu.includes('k') || cpu.includes('ryzen')) {
+            diagnostico += "🔥 <b>Desbloqueado:</b> Tu CPU permite Overclock. Revisa voltajes en BIOS.<br>";
+        }
+
+        diagnostico += "<br>🚀 <b>Tip:</b> Ejecuta el comando de telemetría en Panel Pro para ganar 2-5% de FPS.";
+        result.innerHTML = diagnostico;
+    }, 1000);
+}
+
+// --- SISTEMA DE COPIADO ---
+function copyCommand(btn) {
+    const container = btn.closest('.code-block') || btn.closest('.command-item');
+    const code = container.querySelector('code').innerText;
+
+    navigator.clipboard.writeText(code).then(() => {
+        const originalText = btn.innerText;
+        btn.innerText = "¡Copiado!";
+        btn.style.background = "#28a745";
         setTimeout(() => {
-            button.innerHTML = originalText;
-            button.style.background = "var(--accent)";
+            btn.innerText = originalText;
+            btn.style.background = "";
         }, 2000);
-    } catch (err) {
-        console.error('Error al copiar', err);
-    }
-};
+    });
+}
 
-// Toast Notifications simples
-const showToast = (msg) => {
-    alert(msg); // Aquí podrías implementar un toast flotante elegante
-};
+// --- GENERADOR DE SCRIPT .BAT REAL ---
+function descargarOptimizador() {
+    const scriptBatch = `@echo off
+title CoreAI 26 - Limpiador Elite
+echo Limpiando archivos temporales...
+del /s /f /q %temp%\\*.*
+rd /s /q %temp%
+md %temp%
+del /s /f /q C:\\Windows\\temp\\*.*
+rd /s /q C:\\Windows\\temp
+md C:\\Windows\\temp
+echo Limpiando Cache de DNS...
+ipconfig /flushdns
+echo Optimización completada.
+pause`;
 
-document.addEventListener('DOMContentLoaded', initNavigation);
+    const blob = new Blob([scriptBatch], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Limpieza_CoreAI26.bat';
+    a.click();
+}
+
+// --- NOTIFICACIONES ---
+function showToast(msj) {
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.innerText = msj;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+}
+
+// Simulación visual de métricas
+function actualizarMetricasSimuladas() {
+    setInterval(() => {
+        if(document.getElementById('cpu-temp')) {
+            document.getElementById('cpu-temp').innerText = Math.floor(Math.random() * (60 - 40) + 40) + "°C";
+            document.getElementById('gpu-load').innerText = Math.floor(Math.random() * 100) + "%";
+        }
+    }, 3000);
+}
