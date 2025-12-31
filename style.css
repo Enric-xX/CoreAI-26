@@ -1,95 +1,234 @@
 :root {
-    --accent: #00d4ff;
-    --accent-dark: #0056b3;
-    --bg-dark: #050505;
-    --card-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --text-white: #ffffff;
-    --grad: linear-gradient(135deg, #00d4ff 0%, #004e92 100%);
+    --bg-light: #f5f5f7;
+    --sidebar-bg: #ffffff;
+    --accent: #0071e3; /* Azul Apple */
+    --text-main: #1d1d1f;
+    --text-dim: #86868b;
+    --border: #d2d2d7;
+    --card-bg: rgba(255, 255, 255, 0.8);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
 
 body {
-    background: var(--bg-dark);
-    color: var(--text-white);
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    overflow: hidden; /* Evita scroll doble */
+}
+
+/* --- ESTRUCTURA PRINCIPAL --- */
+.app-container {
+    display: flex;
     height: 100vh;
-    overflow: hidden;
+    width: 100vw;
 }
 
-.glow-bg {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at 50% -20%, #004e92, transparent);
-    z-index: -1;
-}
-
-.app-container { display: flex; height: 100vh; }
-
-/* Sidebar Estilo Apple/Futurista */
+/* --- SIDEBAR (ELITE WHITE) --- */
 .sidebar {
-    width: 300px;
-    background: rgba(10, 10, 10, 0.8);
-    backdrop-filter: blur(20px);
-    border-right: 1px solid var(--glass-border);
-    padding: 2rem;
+    width: 260px;
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border);
+    padding: 24px;
     display: flex;
     flex-direction: column;
 }
 
-.brand { font-size: 1.8rem; font-weight: 800; margin-bottom: 3rem; }
-.brand span { color: var(--accent); }
-
-.nav-item {
-    background: transparent;
-    border: none;
-    color: #888;
-    padding: 1rem;
-    text-align: left;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 12px;
-    transition: 0.3s;
-    margin-bottom: 0.5rem;
+/* NUEVO: ESTILO DEL LOGO */
+.brand {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: var(--text-main);
 }
 
-.nav-item.active, .nav-item:hover {
+.nav-logo {
+    width: 32px;
+    height: 32px;
+    margin-right: 12px;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.brand span {
+    color: var(--accent);
+    margin-left: 4px;
+}
+
+/* NAVEGACIÓN */
+#main-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-item {
+    background: none;
+    border: none;
+    padding: 12px 16px;
+    text-align: left;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-dim);
+    transition: all 0.2s;
+}
+
+.nav-item:hover {
+    background: #f0f0f2;
+    color: var(--text-main);
+}
+
+.nav-item.active {
+    background: var(--accent);
+    color: white;
+}
+
+/* --- CONTENIDO PRINCIPAL --- */
+.content {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+    background: var(--bg-light);
+}
+
+.section {
+    display: none;
+    max-width: 900px;
+    margin: 0 auto;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+
+/* --- TARJETAS Y COMPONENTES --- */
+.card-elite {
     background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 24px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.card-elite h3 {
+    margin-bottom: 10px;
     color: var(--accent);
 }
 
-/* Dashboard Cards */
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-top: 2rem;
-}
-
-.stat-card {
-    background: var(--card-bg);
-    padding: 2rem;
-    border-radius: 24px;
-    border: 1px solid var(--glass-border);
-    text-align: center;
-    transition: transform 0.3s;
-}
-
-.stat-card:hover { transform: translateY(-10px); border-color: var(--accent); }
-
-.gradient-text {
-    background: var(--grad);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.btn-primary, .btn-download {
-    background: var(--grad);
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 12px;
+/* BOTONES */
+.btn-elite-main {
+    background: var(--accent);
     color: white;
-    font-weight: bold;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
+    width: 100%;
+    margin-top: 10px;
+    transition: opacity 0.2s;
 }
+
+.btn-elite-main:hover {
+    opacity: 0.9;
+}
+
+/* PANEL PRO GRID */
+.pro-grid-elite {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.pro-item-elite {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 14px;
+}
+
+.pro-badge {
+    font-size: 10px;
+    text-transform: uppercase;
+    background: #e1e1e6;
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.code-wrapper {
+    background: #f8f8fa;
+    padding: 8px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+code {
+    font-family: 'Courier New', monospace;
+    color: #cf222e;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.copy-action {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+/* FORMULARIOS */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.input-group input, .input-group textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    outline: none;
+}
+
+.input-group.full { grid-column: span 2; }
