@@ -8,24 +8,25 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0071e3">
+    <meta name="theme-color" content="#000000">
     
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="apple-touch-icon" href="logo.png">
 </head>
 <body>
+
     <div class="app-container">
-        <aside class="sidebar" role="navigation" aria-label="Menú principal">
+        <aside class="sidebar" role="navigation">
             <div class="brand">
                 <img src="logo.png" alt="CoreAI Logo" class="nav-logo"> 
                 <h1>CoreAI <span>26</span></h1>
             </div>
             <nav id="main-nav">
-                <button class="nav-item active" data-section="hardware" aria-current="page">💻 Hardware</button>
+                <button class="nav-item active" data-section="hardware">💻 Hardware</button>
                 <button class="nav-item" data-section="optimizacion">🚀 Optimización</button>
                 <button class="nav-item" data-section="mantenimiento">🧹 Limpieza</button>
                 <button class="nav-item" data-section="seguridad">🛡️ Seguridad</button>
@@ -34,59 +35,124 @@
         </aside>
 
         <main class="content">
+            
             <section id="hardware" class="section active">
                 <header>
                     <h1>Diagnóstico de Sistema</h1>
+                    <p class="subtitle">Análisis inteligente de componentes y rendimiento.</p>
                 </header>
+                
                 <div class="card-elite info-box">
-                    <strong>¿Cómo ver tus componentes?</strong>
-                    <p>Presiona <kbd>Win</kbd> + <kbd>R</kbd>, escribe <code>dxdiag</code> y pulsa Enter.</p>
+                    <strong>Guía de obtención de datos:</strong>
+                    <p>Presiona <kbd>Win</kbd> + <kbd>R</kbd>, escribe <code>dxdiag</code> y revisa las pestañas de Sistema y Pantalla.</p>
                 </div>
                 
                 <div class="form-grid">
                     <div class="input-group">
                         <label for="cpu-user">Modelo de CPU</label>
-                        <input type="text" id="cpu-user" placeholder="Ej: i7-13700K">
+                        <input type="text" id="cpu-user" placeholder="Ej: i7-13700K o Ryzen 7 5800X">
                     </div>
                     <div class="input-group">
                         <label for="gpu-user">Modelo de GPU</label>
-                        <input type="text" id="gpu-user" placeholder="Ej: RTX 4070">
+                        <input type="text" id="gpu-user" placeholder="Ej: RTX 4070 o RX 6800">
                     </div>
                     <div class="input-group full">
-                        <label for="issue-user">Descripción del Problema</label>
-                        <textarea id="issue-user" placeholder="Explica qué sucede con tu PC..."></textarea>
+                        <label for="issue-user">Problema Detectado</label>
+                        <textarea id="issue-user" rows="3" placeholder="Ej: Bajones de FPS en Warzone, temperaturas altas..."></textarea>
                     </div>
                 </div>
+                
                 <button class="btn-elite-main" onclick="analizarHardware()">
-                    <span>✨</span> Generar Diagnóstico
+                    ✨ Generar Diagnóstico Inteligente
                 </button>
-                <div id="resultado-ia" class="result-box-elite" style="display:none;" aria-live="polite"></div>
+                
+                <div id="resultado-ia" class="result-box-elite card-elite" style="display:none;"></div>
+            </section>
+
+            <section id="optimizacion" class="section">
+                <h1>Ajustes de Rendimiento</h1>
+                <div class="pro-grid-elite">
+                    <div class="card-elite">
+                        <h3>Visuales (sysdm.cpl)</h3>
+                        <p>Optimiza las animaciones de Windows para liberar carga de CPU.</p>
+                        <p><kbd>Win + R</kbd> ➔ <code>sysdm.cpl</code> ➔ Opciones Avanzadas ➔ Rendimiento.</p>
+                    </div>
+                    <div class="card-elite">
+                        <h3>GPU Acelerada</h3>
+                        <p>Activa la "Programación de GPU acelerada por hardware" en los ajustes de pantalla de Windows 10/11.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="mantenimiento" class="section">
+                <h1>Limpieza Profunda</h1>
+                <div class="card-elite">
+                    <h3>Purgar Archivos Temporales</h3>
+                    <p>Elimina archivos residuales que ralentizan el acceso a disco.</p>
+                    <div class="code-wrapper">
+                        <code>%temp%</code>
+                        <button class="copy-action" onclick="copyText(this)">Abrir Carpeta</button>
+                    </div>
+                </div>
+                <button class="btn-elite-main" onclick="descargarOptimizador()">
+                    📥 Descargar Script de Limpieza (.BAT)
+                </button>
             </section>
 
             <section id="seguridad" class="section">
-                <h1>Seguridad Cloud</h1>
+                <h1>Escudo de Seguridad</h1>
                 <div class="card-elite sec-flex">
                     <div class="sec-content">
-                        <h3>Análisis VirusTotal</h3>
-                        <p>Analiza archivos sospechosos con más de 70 motores antivirus profesionales.</p>
+                        <h3>Cloud Analysis (VirusTotal)</h3>
+                        <p>Si un archivo parece sospechoso, analízalo con 70 motores antivirus simultáneos.</p>
                     </div>
-                    <a href="https://www.virustotal.com" 
-                       target="_blank" 
-                       rel="noopener noreferrer" 
-                       class="btn-sec">🔍 Abrir VirusTotal</a>
+                    <a href="https://www.virustotal.com" target="_blank" rel="noopener" class="btn-elite-main" style="text-decoration:none; text-align:center;">
+                        🔍 Ir a VirusTotal
+                    </a>
                 </div>
             </section>
 
-            </main>
+            <section id="panel-pro" class="section">
+                <h1>Consola de Comandos Pro</h1>
+                <div class="pro-grid-elite">
+                    <div class="pro-item-elite">
+                        <span class="pro-badge">Power</span>
+                        <h3>Máximo Rendimiento</h3>
+                        <p>Desbloquea el plan de energía oculto de Windows.</p>
+                        <div class="code-wrapper">
+                            <code>powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61</code>
+                            <button class="copy-action" onclick="copyText(this)">Copiar</button>
+                        </div>
+                    </div>
+                    <div class="pro-item-elite">
+                        <span class="pro-badge">System</span>
+                        <h3>Reparar Archivos</h3>
+                        <p>Escanea y repara errores en la imagen del sistema.</p>
+                        <div class="code-wrapper">
+                            <code>sfc /scannow</code>
+                            <button class="copy-action" onclick="copyText(this)">Copiar</button>
+                        </div>
+                    </div>
+                    <div class="pro-item-elite">
+                        <span class="pro-badge">Network</span>
+                        <h3>DNS Flush</h3>
+                        <p>Limpia la caché de red para mejorar la conexión.</p>
+                        <div class="code-wrapper">
+                            <code>ipconfig /flushdns</code>
+                            <button class="copy-action" onclick="copyText(this)">Copiar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
     </div>
 
     <script src="script.js" defer></script>
     <script>
-        // Registro de Service Worker optimizado
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .catch(err => console.log("SW registro fallido: ", err));
+                navigator.serviceWorker.register('./sw.js');
             });
         }
     </script>
