@@ -3,96 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COREAI 26 // SUPREME KERNEL</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500;800&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <title>COREAI 26 // SUPREME_ULTIMATE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=JetBrains+Mono:wght@300;500;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="scanline"></div>
+    
     <div class="app-frame">
         <aside class="sidebar">
             <div class="brand">
                 <div class="cyber-logo">C26</div>
-                <div class="status-indicator">SYSTEM_ONLINE</div>
+                <p class="status">KERNEL_ACTIVE</p>
             </div>
-            
+
             <nav class="cyber-nav">
-                <button class="nav-link active" onclick="showTab('dash')">DASHBOARD</button>
-                <button class="nav-link" onclick="showTab('hardware')">HARDWARE_DB</button>
-                <button class="nav-link" onclick="showTab('net')">SPEED_TEST</button>
-                <button class="nav-link" onclick="showTab('terminal')">TERMINAL_PRO</button>
+                <button class="nav-btn active" onclick="showTab('dash')">DASHBOARD</button>
+                <button class="nav-btn" onclick="showTab('tech-city')">TECHNICAL_CITY</button>
+                <button class="nav-btn" onclick="showTab('speedtest')">SPEED_TEST</button>
+                <button class="nav-btn" onclick="showTab('terminal')">TERMINAL_PRO</button>
             </nav>
 
-            <div class="auth-module">
-                <p>LOGIN_SESSION</p>
-                <div class="auth-icons">
-                    <button onclick="auth('steam')">ST</button>
-                    <button onclick="auth('google')">GO</button>
-                    <button onclick="auth('github')">GH</button>
+            <div class="auth-box">
+                <span class="label">SECURE_AUTH</span>
+                <div class="auth-social">
+                    <button onclick="login('google')" class="auth-icon" title="Google">G</button>
+                    <button onclick="login('steam')" class="auth-icon" title="Steam">S</button>
+                    <button onclick="login('github')" class="auth-icon" title="Github">H</button>
+                    <button onclick="login('mail')" class="auth-icon" title="Mail">@</button>
                 </div>
+                <button class="login-main">INVITADO_ACCESS</button>
             </div>
         </aside>
 
-        <main class="kernel-view">
+        <main class="viewport">
             <section id="dash" class="tab active">
-                <h1 class="glitch" data-text="CORE_OPTIMIZER">CORE_OPTIMIZER</h1>
-                <div class="dashboard-grid">
-                    <div class="stat-card">
-                        <label>NETWORK_LATENCY</label>
-                        <h2 id="ping-val">00 MS</h2>
+                <div class="header">
+                    <h1>GENESIS_<span>OPTIMIZER</span></h1>
+                    <p>CONTROL TOTAL DEL HARDWARE</p>
+                </div>
+                <div class="grid">
+                    <div class="card pulse-border">
+                        <label>NETWORK_PING</label>
+                        <h2 id="ping">-- MS</h2>
                     </div>
-                    <div class="stat-card">
-                        <label>GPU_ID</label>
-                        <p id="gpu-name">Detectando...</p>
+                    <div class="card">
+                        <label>GPU_DETECTED</label>
+                        <p id="gpu-info">Analizando...</p>
                     </div>
                 </div>
-                <div class="action-grid">
-                    <button class="glow-btn" onclick="winCall('ms-settings:gaming-gamemode')">MODO_JUEGO.EXE</button>
-                    <button class="glow-btn" onclick="deployBat()">PURGE_TEMP.BAT</button>
-                </div>
-            </section>
-
-            <section id="hardware" class="tab">
-                <h1>HARDWARE_DATABASE</h1>
-                <div class="comparison-ui">
-                    <input type="text" id="hw-search" placeholder="Comparar CPU/GPU...">
-                    <div class="hw-grid">
-                        <div class="hw-box">
-                            <span class="tag">YOUR_DEVICE</span>
-                            <div id="user-hardware-info">NVIDIA RTX Device</div>
-                            <div class="bar-container"><div class="bar" style="width: 75%"></div></div>
-                        </div>
-                        <div class="vs">VS</div>
-                        <div class="hw-box">
-                            <span class="tag">REF_DEVICE</span>
-                            <div>RTX 4090 TI</div>
-                            <div class="bar-container"><div class="bar" style="width: 100%"></div></div>
-                        </div>
-                    </div>
+                <div class="actions">
+                    <button class="neon-btn" onclick="winCall('ms-settings:gaming-gamemode')">MODO_JUEGO</button>
+                    <button class="neon-btn" onclick="deployBat()">PURGE_CACHE.BAT</button>
                 </div>
             </section>
 
-            <section id="net" class="tab">
-                <h1>NETWORK_INTEGRITY</h1>
-                <div class="speed-box">
-                    <div class="gauge-group">
-                        <div class="gauge">
-                            <span id="dl-val">000</span>
-                            <label>DL_MBPS</label>
+            <section id="tech-city" class="tab">
+                <div class="header"><h1>HARDWARE_<span>COMPARATOR</span></h1></div>
+                <div class="tech-city-container">
+                    <input type="text" id="hw-input" placeholder="Escribe CPU o GPU (Ej: RTX 3060 vs 4060)">
+                    <div class="comp-box">
+                        <div class="device">
+                            <span class="tag">YOUR_PC</span>
+                            <div id="my-hw" class="hw-name">Detectando...</div>
+                            <div class="bar"><div id="my-bar" class="fill" style="width: 0%"></div></div>
                         </div>
-                        <div class="gauge">
-                            <span id="ul-val">000</span>
-                            <label>UL_MBPS</label>
+                        <div class="vs-circle">VS</div>
+                        <div class="device">
+                            <span class="tag">TARGET</span>
+                            <div class="hw-name">RTX 4090 TI</div>
+                            <div class="bar"><div class="fill" style="width: 100%"></div></div>
                         </div>
                     </div>
-                    <button class="action-btn" onclick="runSpeedTest()">INICIAR_TEST</button>
+                </div>
+            </section>
+
+            <section id="speedtest" class="tab">
+                <div class="header"><h1>NETWORK_<span>INTEGRITY</span></h1></div>
+                <div class="speed-container">
+                    <div class="gauge-grid">
+                        <div class="gauge">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="bg" cx="50" cy="50" r="45"></circle>
+                                <circle id="speed-progress" class="prog" cx="50" cy="50" r="45"></circle>
+                            </svg>
+                            <div class="data"><span id="mbps">0</span><label>MBPS</label></div>
+                        </div>
+                    </div>
+                    <button class="neon-btn" onclick="runSpeedTest()">START_TEST</button>
                 </div>
             </section>
 
             <section id="terminal" class="tab">
-                <div class="terminal-container">
-                    <div id="term-out">COREAI_SYSTEM_READY...</div>
+                <div class="terminal-box">
+                    <div id="term-log" class="log-area">COREAI_V26_ROOT_ACCESS...</div>
                     <div class="input-line">
-                        <span>$</span><input type="text" id="term-in" autofocus>
+                        <span>#</span><input type="text" id="term-input" placeholder="Type 'help'...">
                     </div>
                 </div>
             </section>
