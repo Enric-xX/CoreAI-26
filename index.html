@@ -3,102 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COREAI 26 // SUPREME_ULTIMATE</title>
+    <title>COREAI 26 // OMEGA_KERNEL</title>
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=JetBrains+Mono:wght@300;500;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="scanline"></div>
-    
-    <div class="app-frame">
+    <div class="overlay"></div>
+    <div class="app-container">
         <aside class="sidebar">
-            <div class="brand">
-                <div class="cyber-logo">C26</div>
-                <p class="status">KERNEL_ACTIVE</p>
+            <div class="brand-zone">
+                <div class="logo">C26</div>
+                <div class="version">V.OMEGA.2026</div>
             </div>
-
-            <nav class="cyber-nav">
-                <button class="nav-btn active" onclick="showTab('dash')">DASHBOARD</button>
-                <button class="nav-btn" onclick="showTab('tech-city')">TECHNICAL_CITY</button>
-                <button class="nav-btn" onclick="showTab('speedtest')">SPEED_TEST</button>
-                <button class="nav-btn" onclick="showTab('terminal')">TERMINAL_PRO</button>
+            
+            <nav class="nav-menu">
+                <button class="nav-btn active" onclick="tab('dash')"><span class="icon">01</span> DASHBOARD</button>
+                <button class="nav-btn" onclick="tab('tech')"><span class="icon">02</span> HARDWARE_DB</button>
+                <button class="nav-btn" onclick="tab('net')"><span class="icon">03</span> SPEED_TEST</button>
+                <button class="nav-btn" onclick="tab('term')"><span class="icon">04</span> TERMINAL_PRO</button>
             </nav>
 
-            <div class="auth-box">
-                <span class="label">SECURE_AUTH</span>
-                <div class="auth-social">
-                    <button onclick="login('google')" class="auth-icon" title="Google">G</button>
-                    <button onclick="login('steam')" class="auth-icon" title="Steam">S</button>
-                    <button onclick="login('github')" class="auth-icon" title="Github">H</button>
-                    <button onclick="login('mail')" class="auth-icon" title="Mail">@</button>
+            <div class="auth-module">
+                <p class="label">SECURE_ACCESS</p>
+                <div class="social-login">
+                    <button onclick="auth('steam')" class="s-btn">STEAM</button>
+                    <button onclick="auth('google')" class="s-btn">GOOGLE</button>
+                    <button onclick="auth('github')" class="s-btn">GITHUB</button>
                 </div>
-                <button class="login-main">INVITADO_ACCESS</button>
+                <div class="input-auth">
+                    <input type="text" placeholder="PHONE / MAIL">
+                    <button onclick="auth('direct')">GO</button>
+                </div>
             </div>
         </aside>
 
         <main class="viewport">
-            <section id="dash" class="tab active">
-                <div class="header">
-                    <h1>GENESIS_<span>OPTIMIZER</span></h1>
-                    <p>CONTROL TOTAL DEL HARDWARE</p>
-                </div>
-                <div class="grid">
-                    <div class="card pulse-border">
-                        <label>NETWORK_PING</label>
-                        <h2 id="ping">-- MS</h2>
+            <section id="dash" class="module active">
+                <header class="mod-header">
+                    <h1>SYSTEM_<span>NUCLEUS</span></h1>
+                    <div class="latency">PING: <span id="ping-val">--</span> MS</div>
+                </header>
+                <div class="dash-grid">
+                    <div class="card glass">
+                        <label>GPU_ENGINE</label>
+                        <h3 id="gpu-display">Detectando hardware...</h3>
                     </div>
-                    <div class="card">
-                        <label>GPU_DETECTED</label>
-                        <p id="gpu-info">Analizando...</p>
+                    <div class="card glass">
+                        <label>OS_KERNEL</label>
+                        <h3>Windows_NT 10.0</h3>
                     </div>
                 </div>
-                <div class="actions">
-                    <button class="neon-btn" onclick="winCall('ms-settings:gaming-gamemode')">MODO_JUEGO</button>
-                    <button class="neon-btn" onclick="deployBat()">PURGE_CACHE.BAT</button>
+                <div class="quick-actions">
+                    <button class="action-btn" onclick="sys('ms-settings:gaming-gamemode')">FORZAR_MODO_JUEGO</button>
+                    <button class="action-btn" onclick="sys('ms-settings:display-advancedgraphics')">GRÁFICOS_ACELERADOS</button>
+                    <button class="action-btn" onclick="sys('ms-settings:powersleep')">ENERGÍA_EXTREMA</button>
+                    <button class="action-btn download" onclick="genBat()">GENERAR_LIMPIEZA.BAT</button>
                 </div>
             </section>
 
-            <section id="tech-city" class="tab">
-                <div class="header"><h1>HARDWARE_<span>COMPARATOR</span></h1></div>
-                <div class="tech-city-container">
-                    <input type="text" id="hw-input" placeholder="Escribe CPU o GPU (Ej: RTX 3060 vs 4060)">
-                    <div class="comp-box">
-                        <div class="device">
-                            <span class="tag">YOUR_PC</span>
-                            <div id="my-hw" class="hw-name">Detectando...</div>
-                            <div class="bar"><div id="my-bar" class="fill" style="width: 0%"></div></div>
-                        </div>
-                        <div class="vs-circle">VS</div>
-                        <div class="device">
-                            <span class="tag">TARGET</span>
-                            <div class="hw-name">RTX 4090 TI</div>
-                            <div class="bar"><div class="fill" style="width: 100%"></div></div>
-                        </div>
+            <section id="tech" class="module">
+                <header class="mod-header"><h1>HARDWARE_<span>COMPARATOR</span></h1></header>
+                <div class="tech-comparison">
+                    <div class="hw-card mine">
+                        <span class="tag">LOCAL</span>
+                        <div id="local-hw" class="hw-name">---</div>
+                        <div class="perf-bar"><div class="fill" style="width: 70%"></div></div>
+                    </div>
+                    <div class="vs-badge">VS</div>
+                    <div class="hw-card target">
+                        <span class="tag">REFERENCE</span>
+                        <div class="hw-name">NVIDIA RTX 4090</div>
+                        <div class="perf-bar"><div class="fill" style="width: 100%"></div></div>
                     </div>
                 </div>
             </section>
 
-            <section id="speedtest" class="tab">
-                <div class="header"><h1>NETWORK_<span>INTEGRITY</span></h1></div>
-                <div class="speed-container">
-                    <div class="gauge-grid">
-                        <div class="gauge">
-                            <svg viewBox="0 0 100 100">
-                                <circle class="bg" cx="50" cy="50" r="45"></circle>
-                                <circle id="speed-progress" class="prog" cx="50" cy="50" r="45"></circle>
-                            </svg>
-                            <div class="data"><span id="mbps">0</span><label>MBPS</label></div>
-                        </div>
+            <section id="net" class="module">
+                <header class="mod-header"><h1>NETWORK_<span>STRESS</span></h1></header>
+                <div class="speed-meter">
+                    <div class="gauge">
+                        <div class="gauge-value" id="speed-num">0.0</div>
+                        <div class="gauge-label">MBPS</div>
+                        <svg class="gauge-svg"><circle cx="70" cy="70" r="65"></circle></svg>
                     </div>
-                    <button class="neon-btn" onclick="runSpeedTest()">START_TEST</button>
+                    <button class="action-btn" onclick="runTest()">START_BANDA_ANCHA_TEST</button>
                 </div>
             </section>
 
-            <section id="terminal" class="tab">
-                <div class="terminal-box">
-                    <div id="term-log" class="log-area">COREAI_V26_ROOT_ACCESS...</div>
-                    <div class="input-line">
-                        <span>#</span><input type="text" id="term-input" placeholder="Type 'help'...">
+            <section id="term" class="module">
+                <div class="terminal">
+                    <div id="term-log"></div>
+                    <div class="term-input">
+                        <span>ROOT@COREAI:~#</span>
+                        <input type="text" id="t-input" autofocus>
                     </div>
                 </div>
             </section>
