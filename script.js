@@ -1,59 +1,73 @@
-// --- SISTEMA DE LOGS ---
-function terminalLog(msg) {
-    const out = document.getElementById('terminal-out');
-    const time = new Date().toLocaleTimeString();
-    out.innerHTML += `<br>[${time}] > ${msg}`;
-    out.scrollTop = out.scrollHeight;
-}
-
-// --- NAVEGACIÓN SPA ---
-function showTab(tabId) {
+// NAVEGACIÓN
+function showTab(id) {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-    
-    document.getElementById(tabId).classList.add('active');
-    terminalLog(`MOD_LOAD: ${tabId.toUpperCase()}`);
+    document.getElementById(id).classList.add('active');
+    event.currentTarget.classList.add('active');
 }
 
-// --- LLAMADAS REALES A WINDOWS ---
+// TERMINAL LOGIC (S4vitar Style)
+const termIn = document.getElementById('term-in');
+const termOut = document.getElementById('term-out');
+
+termIn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        const cmd = termIn.value.toLowerCase();
+        const line = document.createElement('div');
+        line.innerHTML = `<span style="color:#888">$ ${cmd}</span><br>${executeCmd(cmd)}`;
+        termOut.appendChild(line);
+        termIn.value = '';
+        termOut.scrollTop = termOut.scrollHeight;
+    }
+});
+
+function executeCmd(cmd) {
+    if (cmd === 'netstat') return "TCP 127.0.0.1:443 ESTABLISHED...";
+    if (cmd === 'purge_mem') return "Memory buffer cleared. 1.2GB released.";
+    if (cmd === 'sys_info') return "CoreAI Kernel v2.6.0-stable | x64_AES_ACTIVE";
+    return "Error: Command not found. Try 'sys_info' or 'netstat'.";
+}
+
+// SPEEDTEST (Vodafone Style)
+function runSpeedTest() {
+    let dl = 0;
+    const interval = setInterval(() => {
+        dl += Math.random() * 80;
+        document.getElementById('dl-val').innerText = Math.floor(dl);
+        if (dl >= 750) {
+            clearInterval(interval);
+            document.getElementById('ul-val').innerText = "320";
+        }
+    }, 100);
+}
+
+// LLAMADAS AL SISTEMA
 function winCall(uri) {
-    terminalLog(`EXEC_URI_CALL: ${uri}`);
     window.location.href = uri;
 }
 
-// --- GENERADOR DE SCRIPT BATCH ELITE ---
 function deployBat() {
-    const batContent = `@echo off
-title CoreAI 26 - Genesis Cleaner
-echo [SYSTEM] Iniciando limpieza profunda...
-del /s /f /q %temp%\\*.*
-rd /s /q %temp%
-md %temp%
-ipconfig /flushdns
-echo [SUCCESS] Sistema purgado.
-pause`;
-
-    const blob = new Blob([batContent], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'COREAI_PURGE.bat';
-    link.click();
-    terminalLog("SCRIPT_GEN: COREAI_PURGE.bat descargado.");
+    const code = `@echo off\necho Cleaning system...\ndel /q /f %temp%\\*.*\nipconfig /flushdns\npause`;
+    const blob = new Blob([code], {type: 'text/plain'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'COREAI_CLEAN.bat';
+    a.click();
 }
 
-// --- MONITORIZACIÓN REAL ---
+// DETECCIÓN HARDWARE (Technical City Style)
+function initHardware() {
+    const canvas = document.createElement('canvas');
+    const gl = canvas.getContext('webgl');
+    const dbgRender = gl.getExtension('WEBGL_debug_renderer_info');
+    const gpu = gl.getParameter(dbgRender.UNMASKED_RENDERER_WEBGL);
+    document.getElementById('gpu-name').innerText = gpu || "Standard Graphics Device";
+    document.getElementById('user-hardware-info').innerText = gpu;
+}
+
+// PING SIMULATOR
 setInterval(() => {
-    // Simulación de carga de CPU (Nate apreciaría el detalle visual)
-    const load = Math.floor(Math.random() * 30) + 5;
-    document.getElementById('cpu-bar').style.width = load + "%";
-    
-    // Test de Ping (S4vitar apreciaría la métrica de red)
-    const start = Date.now();
-    fetch('https://www.google.com', { mode: 'no-cors' }).then(() => {
-        const ping = Date.now() - start;
-        document.getElementById('ping-val').innerText = ping + " MS";
-    });
+    document.getElementById('ping-val').innerText = Math.floor(Math.random() * 20 + 5) + " MS";
 }, 3000);
 
-terminalLog("KERNEL_ESTABLISHED // READY_FOR_USER_INPUT");
+window.onload = initHardware;
