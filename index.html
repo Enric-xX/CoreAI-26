@@ -2,104 +2,94 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COREAI 26 // OMEGA_KERNEL</title>
+    <title>COREAI 26 // PHANTOM_PROTOCOL</title>
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=JetBrains+Mono:wght@300;500;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
 </head>
 <body>
-    <div class="overlay"></div>
-    <div class="app-container">
+    <div class="glitch-overlay"></div>
+
+    <div id="login-screen" class="login-overlay">
+        <div class="login-box glass">
+            <div class="logo-anim">C26</div>
+            <h2>ACCESS_RESTRICTED</h2>
+            <div class="auth-methods">
+                <button onclick="realLogin('google')" class="auth-btn google">LOGIN_WITH_GOOGLE</button>
+                <button onclick="realLogin('github')" class="auth-btn github">LOGIN_WITH_GITHUB</button>
+            </div>
+            <div class="divider"><span>OR_CONNECT_VIA</span></div>
+            <input type="email" id="user-email" placeholder="ENCRYPTED_EMAIL">
+            <input type="password" id="user-pass" placeholder="MASTER_PASSWORD">
+            <button onclick="realLogin('email')" class="login-trigger">INIT_SESSION</button>
+        </div>
+    </div>
+
+    <div class="app-shell" style="display:none;" id="main-app">
         <aside class="sidebar">
-            <div class="brand-zone">
-                <div class="logo">C26</div>
-                <div class="version">V.OMEGA.2026</div>
+            <div class="user-profile">
+                <img id="user-avatar" src="https://via.placeholder.com/50" alt="Avatar">
+                <div class="user-info">
+                    <span id="user-name">OPERATOR_26</span>
+                    <label id="user-status">ONLINE</label>
+                </div>
             </div>
             
-            <nav class="nav-menu">
-                <button class="nav-btn active" onclick="tab('dash')"><span class="icon">01</span> DASHBOARD</button>
-                <button class="nav-btn" onclick="tab('tech')"><span class="icon">02</span> HARDWARE_DB</button>
-                <button class="nav-btn" onclick="tab('net')"><span class="icon">03</span> SPEED_TEST</button>
-                <button class="nav-btn" onclick="tab('term')"><span class="icon">04</span> TERMINAL_PRO</button>
+            <nav class="nav-system">
+                <button onclick="setTab('dash')" class="nav-item active">NUCLEUS</button>
+                <button onclick="setTab('bench')" class="nav-item">BENCHMARK_PRO</button>
+                <button onclick="setTab('secure')" class="nav-item">SECURITY_SCAN</button>
+                <button onclick="setTab('term')" class="nav-item">ROOT_TERMINAL</button>
             </nav>
 
-            <div class="auth-module">
-                <p class="label">SECURE_ACCESS</p>
-                <div class="social-login">
-                    <button onclick="auth('steam')" class="s-btn">STEAM</button>
-                    <button onclick="auth('google')" class="s-btn">GOOGLE</button>
-                    <button onclick="auth('github')" class="s-btn">GITHUB</button>
-                </div>
-                <div class="input-auth">
-                    <input type="text" placeholder="PHONE / MAIL">
-                    <button onclick="auth('direct')">GO</button>
-                </div>
-            </div>
+            <button onclick="logout()" class="logout-btn">DISCONNECT_SYSTEM</button>
         </aside>
 
-        <main class="viewport">
-            <section id="dash" class="module active">
-                <header class="mod-header">
-                    <h1>SYSTEM_<span>NUCLEUS</span></h1>
-                    <div class="latency">PING: <span id="ping-val">--</span> MS</div>
-                </header>
-                <div class="dash-grid">
-                    <div class="card glass">
-                        <label>GPU_ENGINE</label>
-                        <h3 id="gpu-display">Detectando hardware...</h3>
+        <main class="content-area">
+            <section id="bench" class="tab-module">
+                <div class="header"><h1>HARDWARE_<span>HIERARCHY</span></h1></div>
+                <div class="comparison-engine">
+                    <div class="hw-selector">
+                        <select id="gpu-select" onchange="compareHardware()">
+                            <option value="4090">RTX 4090 (Top Tier)</option>
+                            <option value="3080">RTX 3080</option>
+                            <option value="rx7900">Radeon RX 7900 XTX</option>
+                        </select>
                     </div>
-                    <div class="card glass">
-                        <label>OS_KERNEL</label>
-                        <h3>Windows_NT 10.0</h3>
-                    </div>
-                </div>
-                <div class="quick-actions">
-                    <button class="action-btn" onclick="sys('ms-settings:gaming-gamemode')">FORZAR_MODO_JUEGO</button>
-                    <button class="action-btn" onclick="sys('ms-settings:display-advancedgraphics')">GRÁFICOS_ACELERADOS</button>
-                    <button class="action-btn" onclick="sys('ms-settings:powersleep')">ENERGÍA_EXTREMA</button>
-                    <button class="action-btn download" onclick="genBat()">GENERAR_LIMPIEZA.BAT</button>
-                </div>
-            </section>
-
-            <section id="tech" class="module">
-                <header class="mod-header"><h1>HARDWARE_<span>COMPARATOR</span></h1></header>
-                <div class="tech-comparison">
-                    <div class="hw-card mine">
-                        <span class="tag">LOCAL</span>
-                        <div id="local-hw" class="hw-name">---</div>
-                        <div class="perf-bar"><div class="fill" style="width: 70%"></div></div>
-                    </div>
-                    <div class="vs-badge">VS</div>
-                    <div class="hw-card target">
-                        <span class="tag">REFERENCE</span>
-                        <div class="hw-name">NVIDIA RTX 4090</div>
-                        <div class="perf-bar"><div class="fill" style="width: 100%"></div></div>
+                    <div class="vs-container">
+                        <div class="hw-node">
+                            <label>YOUR_GPU</label>
+                            <h4 id="detected-gpu">Detectando...</h4>
+                            <div class="power-bar"><div id="my-power" class="fill"></div></div>
+                        </div>
+                        <div class="vs-sign">VS</div>
+                        <div class="hw-node">
+                            <label>REFERENCE_TARGET</label>
+                            <h4 id="ref-name">RTX 4090</h4>
+                            <div class="power-bar"><div id="ref-power" class="fill" style="width: 100%"></div></div>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <section id="net" class="module">
-                <header class="mod-header"><h1>NETWORK_<span>STRESS</span></h1></header>
-                <div class="speed-meter">
-                    <div class="gauge">
-                        <div class="gauge-value" id="speed-num">0.0</div>
-                        <div class="gauge-label">MBPS</div>
-                        <svg class="gauge-svg"><circle cx="70" cy="70" r="65"></circle></svg>
+            <section id="secure" class="tab-module">
+                <div class="header"><h1>SECURITY_<span>AUDIT</span></h1></div>
+                <div class="secure-grid">
+                    <div class="scan-card" onclick="runSecurityScan('firewall')">
+                        <h3>FIREWALL_CHECK</h3>
+                        <p>Analizando reglas de entrada y salida...</p>
+                        <div id="fw-status" class="status-low">PENDING</div>
                     </div>
-                    <button class="action-btn" onclick="runTest()">START_BANDA_ANCHA_TEST</button>
-                </div>
-            </section>
-
-            <section id="term" class="module">
-                <div class="terminal">
-                    <div id="term-log"></div>
-                    <div class="term-input">
-                        <span>ROOT@COREAI:~#</span>
-                        <input type="text" id="t-input" autofocus>
+                    <div class="scan-card" onclick="runSecurityScan('ports')">
+                        <h3>PORT_SCANNER</h3>
+                        <p>Buscando vulnerabilidades en puertos locales.</p>
+                        <div id="port-status" class="status-low">PENDING</div>
                     </div>
                 </div>
             </section>
-        </main>
+            
+            </main>
     </div>
     <script src="script.js"></script>
 </body>
