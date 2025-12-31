@@ -3,83 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CoreAI 26 Elite Edition: Herramienta definitiva para optimización, diagnóstico y seguridad de tu sistema. Rendimiento inigualable.">
+    <meta name="description" content="CoreAI 26 Elite Edition: Optimización de sistema de alto nivel.">
     <title>CoreAI 26 | Elite Edition</title>
-
-    <link rel="icon" type="image/png" href="logo.png">
-    <link rel="apple-touch-icon" href="logo.png">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0d0d0d"> 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Orbitron:wght@600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="logo.png">
+    <meta name="theme-color" content="#0d0d0d">
 </head>
 <body>
 
     <div class="app-container">
-        <aside class="sidebar" role="navigation" aria-label="Menú Principal CoreAI">
+        <aside class="sidebar" role="navigation">
             <div class="brand">
-                <img src="logo.png" alt="CoreAI Logo" class="nav-logo">
+                <img src="logo.png" alt="CoreAI" class="nav-logo" onerror="this.style.display='none'">
                 <h1 class="app-title">CoreAI <span>26</span></h1>
             </div>
             <nav id="main-nav">
-                <button class="nav-item active" data-section="dashboard" aria-current="page">
-                    <i class="icon-dashboard"></i> Dashboard
-                </button>
-                <button class="nav-item" data-section="hardware">
-                    <i class="icon-hardware"></i> Hardware
-                </button>
-                <button class="nav-item" data-section="optimizacion">
-                    <i class="icon-optimization"></i> Optimización
-                </button>
-                <button class="nav-item" data-section="monitor">
-                    <i class="icon-monitor"></i> Monitor
-                </button>
-                <button class="nav-item" data-section="limpieza">
-                    <i class="icon-cleanup"></i> Limpieza
-                </button>
-                <button class="nav-item" data-section="seguridad">
-                    <i class="icon-security"></i> Seguridad
-                </button>
-                <button class="nav-item" data-section="panel-pro">
-                    <i class="icon-pro-panel"></i> Panel Pro
-                </button>
+                <button class="nav-item active" data-section="dashboard">📊 Dashboard</button>
+                <button class="nav-item" data-section="hardware">💻 Hardware</button>
+                <button class="nav-item" data-section="optimizacion">🚀 Optimización</button>
+                <button class="nav-item" data-section="limpieza">🧹 Limpieza</button>
+                <button class="nav-item" data-section="seguridad">🛡️ Seguridad</button>
+                <button class="nav-item" data-section="panel-pro">⚙️ Panel Pro</button>
             </nav>
             <div class="sidebar-footer">
-                <button id="toggle-theme" class="nav-item icon-only" aria-label="Alternar Tema Claro/Oscuro">
-                    <i class="icon-sun-moon"></i>
-                </button>
-                <p>&copy; 2024 CoreAI Elite</p>
+                <p>&copy; 2025 CoreAI Elite</p>
             </div>
         </aside>
 
         <main class="content">
+            
             <section id="dashboard" class="section active">
                 <header class="section-header">
                     <h2>Panel Principal <span class="header-badge">Elite</span></h2>
-                    <p class="subtitle">Visión general y estado de tu sistema.</p>
                 </header>
                 <div class="grid-layout">
-                    <div class="card-elite big-card status-card">
+                    <div class="card-elite big-card">
                         <h3>Estado del Sistema</h3>
                         <div class="status-indicator optimal">Óptimo</div>
-                        <p>Tu sistema está funcionando al máximo rendimiento. ¡Sigue así!</p>
-                        <button class="btn-primary" onclick="analizarSistemaGlobal()">
-                            <span>🚀</span> Re-evaluar Ahora
-                        </button>
-                    </div>
-                    <div class="card-elite small-card">
-                        <h3>Próxima Tarea</h3>
-                        <p>Limpieza de caché recomendada en 3 días.</p>
-                        <button class="btn-secondary">Ir a Limpieza</button>
-                    </div>
-                    <div class="card-elite small-card">
-                        <h3>Actualizaciones</h3>
-                        <p>Software pendiente: 2 apps.</p>
-                        <button class="btn-secondary">Actualizar</button>
+                        <p>Todos los módulos están listos para la optimización.</p>
+                        <button class="btn-primary" onclick="analizarSistemaGlobal()">Analizar Ahora</button>
                     </div>
                 </div>
             </section>
@@ -87,212 +55,96 @@
             <section id="hardware" class="section">
                 <header class="section-header">
                     <h2>Diagnóstico de Hardware</h2>
-                    <p class="subtitle">Identifica problemas y optimiza tus componentes.</p>
                 </header>
-                <div class="card-elite info-box">
-                    <strong>¿Cómo ver tus componentes?</strong>
-                    <p>Presiona <kbd>Win</kbd> + <kbd>R</kbd>, escribe <code>dxdiag</code> y pulsa Enter. Introduce los datos clave a continuación.</p>
+                <div class="card-elite">
+                    <div class="form-grid">
+                        <div class="input-group">
+                            <label for="cpu-user">CPU</label>
+                            <input type="text" id="cpu-user" placeholder="Ej: i7-13700K">
+                        </div>
+                        <div class="input-group">
+                            <label for="gpu-user">GPU</label>
+                            <input type="text" id="gpu-user" placeholder="Ej: RTX 4070">
+                        </div>
+                        <div class="input-group full">
+                            <label for="issue-user">Descripción</label>
+                            <textarea id="issue-user" rows="3" placeholder="¿Qué problema tienes?"></textarea>
+                        </div>
+                    </div>
+                    <button class="btn-primary" onclick="analizarHardware()">Generar Diagnóstico IA</button>
+                    <div id="resultado-ia" class="result-box-elite" style="display:none;"></div>
                 </div>
-                <div class="form-grid">
-                    <div class="input-group">
-                        <label for="cpu-user">Modelo de CPU</label>
-                        <input type="text" id="cpu-user" placeholder="Ej: Intel Core i7-13700K">
-                    </div>
-                    <div class="input-group">
-                        <label for="gpu-user">Modelo de GPU</label>
-                        <input type="text" id="gpu-user" placeholder="Ej: NVIDIA GeForce RTX 4070">
-                    </div>
-                    <div class="input-group full">
-                        <label for="issue-user">Descripción del Problema</label>
-                        <textarea id="issue-user" rows="4" placeholder="Describe cualquier síntoma, como bajones de FPS, pantallas azules, sobrecalentamiento..."></textarea>
-                    </div>
-                </div>
-                <button class="btn-primary btn-icon" onclick="analizarHardware()">
-                    <i class="icon-ai-magic"></i> Generar Diagnóstico IA
-                </button>
-                <div id="resultado-ia" class="result-box card-elite" style="display:none;" aria-live="polite"></div>
             </section>
 
             <section id="optimizacion" class="section">
                 <header class="section-header">
                     <h2>Optimización de Rendimiento</h2>
-                    <p class="subtitle">Ajustes avanzados para exprimir cada FPS y milisegundo.</p>
                 </header>
                 <div class="grid-layout">
-                    <div class="card-elite interactive-card">
-                        <h3><i class="icon-tune"></i> Rendimiento Visual</h3>
-                        <p>Ajusta efectos visuales de Windows para el máximo rendimiento.</p>
-                        <button class="btn-secondary">Abrir sysdm.cpl</button>
-                    </div>
-                    <div class="card-elite interactive-card">
-                        <h3><i class="icon-refresh"></i> Frecuencia de Refresco</h3>
-                        <p>Asegura que tu monitor use la máxima frecuencia (Hz) disponible.</p>
-                        <button class="btn-secondary">Ver Configuración</button>
-                    </div>
-                    <div class="card-elite interactive-card">
-                        <h3><i class="icon-game-mode"></i> Modo Juego & GPU</h3>
-                        <p>Desactiva el Modo Juego de Windows y activa la programación de GPU acelerada.</p>
-                        <button class="btn-secondary">Abrir Ajustes</button>
-                    </div>
-                    <div class="card-elite interactive-card">
-                        <h3><i class="icon-power"></i> Plan de Energía</h3>
-                        <p>Activa el plan de "Máximo Rendimiento" para CPUs de gama alta.</p>
-                        <button class="btn-secondary" onclick="copyCommand('powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61')">Copiar Comando</button>
+                    <div class="card-elite">
+                        <h3>Plan de Energía</h3>
+                        <p>Activa el plan oculto de Máximo Rendimiento.</p>
+                        <div class="code-block">
+                            <code>powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61</code>
+                            <button class="copy-btn" onclick="copyCommand(this)">Copiar</button>
+                        </div>
                     </div>
                 </div>
-            </section>
-
-            <section id="monitor" class="section">
-                <header class="section-header">
-                    <h2>Monitorización en Tiempo Real</h2>
-                    <p class="subtitle">Observa el pulso de tu PC con datos en vivo.</p>
-                </header>
-                <div class="grid-layout">
-                    <div class="card-elite small-card metric-card">
-                        <h3>CPU Temp</h3>
-                        <p class="metric-value" id="cpu-temp">45°C</p>
-                        <div class="progress-bar-container"><div class="progress-bar" style="width: 45%;"></div></div>
-                    </div>
-                    <div class="card-elite small-card metric-card">
-                        <h3>GPU Load</h3>
-                        <p class="metric-value" id="gpu-load">60%</p>
-                        <div class="progress-bar-container"><div class="progress-bar" style="width: 60%;"></div></div>
-                    </div>
-                    <div class="card-elite small-card metric-card">
-                        <h3>RAM Usage</h3>
-                        <p class="metric-value" id="ram-usage">12/32GB</p>
-                        <div class="progress-bar-container"><div class="progress-bar" style="width: 37%;"></div></div>
-                    </div>
-                    <div class="card-elite full-card chart-card">
-                        <h3>Historial de Rendimiento</h3>
-                        <p>Gráfico (simulado) de uso de CPU a lo largo del tiempo.</p>
-                        <div class="chart-placeholder"></div>
-                    </div>
-                </div>
-                <p class="info-text"><em>Nota: Los datos mostrados son simulados. Para datos en tiempo real, se requiere una integración con software de sistema.</em></p>
             </section>
 
             <section id="limpieza" class="section">
                 <header class="section-header">
                     <h2>Herramientas de Limpieza</h2>
-                    <p class="subtitle">Elimina archivos basura y libera espacio crucial.</p>
                 </header>
                 <div class="card-elite">
-                    <h3>Archivos Temporales (%temp%)</h3>
-                    <p>Borra cachés y archivos temporales de Windows. <span class="badge-elite">Recomendado semanalmente</span></p>
-                    <div class="action-row">
-                        <button class="btn-secondary" onclick="openPath('%temp%')">Abrir Carpeta</button>
-                        <button class="btn-primary-ghost" onclick="runCleanupScript('temp')">Limpiar Ahora</button>
-                    </div>
+                    <h3>Archivos Temporales</h3>
+                    <p>Limpia el exceso de basura en %temp%.</p>
+                    <button class="btn-secondary" onclick="descargarOptimizador()">Descargar .BAT de Limpieza</button>
                 </div>
-                <div class="card-elite">
-                    <h3>Caché de Sombreadores DirectX</h3>
-                    <p>Elimina cachés de gráficos que pueden causar stuttering en juegos.</p>
-                    <div class="action-row">
-                        <button class="btn-secondary" onclick="openDiskCleanup()">Abrir Liberador</button>
-                        <button class="btn-primary-ghost" onclick="runCleanupScript('directx')">Limpiar Ahora</button>
-                    </div>
-                </div>
-                <button class="btn-primary btn-icon full-width" onclick="descargarOptimizador()">
-                    <i class="icon-download"></i> Descargar Pack de Limpieza .BAT
-                </button>
             </section>
 
             <section id="seguridad" class="section">
                 <header class="section-header">
-                    <h2>Centro de Seguridad Cloud</h2>
-                    <p class="subtitle">Protege tu PC con análisis externos y buenas prácticas.</p>
+                    <h2>Centro de Seguridad</h2>
                 </header>
-                <div class="card-elite feature-card">
-                    <h3><i class="icon-virustotal"></i> Análisis Multi-motor (VirusTotal)</h3>
-                    <p>Escanea archivos sospechosos con más de 70 motores antivirus profesionales. ¡La mejor defensa!</p>
-                    <a href="https://www.virustotal.com/gui/home/upload" target="_blank" rel="noopener noreferrer" class="btn-primary btn-full">
-                        Abrir VirusTotal
-                    </a>
-                </div>
-                <div class="card-elite feature-card">
-                    <h3><i class="icon-firewall"></i> Guía Firewall Avanzado</h3>
-                    <p>Configura tu firewall para bloquear conexiones no deseadas.</p>
-                    <button class="btn-secondary btn-full">Ver Guía</button>
+                <div class="card-elite">
+                    <h3>Análisis VirusTotal</h3>
+                    <p>Usa la base de datos más grande del mundo para analizar archivos.</p>
+                    <a href="https://www.virustotal.com" target="_blank" rel="noopener noreferrer" class="btn-primary-link">Abrir VirusTotal</a>
                 </div>
             </section>
 
             <section id="panel-pro" class="section">
                 <header class="section-header">
                     <h2>Panel de Comandos Pro</h2>
-                    <p class="subtitle">Herramientas de línea de comandos para optimización profunda.</p>
-                    <p class="info-text">Usa <kbd>Win</kbd> + <kbd>R</kbd> o abre el Símbolo del Sistema (CMD) como administrador.</p>
                 </header>
                 <div class="command-grid">
                     <div class="command-item card-elite">
                         <span class="command-badge">Sistema</span>
                         <h4>Reparar SFC</h4>
-                        <p>Escanea y repara archivos base de Windows dañados.</p>
                         <div class="code-block">
                             <code>sfc /scannow</code>
                             <button class="copy-btn" onclick="copyCommand(this)">Copiar</button>
                         </div>
                     </div>
                     <div class="command-item card-elite">
-                        <span class="command-badge">Red</span>
-                        <h4>Optimizar TCP</h4>
-                        <p>Reduce la latencia de red en algunas configuraciones.</p>
-                        <div class="code-block">
-                            <code>netsh int tcp set global autotuninglevel=disabled</code>
-                            <button class="copy-btn" onclick="copyCommand(this)">Copiar</button>
-                        </div>
-                    </div>
-                    <div class="command-item card-elite">
-                        <span class="command-badge">Disco</span>
-                        <h4>Reparar Disco</h4>
-                        <p>Chequeo completo de errores en tu unidad C:.</p>
-                        <div class="code-block">
-                            <code>chkdsk C: /f /r</code>
-                            <button class="copy-btn" onclick="copyCommand(this)">Copiar</button>
-                        </div>
-                    </div>
-                    <div class="command-item card-elite">
-                        <span class="command-badge">Privacidad</span>
-                        <h4>Desactivar Telemetría</h4>
-                        <p>Corta el rastreo de datos de diagnóstico de Windows.</p>
-                        <div class="code-block">
-                            <code>sc stop DiagTrack && sc config DiagTrack start=disabled</code>
-                            <button class="copy-btn" onclick="copyCommand(this)">Copiar</button>
-                        </div>
-                    </div>
-                    <div class="command-item card-elite">
-                        <span class="command-badge">Espacio</span>
-                        <h4>Hibernación OFF</h4>
-                        <p>Recupera gigabytes de espacio en tu disco duro.</p>
-                        <div class="code-block">
-                            <code>powercfg -h off</code>
-                            <button class="copy-btn" onclick="copyCommand(this)">Copiar</button>
-                        </div>
-                    </div>
-                    <div class="command-item card-elite">
                         <span class="command-badge">Software</span>
-                        <h4>Actualizar Apps (Winget)</h4>
-                        <p>Actualiza todas tus aplicaciones instaladas vía Winget.</p>
+                        <h4>Actualizar Apps</h4>
                         <div class="code-block">
                             <code>winget upgrade --all</code>
                             <button class="copy-btn" onclick="copyCommand(this)">Copiar</button>
                         </div>
                     </div>
-                    </div>
+                </div>
             </section>
         </main>
     </div>
 
-    <div id="toast-container" aria-live="polite"></div>
-
     <script src="script.js" defer></script>
     <script>
-        // Registro del Service Worker para PWA
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then(reg => console.log('Service Worker Registrado!', reg))
-                    .catch(err => console.log('Error en registro de Service Worker: ', err));
+                navigator.serviceWorker.register('./sw.js').catch(() => {});
             });
         }
     </script>
