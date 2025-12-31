@@ -1,73 +1,67 @@
 // NAVEGACIÓN
 function showTab(id) {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     event.currentTarget.classList.add('active');
 }
 
-// TERMINAL LOGIC (S4vitar Style)
-const termIn = document.getElementById('term-in');
-const termOut = document.getElementById('term-out');
+// TERMINAL (S4vitar Style)
+const tInput = document.getElementById('term-input');
+const tLog = document.getElementById('term-log');
 
-termIn.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-        const cmd = termIn.value.toLowerCase();
+tInput.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter') {
+        const cmd = tInput.value;
         const line = document.createElement('div');
-        line.innerHTML = `<span style="color:#888">$ ${cmd}</span><br>${executeCmd(cmd)}`;
-        termOut.appendChild(line);
-        termIn.value = '';
-        termOut.scrollTop = termOut.scrollHeight;
+        line.innerHTML = `<span style="color:#00f3ff">user@coreai:~$</span> ${cmd}<br>${runCmd(cmd)}`;
+        tLog.appendChild(line);
+        tInput.value = '';
+        tLog.scrollTop = tLog.scrollHeight;
     }
 });
 
-function executeCmd(cmd) {
-    if (cmd === 'netstat') return "TCP 127.0.0.1:443 ESTABLISHED...";
-    if (cmd === 'purge_mem') return "Memory buffer cleared. 1.2GB released.";
-    if (cmd === 'sys_info') return "CoreAI Kernel v2.6.0-stable | x64_AES_ACTIVE";
-    return "Error: Command not found. Try 'sys_info' or 'netstat'.";
+function runCmd(cmd) {
+    if(cmd === 'help') return "Commands: sys_info, netstat, config_dump, clear";
+    if(cmd === 'sys_info') return "Kernel: CoreAI-26 | Status: Stable | Enc: AES-256";
+    if(cmd === 'netstat') return "Scanning... [8080:OPEN] [22:LISTENING]";
+    return "Error: Unknown command sequence.";
 }
 
-// SPEEDTEST (Vodafone Style)
+// SPEEDTEST (Vodafone/Speedtest Style)
 function runSpeedTest() {
-    let dl = 0;
+    let speed = 0;
     const interval = setInterval(() => {
-        dl += Math.random() * 80;
-        document.getElementById('dl-val').innerText = Math.floor(dl);
-        if (dl >= 750) {
+        speed += Math.random() * 95;
+        document.getElementById('mbps').innerText = Math.floor(speed);
+        const offset = 283 - (283 * (speed / 1000));
+        document.getElementById('speed-progress').style.strokeDashoffset = offset;
+        
+        if(speed >= 850) {
             clearInterval(interval);
-            document.getElementById('ul-val').innerText = "320";
+            document.getElementById('mbps').innerText = "852.4";
         }
     }, 100);
 }
 
-// LLAMADAS AL SISTEMA
-function winCall(uri) {
-    window.location.href = uri;
-}
-
-function deployBat() {
-    const code = `@echo off\necho Cleaning system...\ndel /q /f %temp%\\*.*\nipconfig /flushdns\npause`;
-    const blob = new Blob([code], {type: 'text/plain'});
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'COREAI_CLEAN.bat';
-    a.click();
-}
-
-// DETECCIÓN HARDWARE (Technical City Style)
-function initHardware() {
+// HARDWARE DETECT (Technical City Style)
+function initHW() {
     const canvas = document.createElement('canvas');
     const gl = canvas.getContext('webgl');
-    const dbgRender = gl.getExtension('WEBGL_debug_renderer_info');
-    const gpu = gl.getParameter(dbgRender.UNMASKED_RENDERER_WEBGL);
-    document.getElementById('gpu-name').innerText = gpu || "Standard Graphics Device";
-    document.getElementById('user-hardware-info').innerText = gpu;
+    const ext = gl.getExtension('WEBGL_debug_renderer_info');
+    const gpu = gl.getParameter(ext.UNMASKED_RENDERER_WEBGL);
+    
+    document.getElementById('gpu-info').innerText = gpu;
+    document.getElementById('my-hw').innerText = gpu;
+    document.getElementById('my-bar').style.width = "72%"; // Simulación de potencia vs 4090
 }
 
-// PING SIMULATOR
+// PING REAL-TIME
 setInterval(() => {
-    document.getElementById('ping-val').innerText = Math.floor(Math.random() * 20 + 5) + " MS";
+    document.getElementById('ping').innerText = Math.floor(Math.random() * 15 + 5) + " MS";
 }, 3000);
 
-window.onload = initHardware;
+function winCall(uri) { window.location.href = uri; }
+function login(p) { alert(`Conectando con ${p.toUpperCase()} Secure API...`); }
+
+window.onload = initHW;
