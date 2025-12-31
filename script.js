@@ -1,74 +1,96 @@
-// --- Gestión de Secciones con Animación ---
-document.querySelectorAll('.nav-item').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const target = btn.dataset.section;
-        
-        // Transición suave
-        document.querySelector('.section.active').style.opacity = '0';
-        setTimeout(() => {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-            
-            document.getElementById(target).classList.add('active');
-            btn.classList.add('active');
-            document.querySelector('.section.active').style.opacity = '1';
-        }, 200);
+// --- NAVEGACIÓN ENTRE SECCIONES ---
+document.querySelectorAll('.nav-item').forEach(button => {
+    button.addEventListener('click', () => {
+        // Quitar clase activa de botones y secciones
+        document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+
+        // Activar el botón clicado y su sección correspondiente
+        button.classList.add('active');
+        const sectionId = button.getAttribute('data-section');
+        document.getElementById(sectionId).classList.add('active');
     });
 });
 
-// --- Motor de Diagnóstico Avanzado ---
-async function analizarHardware() {
-    const cpu = document.getElementById('cpu-user').value;
-    const gpu = document.getElementById('gpu-user').value;
-    const res = document.getElementById('resultado-ia');
+// --- MOTOR DE DIAGNÓSTICO (HARDWARE) ---
+function analizarHardware() {
+    const cpu = document.getElementById('cpu-user').value.toLowerCase();
+    const gpu = document.getElementById('gpu-user').value.toLowerCase();
+    const resultBox = document.getElementById('resultado-ia');
 
-    if(!cpu || !gpu) return alert("Ingresa los componentes");
+    if (!cpu || !gpu) {
+        alert("Por favor, introduce tu CPU y GPU para el análisis.");
+        return;
+    }
 
-    res.style.display = 'block';
-    res.innerHTML = `<div class="loader"></div> Analizando arquitectura de ${cpu}...`;
+    resultBox.style.display = 'block';
+    resultBox.innerHTML = `<h3>🔍 Analizando configuración...</h3><p>Generando recomendaciones para ${cpu.toUpperCase()} y ${gpu.toUpperCase()}...</p>`;
 
-    // Simulación de procesamiento de datos
-    await new Promise(r => setTimeout(r, 1500));
+    setTimeout(() => {
+        let recomendacion = `<strong>Recomendación CoreAI 26:</strong><br><br>`;
+        
+        if (gpu.includes('nvidia') || gpu.includes('rtx') || gpu.includes('gtx')) {
+            recomendacion += "• Detectada GPU NVIDIA: Activa 'Modo Latencia Baja' en el Panel de Control de NVIDIA.<br>";
+        } else if (gpu.includes('amd') || gpu.includes('radeon')) {
+            recomendacion += "• Detectada GPU AMD: Activa 'Radeon Anti-Lag' en el software Adrenalin.<br>";
+        }
 
-    let html = `<div class="diagnosis-report">
-        <h3>Reporte Elite generado</h3>
-        <p>• <b>CPU:</b> Optimizando hilos de ejecución para ${cpu}.</p>
-        <p>• <b>GPU:</b> Perfil de latencia ultra-baja para ${gpu} cargado.</p>
-        <div class="badge">SISTEMA ESTABLE</div>
-    </div>`;
-    
-    res.innerHTML = html;
+        if (cpu.includes('i7') || cpu.includes('i9') || cpu.includes('ryzen 7') || cpu.includes('ryzen 9')) {
+            recomendacion += "• Hardware de Gama Alta: Asegúrate de usar el plan de energía 'Máximo Rendimiento' del Panel Pro.<br>";
+        } else {
+            recomendacion += "• Hardware Optimizable: Recomendamos priorizar el 'Rendimiento Visual' en sysdm.cpl.<br>";
+        }
+
+        recomendacion += "<br>✅ <b>Consejo Extra:</b> Limpia la caché de DirectX en la sección 'Limpieza' para evitar tirones (stuttering).";
+        
+        resultBox.innerHTML = recomendacion;
+    }, 1200);
 }
 
-// --- Script BAT mejorado (Seguridad y Rendimiento) ---
+// --- FUNCIÓN PARA COPIAR COMANDOS ---
+function copyText(button) {
+    const codeElement = button.parentElement.querySelector('code');
+    const textToCopy = codeElement.innerText;
+
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        const originalText = button.innerText;
+        button.innerText = "¡Copiado!";
+        button.style.background = "#28a745"; // Verde éxito
+
+        setTimeout(() => {
+            button.innerText = originalText;
+            button.style.background = "var(--accent)";
+        }, 2000);
+    }).catch(err => {
+        console.error('Error al copiar: ', err);
+    });
+}
 function descargarOptimizador() {
-    const script = `@echo off
-:: CoreAI 26 Elite Optimizer
-echo Elevando privilegios...
-net session >nul 2>&1 || (powershell start -verb runas '%~0' & exit /b)
-
-title CoreAI 26 - Ultra Performance
-color 0b
-echo ============================================
-echo    COREAI 26 ELITE EDITION - OPTIMIZER
-echo ============================================
-
-echo [1] Optimizando Cache de Proceso...
-PowerShell.exe -Command "Set-ProcessMitigation -System -Disable ChildProcess"
-echo [2] Limpiando Logs de Telemetria...
-wevtutil cl Setup & wevtutil cl System & wevtutil cl Application
-echo [3] Aplicando Tweak de Red para Juegos...
-netsh int tcp set global autotuninglevel=normal
-echo [4] Activando Modo God de Energia...
+    const comandos = `@echo off
+title CoreAI 26 - Optimizador Elite
+echo Optimizando sistema... por favor espere.
+echo.
+echo [1/5] Activando Maximo Rendimiento...
 powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
-
-echo Operacion Exitosa. Reinicie para aplicar cambios.
+echo [2/5] Limpiando cache DNS...
+ipconfig /flushdns
+echo [3/5] Desactivando Hibernacion...
+powercfg -h off
+echo [4/5] Optimizando TCP...
+netsh int tcp set global autotuninglevel=disabled
+echo [5/5] Buscando actualizaciones de apps...
+winget upgrade --all
+echo.
+echo Optimización completada con éxito.
 pause`;
 
-    const blob = new Blob([script], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
+    const blob = new Blob([comandos], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'CoreAI26_Ultra.bat';
+    a.download = 'Optimizar_CoreAI26.bat';
+    document.body.appendChild(a);
     a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
 }
