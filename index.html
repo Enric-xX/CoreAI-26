@@ -3,86 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CoreAI 26 | Elite System OS</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <title>COREAI 26 // GENESIS KERNEL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=JetBrains+Mono:wght@300;500;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="glass-bg"></div>
-    
-    <div class="app-shell">
+    <div class="scanline"></div>
+    <div class="noise"></div>
+
+    <div class="app-frame">
         <aside class="sidebar">
-            <div class="logo-area">
-                <div class="logo-hex">C26</div>
-                <div class="logo-text">CORE<span>AI</span></div>
+            <div class="brand">
+                <div class="cyber-logo">C26</div>
+                <div class="brand-info">
+                    <span class="version">V.2.6.0</span>
+                    <span class="status">SYSTEM_READY</span>
+                </div>
             </div>
-            
-            <nav class="side-nav">
-                <button class="nav-btn active" data-tab="dash"><span>📊</span> Dashboard</button>
-                <button class="nav-btn" data-tab="opti"><span>🚀</span> Optimización</button>
-                <button class="nav-btn" data-tab="diag"><span>🔍</span> Diagnóstico</button>
-                <button class="nav-btn" data-tab="cmds"><span>⌨️</span> Terminal Pro</button>
+
+            <nav class="cyber-nav">
+                <div class="nav-group">主 / PRINCIPAL</div>
+                <button class="nav-link active" onclick="showTab('dash')">
+                    <span class="glitch-text" data-text="DASHBOARD">DASHBOARD</span>
+                </button>
+                <div class="nav-group">功 / RENDIMIENTO</div>
+                <button class="nav-link" onclick="showTab('opti')">OPTIMIZACIÓN</button>
+                <button class="nav-link" onclick="showTab('diag')">DIAGNÓSTICO</button>
+                <div class="nav-group">安 / SEGURIDAD</div>
+                <button class="nav-link" onclick="showTab('sec')">ESCANEO_PRO</button>
             </nav>
 
-            <div class="system-status">
-                <div class="status-dot online"></div>
-                <span>Motor IA Activo</span>
+            <div class="load-metrics">
+                <div class="metric">
+                    <label>CORE_LOAD</label>
+                    <div class="bar-bg"><div class="bar-fill" id="cpu-bar"></div></div>
+                </div>
             </div>
         </aside>
 
-        <main class="workspace">
-            <section id="dash" class="tab-content active">
-                <header class="ws-header">
-                    <h1>Estado del Sistema</h1>
-                    <div class="badge">Elite Edition v26.0</div>
-                </header>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <span class="label">Latencia de Red</span>
-                        <div class="value" id="net-val">-- ms</div>
-                        <div class="progress-mini"><div class="bar" style="width: 85%"></div></div>
+        <main class="kernel-view">
+            <section id="dash" class="tab active">
+                <div class="header-main">
+                    <h1>SISTEMA_<span>NÚCLEO</span></h1>
+                    <p>BIENVENIDO AL ENTORNO DE OPTIMIZACIÓN DEFINITIVO.</p>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="card pulse-border">
+                        <div class="card-tag">STATUS</div>
+                        <h2 id="ping-val">-- MS</h2>
+                        <p>LATENCIA DE RED LOCAL</p>
                     </div>
-                    <div class="stat-card">
-                        <span class="label">Carga de GPU (Sim)</span>
-                        <div class="value" id="gpu-val">0%</div>
-                        <div class="progress-mini"><div class="bar" id="gpu-bar"></div></div>
+                    <div class="card">
+                        <div class="card-tag">INTEGRIDAD</div>
+                        <h2>99.9%</h2>
+                        <p>ESTABILIDAD DEL KERNEL</p>
                     </div>
                 </div>
 
-                <div class="hero-card">
-                    <h3>Acciones Rápidas</h3>
-                    <div class="btn-group">
-                        <button class="action-btn" onclick="openWinSetting('ms-settings:gaming-gamemode')">Activar Modo Juego</button>
-                        <button class="action-btn" onclick="openWinSetting('ms-settings:display-advancedgraphics')">Ajustes de GPU</button>
-                    </div>
+                <div class="quick-access">
+                    <button class="ghost-btn" onclick="winCall('ms-settings:gaming-gamemode')">MODO_JUEGO.EXE</button>
+                    <button class="ghost-btn" onclick="winCall('ms-settings:display-advancedgraphics')">GPU_BOOST.SYS</button>
                 </div>
             </section>
 
-            <section id="opti" class="tab-content">
-                <h2>Optimización en un Clic</h2>
-                <div class="opti-list">
-                    <div class="opti-item">
-                        <div class="opti-info">
-                            <h4>Limpieza de Temporales</h4>
-                            <p>Elimina basura del sistema y caché de sombreadores.</p>
+            <section id="opti" class="tab">
+                <div class="header-main">
+                    <h1>AJUSTES_<span>ELITE</span></h1>
+                </div>
+                <div class="tweak-list">
+                    <div class="tweak-card">
+                        <div class="tweak-desc">
+                            <h3>LIMPIEZA DE REGISTRO</h3>
+                            <p>Elimina trazas residuales de instalaciones antiguas.</p>
                         </div>
-                        <button class="run-btn" onclick="generateBatch()">Generar .BAT</button>
-                    </div>
-                    <div class="opti-item">
-                        <div class="opti-info">
-                            <h4>Plan de Energía Pro</h4>
-                            <p>Desbloquea el Máximo Rendimiento oculto.</p>
-                        </div>
-                        <button class="run-btn" onclick="copyToClipboard('powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61')">Copiar Comando</button>
+                        <button class="glow-btn" onclick="deployBat()">EJECUTAR</button>
                     </div>
                 </div>
             </section>
-            
-            </main>
+        </main>
     </div>
 
-    <div id="toast-container"></div>
+    <div class="terminal-overlay">
+        <div id="terminal-out">Initializing CoreAI 26 Protocol...</div>
+    </div>
 
     <script src="script.js"></script>
 </body>
