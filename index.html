@@ -3,120 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CoreAI 26 | Elite Edition</title>
+    <title>CoreAI 26 | Ultra Edition</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="glow-bg"></div>
     <div class="app-container">
         <aside class="sidebar">
             <div class="brand">
+                <div class="logo-icon"></div>
                 <span>CoreAI</span> 26
             </div>
             <nav id="main-nav">
-                <button class="nav-item active" data-section="hardware">💻 Hardware</button>
-                <button class="nav-item" data-section="optimizacion">🚀 Optimización</button>
+                <button class="nav-item active" data-section="dashboard">📊 Dashboard</button>
+                <button class="nav-item" data-section="hardware">💻 Hardware</button>
+                <button class="nav-item" data-section="optimizacion">🚀 Turbo</button>
                 <button class="nav-item" data-section="mantenimiento">🧹 Limpieza</button>
-                <button class="nav-item" data-section="seguridad">🛡️ Seguridad</button>
                 <button class="nav-item" data-section="panel-pro">⚙️ Panel Pro</button>
             </nav>
+            <div class="sidebar-footer">
+                <p>Status: <span class="status-online">Optimized</span></p>
+            </div>
         </aside>
 
         <main class="content">
-            
-            <section id="hardware" class="section active">
-                <h1>Diagnóstico de Sistema</h1>
-                <div class="card-elite info-box">
-                    <strong>Información del Sistema:</strong>
-                    <p>Usa <b>Win + R</b> y escribe <code>dxdiag</code> para obtener los datos de tu PC.</p>
-                </div>
-                <div class="form-grid">
-                    <div class="input-group">
-                        <label>Modelo de CPU</label>
-                        <input type="text" id="cpu-user" placeholder="Ej: i7-13700K">
+            <section id="dashboard" class="section active">
+                <header class="hero">
+                    <h1>Bienvenido, <span class="gradient-text">Elite User</span></h1>
+                    <p>Estado actual del sistema: Optimizado para alto rendimiento.</p>
+                </header>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-label">Latencia</span>
+                        <span class="stat-value">Ultra Low</span>
                     </div>
-                    <div class="input-group">
-                        <label>Modelo de GPU</label>
-                        <input type="text" id="gpu-user" placeholder="Ej: RTX 4070">
+                    <div class="stat-card">
+                        <span class="stat-label">Energía</span>
+                        <span class="stat-value">Max Performance</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Privacidad</span>
+                        <span class="stat-value">Hardened</span>
                     </div>
                 </div>
-                <button class="btn-elite-main" onclick="analizarHardware()">Generar Diagnóstico</button>
-                <div id="resultado-ia" class="result-box-elite" style="display:none;"></div>
             </section>
 
-            <section id="optimizacion" class="section">
-                <h1>Optimización de Rendimiento</h1>
-                <div class="card-elite">
-                    <h3>Frecuencia de Refresco (Hz)</h3>
-                    <p>Ve a <i>Configuración > Pantalla > Pantalla avanzada</i> y activa los máximos hercios (144Hz, 240Hz, etc.).</p>
+            <section id="hardware" class="section">
+                <h1>Diagnóstico de Hardware</h1>
+                <div class="glass-card">
+                    <div class="input-container">
+                        <input type="text" id="cpu-user" placeholder="Modelo de CPU (ej. i9-14900K)">
+                        <input type="text" id="gpu-user" placeholder="Modelo de GPU (ej. RTX 4090)">
+                        <button class="btn-primary" onclick="analizarHardware()">Iniciar Escaneo</button>
+                    </div>
                 </div>
-                <div class="card-elite">
-                    <h3>GPU y Juegos</h3>
-                    <p>Activa la <b>Programación de GPU acelerada</b> y las <b>Optimizaciones para juegos en ventana</b> en los ajustes de gráficos de Windows.</p>
-                </div>
-            </section>
-
-            <section id="mantenimiento" class="section">
-                <h1>Limpieza y Mantenimiento</h1>
-                <div class="card-elite info-box">
-                    <h3>Archivos Temporales (%temp%)</h3>
-                    <p>Presiona <b>Win + R</b>, escribe <code>%temp%</code> y borra todo el contenido de la carpeta.</p>
-                </div>
-                <div class="card-elite">
-                    <h3>Sombreadores DirectX</h3>
-                    <p>Usa el "Liberador de espacio en disco" y limpia la caché del sombreador para ganar FPS.</p>
-                </div>
-            </section>
-
-            <section id="seguridad" class="section">
-                <h1>Seguridad y Privacidad</h1>
-                <div class="card-elite">
-                    <h3>Análisis VirusTotal</h3>
-                    <p>Analiza archivos sospechosos en la nube con múltiples motores antivirus.</p>
-                    <a href="https://www.virustotal.com" target="_blank" class="btn-sec">🔍 Ir a VirusTotal</a>
-                </div>
-                <div class="card-elite">
-                    <h3>Examen Offline Microsoft Defender</h3>
-                    <p>Protección contra virus persistentes. Se encuentra en: <i>Seguridad de Windows > Opciones de examen</i>.</p>
-                </div>
+                <div id="resultado-ia" class="result-box"></div>
             </section>
 
             <section id="panel-pro" class="section">
-                <h1>Panel de Control Pro</h1>
-                
-                <div class="download-container">
-                    <button class="btn-download-bat" onclick="descargarOptimizador()">
-                        <span>📥</span> Descargar Script Elite (.bat)
-                    </button>
-                    <p class="disclaimer">Ejecuta como administrador para aplicar los ajustes de kernel.</p>
-                </div>
-
-                <h2 style="margin: 20px 0;">🎮 Centro de Controladores (Drivers)</h2>
-                <div class="drivers-grid-pro">
-                    <a href="https://www.nvidia.com/es-es/drivers/" target="_blank" class="driver-card nvidia">
-                        <span>🟢</span>
-                        <div>
-                            <h4>NVIDIA GeForce</h4>
-                            <p>Drivers para tarjetas RTX / GTX</p>
-                        </div>
-                    </a>
-                    <a href="https://www.amd.com/es/support/download/drivers.html" target="_blank" class="driver-card amd">
-                        <span>🔴</span>
-                        <div>
-                            <h4>AMD Radeon</h4>
-                            <p>Drivers para tarjetas RX</p>
-                        </div>
-                    </a>
-                </div>
-
-                <h2 style="margin: 20px 0;">⚙️ Ajustes Individuales</h2>
-                <div class="pro-grid-individual">
-                    <div class="card-individual"><h4>⚡ Energía</h4><p>Plan Máximo Rendimiento.</p></div>
-                    <div class="card-individual"><h4>🛡️ Anti-PUA</h4><p>Bloqueo de software basura.</p></div>
-                    <div class="card-individual"><h4>🌐 Red</h4><p>Optimización TCP.</p></div>
+                <h1>Centro de Control Maestro</h1>
+                <div class="download-hero">
+                    <div class="hero-content">
+                        <h2>Power Script v4.0</h2>
+                        <p>Ajustes de Kernel, Red y Bloqueo de Telemetría en un clic.</p>
+                        <button class="btn-download" onclick="descargarOptimizador()">
+                            Descargar Script .BAT
+                        </button>
+                    </div>
                 </div>
             </section>
-
-        </main> </div> <script src="script.js"></script>
+        </main>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
+
