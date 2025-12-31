@@ -3,91 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COREAI 26 // GENESIS KERNEL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=JetBrains+Mono:wght@300;500;800&display=swap" rel="stylesheet">
+    <title>COREAI 26 // SUPREME KERNEL</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;500;800&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="scanline"></div>
-    <div class="noise"></div>
-
     <div class="app-frame">
         <aside class="sidebar">
             <div class="brand">
                 <div class="cyber-logo">C26</div>
-                <div class="brand-info">
-                    <span class="version">V.2.6.0</span>
-                    <span class="status">SYSTEM_READY</span>
-                </div>
+                <div class="status-indicator">SYSTEM_ONLINE</div>
             </div>
-
+            
             <nav class="cyber-nav">
-                <div class="nav-group">主 / PRINCIPAL</div>
-                <button class="nav-link active" onclick="showTab('dash')">
-                    <span class="glitch-text" data-text="DASHBOARD">DASHBOARD</span>
-                </button>
-                <div class="nav-group">功 / RENDIMIENTO</div>
-                <button class="nav-link" onclick="showTab('opti')">OPTIMIZACIÓN</button>
-                <button class="nav-link" onclick="showTab('diag')">DIAGNÓSTICO</button>
-                <div class="nav-group">安 / SEGURIDAD</div>
-                <button class="nav-link" onclick="showTab('sec')">ESCANEO_PRO</button>
+                <button class="nav-link active" onclick="showTab('dash')">DASHBOARD</button>
+                <button class="nav-link" onclick="showTab('hardware')">HARDWARE_DB</button>
+                <button class="nav-link" onclick="showTab('net')">SPEED_TEST</button>
+                <button class="nav-link" onclick="showTab('terminal')">TERMINAL_PRO</button>
             </nav>
 
-            <div class="load-metrics">
-                <div class="metric">
-                    <label>CORE_LOAD</label>
-                    <div class="bar-bg"><div class="bar-fill" id="cpu-bar"></div></div>
+            <div class="auth-module">
+                <p>LOGIN_SESSION</p>
+                <div class="auth-icons">
+                    <button onclick="auth('steam')">ST</button>
+                    <button onclick="auth('google')">GO</button>
+                    <button onclick="auth('github')">GH</button>
                 </div>
             </div>
         </aside>
 
         <main class="kernel-view">
             <section id="dash" class="tab active">
-                <div class="header-main">
-                    <h1>SISTEMA_<span>NÚCLEO</span></h1>
-                    <p>BIENVENIDO AL ENTORNO DE OPTIMIZACIÓN DEFINITIVO.</p>
-                </div>
-                
+                <h1 class="glitch" data-text="CORE_OPTIMIZER">CORE_OPTIMIZER</h1>
                 <div class="dashboard-grid">
-                    <div class="card pulse-border">
-                        <div class="card-tag">STATUS</div>
-                        <h2 id="ping-val">-- MS</h2>
-                        <p>LATENCIA DE RED LOCAL</p>
+                    <div class="stat-card">
+                        <label>NETWORK_LATENCY</label>
+                        <h2 id="ping-val">00 MS</h2>
                     </div>
-                    <div class="card">
-                        <div class="card-tag">INTEGRIDAD</div>
-                        <h2>99.9%</h2>
-                        <p>ESTABILIDAD DEL KERNEL</p>
+                    <div class="stat-card">
+                        <label>GPU_ID</label>
+                        <p id="gpu-name">Detectando...</p>
                     </div>
                 </div>
-
-                <div class="quick-access">
-                    <button class="ghost-btn" onclick="winCall('ms-settings:gaming-gamemode')">MODO_JUEGO.EXE</button>
-                    <button class="ghost-btn" onclick="winCall('ms-settings:display-advancedgraphics')">GPU_BOOST.SYS</button>
+                <div class="action-grid">
+                    <button class="glow-btn" onclick="winCall('ms-settings:gaming-gamemode')">MODO_JUEGO.EXE</button>
+                    <button class="glow-btn" onclick="deployBat()">PURGE_TEMP.BAT</button>
                 </div>
             </section>
 
-            <section id="opti" class="tab">
-                <div class="header-main">
-                    <h1>AJUSTES_<span>ELITE</span></h1>
-                </div>
-                <div class="tweak-list">
-                    <div class="tweak-card">
-                        <div class="tweak-desc">
-                            <h3>LIMPIEZA DE REGISTRO</h3>
-                            <p>Elimina trazas residuales de instalaciones antiguas.</p>
+            <section id="hardware" class="tab">
+                <h1>HARDWARE_DATABASE</h1>
+                <div class="comparison-ui">
+                    <input type="text" id="hw-search" placeholder="Comparar CPU/GPU...">
+                    <div class="hw-grid">
+                        <div class="hw-box">
+                            <span class="tag">YOUR_DEVICE</span>
+                            <div id="user-hardware-info">NVIDIA RTX Device</div>
+                            <div class="bar-container"><div class="bar" style="width: 75%"></div></div>
                         </div>
-                        <button class="glow-btn" onclick="deployBat()">EJECUTAR</button>
+                        <div class="vs">VS</div>
+                        <div class="hw-box">
+                            <span class="tag">REF_DEVICE</span>
+                            <div>RTX 4090 TI</div>
+                            <div class="bar-container"><div class="bar" style="width: 100%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="net" class="tab">
+                <h1>NETWORK_INTEGRITY</h1>
+                <div class="speed-box">
+                    <div class="gauge-group">
+                        <div class="gauge">
+                            <span id="dl-val">000</span>
+                            <label>DL_MBPS</label>
+                        </div>
+                        <div class="gauge">
+                            <span id="ul-val">000</span>
+                            <label>UL_MBPS</label>
+                        </div>
+                    </div>
+                    <button class="action-btn" onclick="runSpeedTest()">INICIAR_TEST</button>
+                </div>
+            </section>
+
+            <section id="terminal" class="tab">
+                <div class="terminal-container">
+                    <div id="term-out">COREAI_SYSTEM_READY...</div>
+                    <div class="input-line">
+                        <span>$</span><input type="text" id="term-in" autofocus>
                     </div>
                 </div>
             </section>
         </main>
     </div>
-
-    <div class="terminal-overlay">
-        <div id="terminal-out">Initializing CoreAI 26 Protocol...</div>
-    </div>
-
     <script src="script.js"></script>
 </body>
 </html>
