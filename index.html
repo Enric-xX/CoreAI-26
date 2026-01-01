@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>CoreAI v2.6.0 Stable // Ultimate System Tool</title>
+    <title>CoreAI v2.6.0 OMEGA // Ultimate System</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -14,96 +14,96 @@
                 <div class="logo-text">CORE<span>AI</span></div>
             </div>
             <nav>
-                <button onclick="showTab('dash')" class="nav-item active">OPTIMIZACIÓN</button>
+                <button onclick="showTab('dash')" class="nav-item active">OPTIMIZACIONES (20)</button>
+                <button onclick="showTab('ia-scripts')" class="nav-item">IA_SCRIPT_GEN</button>
+                <button onclick="showTab('browsers')" class="nav-item">NAVEGADORES</button>
+                <button onclick="showTab('analysis')" class="nav-item">ANÁLISIS_AVANZADO</button>
                 <button onclick="showTab('hardware')" class="nav-item">SPECS_REALES</button>
                 <button onclick="showTab('network')" class="nav-item">TEST_VELOCIDAD</button>
-                <button onclick="showTab('security')" class="nav-item">SEGURIDAD_WEB</button>
-                <button onclick="showTab('drivers')" class="nav-item">DRIVERS_&_OC</button>
             </nav>
             <div class="live-metrics">
                 <div class="metric">LATENCIA: <span id="live-ping">--</span> ms</div>
-                <div class="status-box">SYSTEM_STABLE</div>
             </div>
         </aside>
 
         <main class="content">
             <section id="dash" class="tab-content active">
-                <div class="header"><h1>OPTIMIZACIÓN_<span>NATIVA</span></h1></div>
-                <div class="grid-cards">
-                    <div class="card opti" onclick="sysCall('sysdm.cpl')">
-                        <h3>Rendimiento Visual</h3>
-                        <p><strong>Win + R > sysdm.cpl</strong>. Ajustar para mejor rendimiento.</p>
+                <div class="header"><h1>OPTIMIZACIÓN_<span>SISTEMA (20)</span></h1></div>
+                <div class="grid-20">
+                    <div class="card mini" onclick="sysCall('sysdm.cpl')"><h4>1. Rendimiento Visual</h4><p>Ajustar para mejor rendimiento.</p></div>
+                    <div class="card mini" onclick="sysCall('msconfig')"><h4>2. Núcleos de Arranque</h4><p>Máximo de procesadores.</p></div>
+                    <div class="card mini" onclick="sysCall('taskmgr')"><h4>3. Apps de Inicio</h4><p>Deshabilitar apps innecesarias.</p></div>
+                    <div class="card mini" onclick="sysCall('desk.cpl')"><h4>4. Tasa de Refresco</h4><p>Configurar Hz máximos.</p></div>
+                    <div class="card mini" onclick="sysCall('powercfg.cpl')"><h4>5. Plan de Energía</h4><p>Máximo rendimiento.</p></div>
+                    <div class="card mini" onclick="sysCall('ms-settings:gaming-gamemode')"><h4>6. Modo Juego</h4><p>Activar para prioridad CPU.</p></div>
+                    <div class="card mini" onclick="sysCall('ms-settings:privacy-backgroundapps')"><h4>7. Apps Segundo Plano</h4><p>Desactivar todo.</p></div>
+                    <div class="card mini" onclick="sysCall('ms-settings:display-advancedgraphics')"><h4>8. GPU HAGS</h4><p>Activar aceleración.</p></div>
+                    <div class="card mini" onclick="sysCall('temp')"><h4>9. Limpiar %TEMP%</h4><p>Borrar archivos basura.</p></div>
+                    <div class="card mini" onclick="sysCall('services.msc')"><h4>10. SysMain / Superfetch</h4><p>Desactivar en HDD.</p></div>
+                    <div class="card mini" onclick="sysCall('cleanmgr')"><h4>11. Liberador Espacio</h4><p>Limpieza de disco C:.</p></div>
+                    <div class="card mini" onclick="sysCall('ncpa.cpl')"><h4>12. DNS Cache</h4><p>Flushdns e IP estática.</p></div>
+                    <div class="card mini" onclick="sysCall('winver')"><h4>13. Windows Update</h4><p>Pausar durante juego.</p></div>
+                    <div class="card mini" onclick="sysCall('mmsys.cpl')"><h4>14. Formato Audio</h4><p>24-bit / 48kHz.</p></div>
+                    <div class="card mini" onclick="sysCall('firewall.cpl')"><h4>15. Reglas Firewall</h4><p>Optimizar excepciones.</p></div>
+                    <div class="card mini" onclick="sysCall('ms-settings:notifications')"><h4>16. Notificaciones</h4><p>Desactivar para evitar picos.</p></div>
+                    <div class="card mini" onclick="sysCall('dfrgui')"><h4>17. Optimizar Unidades</h4><p>Trim en SSD.</p></div>
+                    <div class="card mini" onclick="sysCall('regedit')"><h4>18. GameDVR</h4><p>Desactivar vía registro.</p></div>
+                    <div class="card mini" onclick="sysCall('ms-settings:delivery-optimization')"><h4>19. Optim. Entrega</h4><p>Desactivar descargas P2P.</p></div>
+                    <div class="card mini" onclick="sysCall('ms-settings:colors')"><h4>20. Transparencia</h4><p>Desactivar efectos visuales.</p></div>
+                </div>
+            </section>
+
+            <section id="ia-scripts" class="tab-content">
+                <div class="header"><h1>IA_<span>GENERATOR</span></h1></div>
+                <div class="ia-container">
+                    <div class="ia-chat" id="ia-output">Describe qué quieres automatizar (Ej: "Limpiar temporales y vaciar papelera")...</div>
+                    <div class="ia-input">
+                        <input type="text" id="ia-input-text" placeholder="Escribe tu petición de script aquí...">
+                        <button onclick="generateScript()">GENERAR .BAT</button>
                     </div>
-                    <div class="card opti" onclick="sysCall('msconfig')">
-                        <h3>MSCONFIG (Boot)</h3>
-                        <p><strong>Arranque > Opciones avanzadas</strong>. Activa todos los hilos de CPU.</p>
+                </div>
+            </section>
+
+            <section id="browsers" class="tab-content">
+                <div class="header"><h1>WEB_<span>EXPLORERS</span></h1></div>
+                <div class="browser-grid">
+                    <a href="https://brave.com/download/" target="_blank" class="b-card">Brave</a>
+                    <a href="https://www.google.com/chrome/" target="_blank" class="b-card">Chrome</a>
+                    <a href="https://www.mozilla.org/firefox/" target="_blank" class="b-card">Firefox</a>
+                    <a href="https://www.opera.com/gx" target="_blank" class="b-card">Opera GX</a>
+                    <a href="https://www.microsoft.com/edge" target="_blank" class="b-card">Edge</a>
+                </div>
+            </section>
+
+            <section id="analysis" class="tab-content">
+                <div class="header"><h1>ADVANCED_<span>ANALYSIS</span></h1></div>
+                <div class="analysis-grid">
+                    <div class="an-card">
+                        <h3>Hatching Triage</h3>
+                        <p>Sandbox de análisis de malware de alta precisión.</p>
+                        <a href="https://tria.ge/dashboard" target="_blank" class="btn-primary">IR AL DASHBOARD</a>
                     </div>
-                    <div class="card opti" onclick="sysCall('taskmgr')">
-                        <h3>Apps de Arranque</h3>
-                        <p>Desactiva programas que no necesites al encender el PC.</p>
-                    </div>
-                    <div class="card opti" onclick="sysCall('desk.cpl')">
-                        <h3>Config. Pantalla</h3>
-                        <p>Ajusta los <strong>Hercios (Hz)</strong> máximos de tu monitor.</p>
+                    <div class="an-card">
+                        <h3>VirusTotal</h3>
+                        <p>Escaneo multi-motor de archivos y URLs.</p>
+                        <a href="https://www.virustotal.com/" target="_blank" class="btn-primary">IR A VIRUSTOTAL</a>
                     </div>
                 </div>
             </section>
 
             <section id="hardware" class="tab-content">
-                <div class="header"><h1>COMPONENTES_<span>DETECTADOS</span></h1></div>
+                <div class="header"><h1>SPECS_<span>RECIENTES</span></h1></div>
                 <div class="hw-pro-grid">
-                    <div class="hw-box">
-                        <label>TARJETA GRÁFICA (GPU)</label>
-                        <h2 id="gpu-real">Analizando...</h2>
-                    </div>
-                    <div class="hw-box">
-                        <label>MOTOR DE RENDERIZADO</label>
-                        <p id="gpu-vendor">---</p>
-                    </div>
-                    <div class="hw-box">
-                        <label>HILOS LÓGICOS (CPU)</label>
-                        <h2 id="cpu-threads">--</h2>
-                    </div>
-                    <div class="hw-box">
-                        <label>ESTADO DE BATERÍA / ENERGÍA</label>
-                        <h2 id="power-status">---</h2>
-                    </div>
-                </div>
-            </section>
-
-            <section id="security" class="tab-content">
-                <div class="header"><h1>PROTECCIÓN_<span>NUBE</span></h1></div>
-                <div class="security-card">
-                    <div class="icon">🛡️</div>
-                    <h2>VirusTotal Intelligence</h2>
-                    <p>Analiza archivos sospechosos o URLs antes de ejecutarlos para evitar malware.</p>
-                    <a href="https://www.virustotal.com/" target="_blank" class="btn-primary">ABRIR VIRUSTOTAL OFICIAL</a>
+                    <div class="hw-box"><label>GPU</label><h2 id="gpu-real">...</h2></div>
+                    <div class="hw-box"><label>THREADS</label><h2 id="cpu-threads">...</h2></div>
                 </div>
             </section>
 
             <section id="network" class="tab-content">
-                <div class="header"><h1>NETWORK_<span>INTEGRITY</span></h1></div>
+                <div class="header"><h1>NETWORK_<span>GLOW</span></h1></div>
                 <div class="glow-meter">
-                    <div class="gauge-ring">
-                        <div class="speed-data">
-                            <span id="download-val">00</span>
-                            <label>MBPS</label>
-                        </div>
-                    </div>
-                    <button class="btn-glow" onclick="runSpeedTest()">INICIAR SCAN DE RED</button>
-                </div>
-            </section>
-
-            <section id="drivers" class="tab-content">
-                <div class="header"><h1>OVERCLOCK_<span>&_DRIVERS</span></h1></div>
-                <div class="driver-zone">
-                    <a href="https://www.nvidia.com/es-es/geforce/drivers/" target="_blank" class="driver-btn nvid">NVIDIA DRIVERS</a>
-                    <a href="https://www.amd.com/es/support/download/drivers.html" target="_blank" class="driver-btn amd">AMD RADEON</a>
-                </div>
-                <div class="oc-card">
-                    <h2>MSI Afterburner (OC)</h2>
-                    <p>Descarga la herramienta oficial para controlar frecuencias, ventiladores y voltajes de tu GPU.</p>
-                    <a href="https://www.msi.com/Landing/afterburner/graphics-cards" target="_blank" class="btn-primary">IR A WEB OFICIAL MSI</a>
+                    <div class="gauge-ring"><div id="download-val">00</div></div>
+                    <button class="btn-glow" onclick="runSpeedTest()">START SCAN</button>
                 </div>
             </section>
         </main>
