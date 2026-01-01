@@ -5,57 +5,40 @@ function showTab(id) {
     event.currentTarget.classList.add('active');
 }
 
-// IA SCRIPT GENERATOR
+// IA SCRIPT GEN (BAT)
 function generateScript() {
-    const prompt = document.getElementById('ia-input-text').value.toLowerCase();
+    const input = document.getElementById('ia-input').value.toLowerCase();
     const output = document.getElementById('ia-output');
-    let script = "@echo off\n";
-    
-    if(prompt.includes("limpiar")) {
-        script += "echo Limpiando...\ndel /s /f /q %temp%\\*.*\nipconfig /flushdns\necho Listo.";
-    } else if(prompt.includes("internet")) {
-        script += "netsh int tcp set global autotuninglevel=disabled\nnetsh interface tcp set global rss=enabled";
+    let code = "@echo off\ntitle CoreAI_AutoScript\n";
+
+    if(input.includes("limpiar")) {
+        code += "echo Limpiando Temporales...\ndel /s /f /q %temp%\\*.*\nipconfig /flushdns\necho Done.";
+    } else if(input.includes("dns")) {
+        code += "ipconfig /flushdns\necho DNS Flushed.";
     } else {
-        script += "echo Comando IA no reconocido. Intenta 'limpiar' o 'internet'.";
+        code += "echo Comando IA no definido. Intenta 'limpiar'.";
     }
 
-    output.innerHTML = `SCRIPT_GENERADO:<br><pre style="color:white; margin-top:10px;">${script}</pre>`;
-    
-    // Descarga automática del .bat
-    const blob = new Blob([script], {type: 'text/plain'});
+    output.innerText = code;
+    const blob = new Blob([code], {type: 'text/plain'});
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'CoreAI_Script.bat';
+    a.download = 'CoreAI_Opti.bat';
     a.click();
 }
 
 // HARDWARE REAL
-async function detectHardware() {
+async function detectSpecs() {
     const canvas = document.createElement('canvas');
     const gl = canvas.getContext('webgl');
-    const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
-    if (debugInfo) {
-        document.getElementById('gpu-real').innerText = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL).split(',')[0];
+    const debug = gl.getExtension('WEBGL_debug_renderer_info');
+    if (debug) {
+        console.log("GPU Detectada: " + gl.getParameter(debug.UNMASKED_RENDERER_WEBGL));
     }
-    document.getElementById('cpu-threads').innerText = navigator.hardwareConcurrency + " Cores";
-}
-
-// SPEED TEST GLOW
-function runSpeedTest() {
-    let speed = 0;
-    const interval = setInterval(() => {
-        speed += Math.random() * 95;
-        document.getElementById('download-val').innerText = Math.floor(speed);
-        if(speed >= 900) { clearInterval(interval); document.getElementById('download-val').innerText = "948"; }
-    }, 60);
 }
 
 function sysCall(cmd) {
-    alert("Ejecutar en Win+R: " + cmd);
+    alert("Copia y pega en Win+R: " + cmd);
 }
 
-setInterval(() => {
-    document.getElementById('live-ping').innerText = Math.floor(Math.random() * 10 + 20);
-}, 3000);
-
-window.onload = detectHardware;
+window.onload = detectSpecs;
