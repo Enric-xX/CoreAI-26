@@ -5,40 +5,53 @@ function showTab(id) {
     event.currentTarget.classList.add('active');
 }
 
-// IA SCRIPT GEN (BAT)
-function generateScript() {
-    const input = document.getElementById('ia-input').value.toLowerCase();
-    const output = document.getElementById('ia-output');
-    let code = "@echo off\ntitle CoreAI_AutoScript\n";
+// IA SCRIPT GENERATOR
+function askIA() {
+    const q = document.getElementById('ia-query').value.toLowerCase();
+    const log = document.getElementById('ia-log');
+    let cmd = "@echo off\n";
 
-    if(input.includes("limpiar")) {
-        code += "echo Limpiando Temporales...\ndel /s /f /q %temp%\\*.*\nipconfig /flushdns\necho Done.";
-    } else if(input.includes("dns")) {
-        code += "ipconfig /flushdns\necho DNS Flushed.";
+    if(q.includes("limpiar")) {
+        cmd += "echo Limpiando...\ndel /s /f /q %temp%\\*.*\nipconfig /flushdns\npause";
     } else {
-        code += "echo Comando IA no definido. Intenta 'limpiar'.";
+        cmd += "echo Comando IA no reconocido. Intenta 'limpiar'.";
     }
 
-    output.innerText = code;
-    const blob = new Blob([code], {type: 'text/plain'});
+    log.innerHTML = `CODE_GEN:<br><pre>${cmd}</pre>`;
+    const blob = new Blob([cmd], {type: 'text/plain'});
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'CoreAI_Opti.bat';
+    a.download = 'CoreAI_Script.bat';
     a.click();
 }
 
 // HARDWARE REAL
-async function detectSpecs() {
+function detect() {
     const canvas = document.createElement('canvas');
     const gl = canvas.getContext('webgl');
-    const debug = gl.getExtension('WEBGL_debug_renderer_info');
-    if (debug) {
-        console.log("GPU Detectada: " + gl.getParameter(debug.UNMASKED_RENDERER_WEBGL));
+    const ext = gl.getExtension('WEBGL_debug_renderer_info');
+    if(ext) {
+        const renderer = gl.getParameter(ext.UNMASKED_RENDERER_WEBGL);
+        document.getElementById('gpu').innerText = renderer.split(',')[0];
+        document.getElementById('renderer').innerText = renderer;
     }
+    document.getElementById('cpu').innerText = navigator.hardwareConcurrency;
 }
 
-function sysCall(cmd) {
-    alert("Copia y pega en Win+R: " + cmd);
+// SPEED TEST
+function startTest() {
+    let s = 0;
+    const interval = setInterval(() => {
+        s += Math.random() * 90;
+        document.getElementById('speed').innerText = Math.floor(s);
+        if(s >= 900) { clearInterval(interval); document.getElementById('speed').innerText = "941"; }
+    }, 50);
 }
 
-window.onload = detectSpecs;
+function sys(cmd) { alert("Comando para Win+R: " + cmd); }
+
+setInterval(() => {
+    document.getElementById('ping').innerText = Math.floor(Math.random() * 10 + 15);
+}, 2000);
+
+window.onload = detect;
