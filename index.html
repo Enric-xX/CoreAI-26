@@ -2,84 +2,103 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>CoreAI v2.6.0 OMEGA // Ultimate Visual Suite</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <title>CoreAI v2.6.0 Stable // Legacy Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="app-container">
         <aside class="sidebar">
-            <div class="logo-area">
-                <div class="logo-glow"></div>
-                <div class="logo-text">CORE<span>AI</span></div>
-            </div>
+            <div class="logo">CORE<span>AI</span> <small>v2.6.0</small></div>
             <nav>
-                <button onclick="showTab('dash')" class="nav-item active">🚀 OPTIMIZACIÓN</button>
-                <button onclick="showTab('ia-scripts')" class="nav-item">🤖 SCRIPT_IA</button>
-                <button onclick="showTab('browsers')" class="nav-item">🌐 NAVEGADORES</button>
-                <button onclick="showTab('drivers-oc')" class="nav-item">🔥 DRIVERS & OC</button>
-                <button onclick="showTab('analysis')" class="nav-item">🛡️ SEGURIDAD</button>
-                <button onclick="showTab('hardware')" class="nav-item">📊 HARDWARE</button>
-                <button onclick="showTab('network')" class="nav-item">📡 RED_GLOW</button>
+                <button onclick="showTab('dash')" class="nav-item active">SISTEMA_OPTI</button>
+                <button onclick="showTab('ia')" class="nav-item">IA_SCRIPTING</button>
+                <button onclick="showTab('browsers')" class="nav-item">WEB_EXPLORER</button>
+                <button onclick="showTab('drivers')" class="nav-item">DRIVERS_&_OC</button>
+                <button onclick="showTab('analysis')" class="nav-item">SEGURIDAD_PRO</button>
+                <button onclick="showTab('hardware')" class="nav-item">HARDWARE_INFO</button>
+                <button onclick="showTab('network')" class="nav-item">TEST_RED</button>
             </nav>
+            <div class="status-bar">
+                <p>STATUS: ONLINE</p>
+                <p>PING: <span id="ping">0</span>ms</p>
+            </div>
         </aside>
 
-        <main class="content">
+        <main class="viewport">
             <section id="dash" class="tab-content active">
-                <div class="header"><h1>SYSTEM_<span>TUNING</span></h1></div>
-                <div class="opti-scroll">
-                    <div class="opti-row">
-                        <div class="card glass" onclick="sysCall('sysdm.cpl')"><h3>Mejor Rendimiento</h3><p>Ajuste visual de Windows.</p></div>
-                        <div class="card glass" onclick="sysCall('msconfig')"><h3>Boot Máximo</h3><p>Activar todos los hilos CPU.</p></div>
-                        <div class="card glass" onclick="sysCall('taskmgr')"><h3>Inicio Rápido</h3><p>Limpiar apps de arranque.</p></div>
-                    </div>
-                    <div class="opti-row">
-                        <div class="card glass" onclick="sysCall('desk.cpl')"><h3>Hercios (Hz)</h3><p>Máximo refresco de pantalla.</p></div>
-                        <div class="card glass" onclick="sysCall('powercfg.cpl')"><h3>Energía Extrema</h3><p>Plan de máximo rendimiento.</p></div>
-                        <div class="card glass" onclick="sysCall('ms-settings:gaming-gamemode')"><h3>Modo Juego</h3><p>Prioridad de procesos GPU.</p></div>
-                    </div>
+                <div class="header"><h1>OPTIMIZACIÓN_<span>NATIVA</span></h1></div>
+                <div class="opti-grid">
+                    <div class="opti-box" onclick="sys('sysdm.cpl')"><h3>Rendimiento</h3><p>sysdm.cpl > Ajustar mejor rendimiento.</p></div>
+                    <div class="opti-box" onclick="sys('msconfig')"><h3>Arranque</h3><p>msconfig > Máximo de núcleos.</p></div>
+                    <div class="opti-box" onclick="sys('taskmgr')"><h3>Apps Inicio</h3><p>Deshabilitar servicios basura.</p></div>
+                    
+                    <div class="opti-box" onclick="sys('desk.cpl')"><h3>Hz Pantalla</h3><p>Configurar refresco máximo.</p></div>
+                    <div class="opti-box" onclick="sys('powercfg.cpl')"><h3>Energía</h3><p>Plan máximo rendimiento.</p></div>
+                    <div class="opti-box" onclick="sys('ms-settings:gaming-gamemode')"><h3>Game Mode</h3><p>Activar prioridad GPU.</p></div>
                     </div>
             </section>
 
-            <section id="ia-scripts" class="tab-content">
-                <div class="header"><h1>NEURAL_<span>GENERATOR</span></h1></div>
-                <div class="ia-panel">
-                    <div class="ia-display" id="ia-output">Esperando instrucciones...</div>
-                    <div class="ia-controls">
-                        <input type="text" id="ia-input" placeholder="Ej: Limpiar temporales y DNS...">
-                        <button onclick="generateScript()">GENERATE .BAT</button>
+            <section id="ia" class="tab-content">
+                <div class="header"><h1>IA_<span>NEURAL_CMD</span></h1></div>
+                <div class="ia-window">
+                    <div id="ia-log" class="ia-log">Esperando entrada...</div>
+                    <div class="ia-input-group">
+                        <input type="text" id="ia-query" placeholder="Ej: Limpiar temporales">
+                        <button onclick="askIA()">GENERATE</button>
                     </div>
-                </div>
-            </section>
-
-            <section id="drivers-oc" class="tab-content">
-                <div class="header"><h1>DRIVERS_<span>&_OVERCLOCK</span></h1></div>
-                <div class="driver-flex">
-                    <a href="https://www.nvidia.com/es-es/geforce/drivers/" target="_blank" class="btn-driver nv">NVIDIA GEFORCE</a>
-                    <a href="https://www.amd.com/es/support/download/drivers.html" target="_blank" class="btn-driver amd">AMD RADEON</a>
-                </div>
-                <div class="oc-box glass">
-                    <h2>MSI Afterburner Guide</h2>
-                    <p>Sube el 'Power Limit' al 100% y aumenta el Core Clock gradualmente (+25MHz).</p>
-                    <a href="https://www.msi.com/Landing/afterburner/graphics-cards" target="_blank" class="btn-oc">DESCARGAR MSI AFTERBURNER</a>
                 </div>
             </section>
 
             <section id="browsers" class="tab-content">
-                <div class="header"><h1>WEB_<span>EXPLORERS</span></h1></div>
-                <div class="browser-list">
-                    <a href="https://brave.com/download/" target="_blank" class="browser-card">BRAVE</a>
-                    <a href="https://www.opera.com/gx" target="_blank" class="browser-card gx">OPERA GX</a>
-                    <a href="https://www.google.com/chrome/" target="_blank" class="browser-card">CHROME</a>
-                    <a href="https://www.mozilla.org/firefox/" target="_blank" class="browser-card">FIREFOX</a>
+                <div class="header"><h1>WEB_<span>DOWNLOADS</span></h1></div>
+                <div class="browser-grid">
+                    <a href="https://brave.com/download/" target="_blank" class="b-link">BRAVE</a>
+                    <a href="https://www.opera.com/gx" target="_blank" class="b-link">OPERA GX</a>
+                    <a href="https://www.google.com/chrome/" target="_blank" class="b-link">CHROME</a>
+                    <a href="https://www.mozilla.org/firefox/" target="_blank" class="b-link">FIREFOX</a>
+                    <a href="https://www.microsoft.com/edge" target="_blank" class="b-link">EDGE</a>
                 </div>
             </section>
-            
+
+            <section id="drivers" class="tab-content">
+                <div class="header"><h1>HARDWARE_<span>FORGE</span></h1></div>
+                <div class="driver-container">
+                    <a href="https://www.nvidia.com/es-es/geforce/drivers/" target="_blank" class="driver-btn nv">NVIDIA_OFFICIAL</a>
+                    <a href="https://www.amd.com/es/support/download/drivers.html" target="_blank" class="driver-btn amd">AMD_RADEON</a>
+                </div>
+                <div class="oc-info">
+                    <h3>OVERCLOCK_MANUAL</h3>
+                    <p>Usa MSI Afterburner para ajustar frecuencias.</p>
+                    <a href="https://www.msi.com/Landing/afterburner/graphics-cards" target="_blank" class="oc-link">DOWNLOAD MSI AFTERBURNER</a>
+                </div>
+            </section>
+
             <section id="analysis" class="tab-content">
-                <div class="header"><h1>SECURITY_<span>LAB</span></h1></div>
-                <div class="analysis-flex">
-                    <div class="an-card triage" onclick="window.open('https://tria.ge/dashboard')">TRIAGE DASHBOARD</div>
-                    <div class="an-card vt" onclick="window.open('https://www.virustotal.com/')">VIRUSTOTAL SCAN</div>
+                <div class="header"><h1>SECURITY_<span>VORTEX</span></h1></div>
+                <div class="sec-grid">
+                    <div class="sec-card" onclick="window.open('https://tria.ge/dashboard')">HATCHING TRIAGE</div>
+                    <div class="sec-card" onclick="window.open('https://www.virustotal.com/')">VIRUSTOTAL</div>
+                </div>
+            </section>
+
+            <section id="hardware" class="tab-content">
+                <div class="header"><h1>SYSTEM_<span>SPECS</span></h1></div>
+                <div class="hw-list">
+                    <div class="hw-row"><span>GPU:</span> <b id="gpu">DETECTANDO...</b></div>
+                    <div class="hw-row"><span>THREADS:</span> <b id="cpu">--</b></div>
+                    <div class="hw-row"><span>OS_RENDERER:</span> <b id="renderer">--</b></div>
+                </div>
+            </section>
+
+            <section id="network" class="tab-content">
+                <div class="header"><h1>NETWORK_<span>SCAN</span></h1></div>
+                <div class="glow-meter">
+                    <div class="gauge">
+                        <span id="speed">00</span>
+                        <small>MBPS</small>
+                    </div>
+                    <button class="test-btn" onclick="startTest()">INICIAR TEST</button>
                 </div>
             </section>
         </main>
