@@ -2,108 +2,118 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>CoreAI v2.6.0 Stable // Elite System Suite</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <title>CoreAI v2.6.0 Stable // Ultimate System Tool</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="auth-layer" class="auth-overlay">
         <div class="auth-card">
-            <h2>COREAI_SECURE_LOGIN</h2>
+            <div class="auth-header">COREAI_SECURE_GATE</div>
+            <p>Selecciona tu método de acceso profesional</p>
             <div class="auth-buttons">
-                <button onclick="unlock()" class="btn-auth">GOOGLE</button>
-                <button onclick="unlock()" class="btn-auth">STEAM</button>
-                <button onclick="unlock()" class="btn-auth">GITHUB</button>
+                <button onclick="realAuth('Google')" class="btn-auth google">GOOGLE_ID</button>
+                <button onclick="realAuth('Steam')" class="btn-auth steam">STEAM_LINK</button>
             </div>
-            <input type="text" placeholder="PHONE / EMAIL ACCESS" id="auth-input">
-            <button onclick="unlock()" class="btn-primary">INITIATE_SESSION</button>
+            <div class="auth-form">
+                <input type="email" id="email" placeholder="Correo Electrónico">
+                <input type="password" id="pass" placeholder="Contraseña">
+                <button onclick="realAuth('Email')" class="btn-primary">INICIAR_SESIÓN</button>
+            </div>
         </div>
     </div>
 
     <div class="app-container" id="app" style="display:none;">
         <aside class="sidebar">
-            <div class="logo">CORE<span>AI</span> <small>v2.6.0</small></div>
+            <div class="logo">CORE<span>AI</span> <small>STABLE</small></div>
             <nav>
                 <button onclick="showTab('dash')" class="nav-item active">DASHBOARD</button>
-                <button onclick="showTab('ia')" class="nav-item">IA_COMMANDS</button>
-                <button onclick="showTab('hardware')" class="nav-item">HARDWARE_DB</button>
-                <button onclick="showTab('network')" class="nav-item">NETWORK_TEST</button>
+                <button onclick="showTab('hardware')" class="nav-item">SPECS_DETECTOR</button>
+                <button onclick="showTab('network')" class="nav-item">NETWORK_CENTER</button>
                 <button onclick="showTab('drivers')" class="nav-item">DRIVERS_OC</button>
             </nav>
-            <div class="sys-info">
-                <p>CPU_TEMP: <span id="cpu-temp">--</span></p>
-                <p>RAM_LOAD: <span id="ram-load">--</span></p>
+            <div class="live-metrics">
+                <div class="metric">PING: <span id="live-ping">--</span> ms</div>
+                <div class="metric">SESSION: <span id="user-display">---</span></div>
             </div>
         </aside>
 
         <main class="content">
             <section id="dash" class="tab-content active">
-                <div class="header"><h1>SYSTEM_<span>NUCLEUS</span></h1></div>
+                <div class="header"><h1>OPTIMIZACIÓN_<span>SISTEMA</span></h1></div>
                 <div class="grid-cards">
-                    <div class="card" onclick="openConfig('ms-settings:gaming-gamemode')">
+                    <div class="card opti" onclick="openConfig('ms-settings:gaming-gamemode')">
+                        <div class="status-dot on"></div>
                         <h3>Game Mode</h3>
-                        <p>Optimiza Windows para jugar. Abre ajuste directamente.</p>
+                        <p><strong>ESTADO: ACTIVAR.</strong> Prioriza los procesos del juego sobre las tareas de fondo de Windows.</p>
                     </div>
-                    <div class="card" onclick="openConfig('ms-settings:display-advancedgraphics')">
-                        <h3>GPU Boost</h3>
-                        <p>Programación de GPU acelerada por hardware.</p>
+                    <div class="card opti" onclick="openConfig('ms-settings:display-advancedgraphics')">
+                        <div class="status-dot on"></div>
+                        <h3>HAGS (Aceleración GPU)</h3>
+                        <p><strong>ESTADO: ACTIVAR.</strong> Reduce la latencia de entrada permitiendo que la GPU gestione su propia memoria.</p>
                     </div>
-                    <div class="card" onclick="generateCleanBat()">
-                        <h3>Deep Purge</h3>
-                        <p>Genera un .bat para limpiar caché y temporales.</p>
+                    <div class="card opti" onclick="openConfig('control /name Microsoft.PowerOptions')">
+                        <div class="status-dot on"></div>
+                        <h3>Plan de Energía</h3>
+                        <p><strong>ESTADO: MÁXIMO RENDIMIENTO.</strong> Evita que la CPU baje de frecuencia para ahorrar energía.</p>
                     </div>
-                </div>
-            </section>
-
-            <section id="ia" class="tab-content">
-                <div class="header"><h1>NEURAL_<span>COMMANDER</span></h1></div>
-                <div class="ia-box">
-                    <div id="ia-output" class="ia-chat">Explícame qué quieres optimizar...</div>
-                    <div class="ia-input">
-                        <input type="text" id="user-query" placeholder="Ej: Optimizar latencia de red">
-                        <button onclick="processIA()">GENERATE</button>
+                    <div class="card opti warn" onclick="openConfig('ms-settings:privacy-backgroundapps')">
+                        <div class="status-dot off"></div>
+                        <h3>Apps en Segundo Plano</h3>
+                        <p><strong>ESTADO: DESACTIVAR.</strong> Libera RAM y ciclos de CPU cerrando basura que no usas mientras juegas.</p>
                     </div>
                 </div>
             </section>
 
             <section id="hardware" class="tab-content">
-                <div class="header"><h1>HARDWARE_<span>HIERARCHY</span></h1></div>
-                <div class="hw-comp">
-                    <div class="hw-item">
-                        <label>DETECTED_GPU</label>
-                        <div id="gpu-name" class="val">---</div>
-                        <div class="progress"><div class="bar" style="width: 70%"></div></div>
+                <div class="header"><h1>DETECTOR_<span>HARDWARE</span></h1></div>
+                <div class="hw-pro-grid">
+                    <div class="hw-box">
+                        <label>PROCESADOR (CPU)</label>
+                        <h2 id="cpu-info">Detectando...</h2>
+                        <small id="cpu-cores">Hilos lógicos disponibles</small>
                     </div>
-                    <div class="vs">VS</div>
-                    <div class="hw-item">
-                        <label>TOP_REFERENCE</label>
-                        <div class="val">RTX 4090 TI</div>
-                        <div class="progress"><div class="bar" style="width: 100%"></div></div>
+                    <div class="hw-box">
+                        <label>GRÁFICA (GPU)</label>
+                        <h2 id="gpu-info">Analizando...</h2>
+                    </div>
+                    <div class="hw-box">
+                        <label>MEMORIA RAM</label>
+                        <h2 id="ram-info">--- GB</h2>
+                    </div>
+                    <div class="hw-box">
+                        <label>ALMACENAMIENTO</label>
+                        <h2 id="disk-info">System Drive: OK</h2>
                     </div>
                 </div>
             </section>
 
             <section id="network" class="tab-content">
-                <div class="header"><h1>NETWORK_<span>INTEGRITY</span></h1></div>
-                <div class="speed-meter">
-                    <div class="circle-gauge">
-                        <div id="speed-val">0</div>
-                        <small>MBPS</small>
+                <div class="header"><h1>TEST_<span>VELOCIDAD</span></h1></div>
+                <div class="net-ui">
+                    <div class="gauge-container">
+                        <div class="net-stat">
+                            <span id="download-val">0</span>
+                            <label>DOWNLOAD MBPS</label>
+                        </div>
                     </div>
-                    <button class="btn-primary" onclick="startSpeedTest()">RUN_STRESS_TEST</button>
+                    <button class="btn-primary" onclick="runRealSpeedTest()">INICIAR TEST REAL</button>
+                    <p id="net-log">Listo para escaneo de red...</p>
                 </div>
             </section>
 
             <section id="drivers" class="tab-content">
-                <div class="header"><h1>DRIVERS_<span>FORGE</span></h1></div>
-                <div class="driver-links">
-                    <a href="https://www.nvidia.com/es-es/geforce/drivers/" target="_blank" class="d-card nv">NVIDIA_DRIVERS</a>
-                    <a href="https://www.amd.com/es/support/download/drivers.html" target="_blank" class="d-card amd">AMD_DRIVERS</a>
+                <div class="header"><h1>DRIVERS_<span>&_OC</span></h1></div>
+                <div class="driver-buttons">
+                    <a href="https://www.nvidia.com/es-es/geforce/drivers/" target="_blank" class="big-driver nv">DESCARGAR NVIDIA</a>
+                    <a href="https://www.amd.com/es/support/download/drivers.html" target="_blank" class="big-driver amd">DESCARGAR AMD</a>
                 </div>
-                <div class="oc-section">
-                    <h3>Overclock Control</h3>
-                    <p>Acceso a perfiles de energía máxima.</p>
-                    <button onclick="openConfig('ms-settings:powersleep')" class="btn-auth">OPEN_POWER_MODES</button>
+                <div class="oc-guide card">
+                    <h3>GUÍA DE OVERCLOCK (OC)</h3>
+                    <p>1. <strong>Instala MSI Afterburner.</strong> Es la herramienta estándar.</p>
+                    <p>2. <strong>Sube el Power Limit</strong> al máximo permitido por tu gráfica.</p>
+                    <p>3. <strong>Core Clock:</strong> Sube en intervalos de +25MHz y testea estabilidad.</p>
+                    <button onclick="openConfig('ms-settings:gaming-gamemode')" class="btn-auth">AJUSTES GRÁFICOS OC</button>
                 </div>
             </section>
         </main>
