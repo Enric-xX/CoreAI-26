@@ -2,94 +2,111 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>COREAI 26 // PHANTOM_PROTOCOL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=JetBrains+Mono:wght@300;500;800&display=swap" rel="stylesheet">
+    <title>CoreAI v2.6.0 Stable // Elite System Suite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
 </head>
 <body>
-    <div class="glitch-overlay"></div>
-
-    <div id="login-screen" class="login-overlay">
-        <div class="login-box glass">
-            <div class="logo-anim">C26</div>
-            <h2>ACCESS_RESTRICTED</h2>
-            <div class="auth-methods">
-                <button onclick="realLogin('google')" class="auth-btn google">LOGIN_WITH_GOOGLE</button>
-                <button onclick="realLogin('github')" class="auth-btn github">LOGIN_WITH_GITHUB</button>
+    <div id="auth-layer" class="auth-overlay">
+        <div class="auth-card">
+            <h2>COREAI_SECURE_LOGIN</h2>
+            <div class="auth-buttons">
+                <button onclick="unlock()" class="btn-auth">GOOGLE</button>
+                <button onclick="unlock()" class="btn-auth">STEAM</button>
+                <button onclick="unlock()" class="btn-auth">GITHUB</button>
             </div>
-            <div class="divider"><span>OR_CONNECT_VIA</span></div>
-            <input type="email" id="user-email" placeholder="ENCRYPTED_EMAIL">
-            <input type="password" id="user-pass" placeholder="MASTER_PASSWORD">
-            <button onclick="realLogin('email')" class="login-trigger">INIT_SESSION</button>
+            <input type="text" placeholder="PHONE / EMAIL ACCESS" id="auth-input">
+            <button onclick="unlock()" class="btn-primary">INITIATE_SESSION</button>
         </div>
     </div>
 
-    <div class="app-shell" style="display:none;" id="main-app">
+    <div class="app-container" id="app" style="display:none;">
         <aside class="sidebar">
-            <div class="user-profile">
-                <img id="user-avatar" src="https://via.placeholder.com/50" alt="Avatar">
-                <div class="user-info">
-                    <span id="user-name">OPERATOR_26</span>
-                    <label id="user-status">ONLINE</label>
-                </div>
-            </div>
-            
-            <nav class="nav-system">
-                <button onclick="setTab('dash')" class="nav-item active">NUCLEUS</button>
-                <button onclick="setTab('bench')" class="nav-item">BENCHMARK_PRO</button>
-                <button onclick="setTab('secure')" class="nav-item">SECURITY_SCAN</button>
-                <button onclick="setTab('term')" class="nav-item">ROOT_TERMINAL</button>
+            <div class="logo">CORE<span>AI</span> <small>v2.6.0</small></div>
+            <nav>
+                <button onclick="showTab('dash')" class="nav-item active">DASHBOARD</button>
+                <button onclick="showTab('ia')" class="nav-item">IA_COMMANDS</button>
+                <button onclick="showTab('hardware')" class="nav-item">HARDWARE_DB</button>
+                <button onclick="showTab('network')" class="nav-item">NETWORK_TEST</button>
+                <button onclick="showTab('drivers')" class="nav-item">DRIVERS_OC</button>
             </nav>
-
-            <button onclick="logout()" class="logout-btn">DISCONNECT_SYSTEM</button>
+            <div class="sys-info">
+                <p>CPU_TEMP: <span id="cpu-temp">--</span></p>
+                <p>RAM_LOAD: <span id="ram-load">--</span></p>
+            </div>
         </aside>
 
-        <main class="content-area">
-            <section id="bench" class="tab-module">
-                <div class="header"><h1>HARDWARE_<span>HIERARCHY</span></h1></div>
-                <div class="comparison-engine">
-                    <div class="hw-selector">
-                        <select id="gpu-select" onchange="compareHardware()">
-                            <option value="4090">RTX 4090 (Top Tier)</option>
-                            <option value="3080">RTX 3080</option>
-                            <option value="rx7900">Radeon RX 7900 XTX</option>
-                        </select>
+        <main class="content">
+            <section id="dash" class="tab-content active">
+                <div class="header"><h1>SYSTEM_<span>NUCLEUS</span></h1></div>
+                <div class="grid-cards">
+                    <div class="card" onclick="openConfig('ms-settings:gaming-gamemode')">
+                        <h3>Game Mode</h3>
+                        <p>Optimiza Windows para jugar. Abre ajuste directamente.</p>
                     </div>
-                    <div class="vs-container">
-                        <div class="hw-node">
-                            <label>YOUR_GPU</label>
-                            <h4 id="detected-gpu">Detectando...</h4>
-                            <div class="power-bar"><div id="my-power" class="fill"></div></div>
-                        </div>
-                        <div class="vs-sign">VS</div>
-                        <div class="hw-node">
-                            <label>REFERENCE_TARGET</label>
-                            <h4 id="ref-name">RTX 4090</h4>
-                            <div class="power-bar"><div id="ref-power" class="fill" style="width: 100%"></div></div>
-                        </div>
+                    <div class="card" onclick="openConfig('ms-settings:display-advancedgraphics')">
+                        <h3>GPU Boost</h3>
+                        <p>Programación de GPU acelerada por hardware.</p>
+                    </div>
+                    <div class="card" onclick="generateCleanBat()">
+                        <h3>Deep Purge</h3>
+                        <p>Genera un .bat para limpiar caché y temporales.</p>
                     </div>
                 </div>
             </section>
 
-            <section id="secure" class="tab-module">
-                <div class="header"><h1>SECURITY_<span>AUDIT</span></h1></div>
-                <div class="secure-grid">
-                    <div class="scan-card" onclick="runSecurityScan('firewall')">
-                        <h3>FIREWALL_CHECK</h3>
-                        <p>Analizando reglas de entrada y salida...</p>
-                        <div id="fw-status" class="status-low">PENDING</div>
-                    </div>
-                    <div class="scan-card" onclick="runSecurityScan('ports')">
-                        <h3>PORT_SCANNER</h3>
-                        <p>Buscando vulnerabilidades en puertos locales.</p>
-                        <div id="port-status" class="status-low">PENDING</div>
+            <section id="ia" class="tab-content">
+                <div class="header"><h1>NEURAL_<span>COMMANDER</span></h1></div>
+                <div class="ia-box">
+                    <div id="ia-output" class="ia-chat">Explícame qué quieres optimizar...</div>
+                    <div class="ia-input">
+                        <input type="text" id="user-query" placeholder="Ej: Optimizar latencia de red">
+                        <button onclick="processIA()">GENERATE</button>
                     </div>
                 </div>
             </section>
-            
-            </main>
+
+            <section id="hardware" class="tab-content">
+                <div class="header"><h1>HARDWARE_<span>HIERARCHY</span></h1></div>
+                <div class="hw-comp">
+                    <div class="hw-item">
+                        <label>DETECTED_GPU</label>
+                        <div id="gpu-name" class="val">---</div>
+                        <div class="progress"><div class="bar" style="width: 70%"></div></div>
+                    </div>
+                    <div class="vs">VS</div>
+                    <div class="hw-item">
+                        <label>TOP_REFERENCE</label>
+                        <div class="val">RTX 4090 TI</div>
+                        <div class="progress"><div class="bar" style="width: 100%"></div></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="network" class="tab-content">
+                <div class="header"><h1>NETWORK_<span>INTEGRITY</span></h1></div>
+                <div class="speed-meter">
+                    <div class="circle-gauge">
+                        <div id="speed-val">0</div>
+                        <small>MBPS</small>
+                    </div>
+                    <button class="btn-primary" onclick="startSpeedTest()">RUN_STRESS_TEST</button>
+                </div>
+            </section>
+
+            <section id="drivers" class="tab-content">
+                <div class="header"><h1>DRIVERS_<span>FORGE</span></h1></div>
+                <div class="driver-links">
+                    <a href="https://www.nvidia.com/es-es/geforce/drivers/" target="_blank" class="d-card nv">NVIDIA_DRIVERS</a>
+                    <a href="https://www.amd.com/es/support/download/drivers.html" target="_blank" class="d-card amd">AMD_DRIVERS</a>
+                </div>
+                <div class="oc-section">
+                    <h3>Overclock Control</h3>
+                    <p>Acceso a perfiles de energía máxima.</p>
+                    <button onclick="openConfig('ms-settings:powersleep')" class="btn-auth">OPEN_POWER_MODES</button>
+                </div>
+            </section>
+        </main>
     </div>
     <script src="script.js"></script>
 </body>
