@@ -14,9 +14,3 @@
 * **Hardware Integrity:** Detección real de GPU y CPU Threads mediante WebGL (sin datos inventados).
 * **Network Glow Test:** Velocímetro con estética neón para verificar la estabilidad de tu conexión.
 * **Download Center:** Enlaces directos a navegadores de alto rendimiento (Brave, Opera GX, etc.) y Drivers oficiales.
-
-## 🛠️ Instalación / Uso Local
-
-1. Clona el repositorio:
-   ```bash
-   git clone [https://github.com/TU_USUARIO/TU_REPOSITORIO.git](https://github.com/TU_USUARIO/TU_REPOSITORIO.git)
