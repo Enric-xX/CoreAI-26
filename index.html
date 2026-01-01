@@ -10,12 +10,14 @@
     <div class="app-container">
         <aside class="sidebar">
             <div class="logo-area">
-                <img src="logo.png" alt="C26" class="app-logo"> <div class="logo-text">CORE<span>AI</span></div>
+                <div class="logo-icon">⚡</div>
+                <div class="logo-text">CORE<span>AI</span></div>
             </div>
             <nav>
                 <button onclick="showTab('dash')" class="nav-item active">OPTIMIZACIÓN</button>
-                <button onclick="showTab('hardware')" class="nav-item">SISTEMA_INFO</button>
+                <button onclick="showTab('hardware')" class="nav-item">SPECS_REALES</button>
                 <button onclick="showTab('network')" class="nav-item">TEST_VELOCIDAD</button>
+                <button onclick="showTab('security')" class="nav-item">SEGURIDAD_WEB</button>
                 <button onclick="showTab('drivers')" class="nav-item">DRIVERS_&_OC</button>
             </nav>
             <div class="live-metrics">
@@ -26,56 +28,61 @@
 
         <main class="content">
             <section id="dash" class="tab-content active">
-                <div class="header"><h1>AJUSTES_<span>CRÍTICOS</span></h1></div>
+                <div class="header"><h1>OPTIMIZACIÓN_<span>NATIVA</span></h1></div>
                 <div class="grid-cards">
-                    <div class="card opti" onclick="runCommand('sysdm.cpl')">
-                        <div class="icon">⚡</div>
+                    <div class="card opti" onclick="sysCall('sysdm.cpl')">
                         <h3>Rendimiento Visual</h3>
-                        <p>Abre <strong>sysdm.cpl</strong>. Ve a Opciones avanzadas > Rendimiento. Selecciona <strong>"Ajustar para obtener el mejor rendimiento"</strong>.</p>
+                        <p><strong>Win + R > sysdm.cpl</strong>. Ajustar para mejor rendimiento.</p>
                     </div>
-                    <div class="card opti" onclick="runCommand('msconfig')">
-                        <div class="icon">⚙️</div>
-                        <h3>Arranque Avanzado</h3>
-                        <p>Abre <strong>msconfig</strong>. En Arranque > Opciones avanzadas, marca <strong>"Número de procesadores"</strong> al máximo disponible.</p>
+                    <div class="card opti" onclick="sysCall('msconfig')">
+                        <h3>MSCONFIG (Boot)</h3>
+                        <p><strong>Arranque > Opciones avanzadas</strong>. Activa todos los hilos de CPU.</p>
                     </div>
-                    <div class="card opti" onclick="runCommand('taskmgr /0 /startup')">
-                        <div class="icon">🚀</div>
-                        <h3>Apps de Inicio</h3>
-                        <p>Deshabilita programas innecesarios que ralentizan el encendido del sistema.</p>
+                    <div class="card opti" onclick="sysCall('taskmgr')">
+                        <h3>Apps de Arranque</h3>
+                        <p>Desactiva programas que no necesites al encender el PC.</p>
                     </div>
-                    <div class="card opti" onclick="runCommand('desk.cpl')">
-                        <div class="icon">🖥️</div>
-                        <h3>Refresco (Hz)</h3>
-                        <p>Verifica que tu monitor esté usando la frecuencia de actualización (Hz) máxima disponible.</p>
+                    <div class="card opti" onclick="sysCall('desk.cpl')">
+                        <h3>Config. Pantalla</h3>
+                        <p>Ajusta los <strong>Hercios (Hz)</strong> máximos de tu monitor.</p>
                     </div>
                 </div>
-                <button class="btn-primary" onclick="generateMegaBat()">GENERAR SCRIPT DE LIMPIEZA PROFUNDA</button>
             </section>
 
             <section id="hardware" class="tab-content">
-                <div class="header"><h1>HARDWARE_<span>INFO</span></h1></div>
-                <div class="hw-display">
-                    <div class="hw-item">
-                        <label>GPU (GRÁFICA)</label>
-                        <h2 id="gpu-real">Detectando...</h2>
+                <div class="header"><h1>COMPONENTES_<span>DETECTADOS</span></h1></div>
+                <div class="hw-pro-grid">
+                    <div class="hw-box">
+                        <label>TARJETA GRÁFICA (GPU)</label>
+                        <h2 id="gpu-real">Analizando...</h2>
                     </div>
-                    <div class="hw-item">
-                        <label>NÚCLEOS LÓGICOS (CPU)</label>
-                        <h2 id="cpu-real">--</h2>
+                    <div class="hw-box">
+                        <label>MOTOR DE RENDERIZADO</label>
+                        <p id="gpu-vendor">---</p>
                     </div>
-                    <div class="hw-item">
-                        <label>RAM ESTIMADA</label>
-                        <h2 id="ram-real">-- GB</h2>
+                    <div class="hw-box">
+                        <label>HILOS LÓGICOS (CPU)</label>
+                        <h2 id="cpu-threads">--</h2>
                     </div>
-                    <div class="hw-item">
-                        <label>RENDERER</label>
-                        <p id="renderer-real">---</p>
+                    <div class="hw-box">
+                        <label>ESTADO DE BATERÍA / ENERGÍA</label>
+                        <h2 id="power-status">---</h2>
                     </div>
+                </div>
+            </section>
+
+            <section id="security" class="tab-content">
+                <div class="header"><h1>PROTECCIÓN_<span>NUBE</span></h1></div>
+                <div class="security-card">
+                    <div class="icon">🛡️</div>
+                    <h2>VirusTotal Intelligence</h2>
+                    <p>Analiza archivos sospechosos o URLs antes de ejecutarlos para evitar malware.</p>
+                    <a href="https://www.virustotal.com/" target="_blank" class="btn-primary">ABRIR VIRUSTOTAL OFICIAL</a>
                 </div>
             </section>
 
             <section id="network" class="tab-content">
-                <div class="header"><h1>SPEED_<span>INTEGRITY</span></h1></div>
+                <div class="header"><h1>NETWORK_<span>INTEGRITY</span></h1></div>
                 <div class="glow-meter">
                     <div class="gauge-ring">
                         <div class="speed-data">
@@ -83,20 +90,20 @@
                             <label>MBPS</label>
                         </div>
                     </div>
-                    <button class="btn-glow" onclick="runSpeedTest()">INICIAR TEST DE RED</button>
+                    <button class="btn-glow" onclick="runSpeedTest()">INICIAR SCAN DE RED</button>
                 </div>
             </section>
 
             <section id="drivers" class="tab-content">
-                <div class="header"><h1>CONTROL_<span>EXTREMO</span></h1></div>
+                <div class="header"><h1>OVERCLOCK_<span>&_DRIVERS</span></h1></div>
                 <div class="driver-zone">
                     <a href="https://www.nvidia.com/es-es/geforce/drivers/" target="_blank" class="driver-btn nvid">NVIDIA DRIVERS</a>
                     <a href="https://www.amd.com/es/support/download/drivers.html" target="_blank" class="driver-btn amd">AMD RADEON</a>
                 </div>
                 <div class="oc-card">
-                    <h3>Panel de Control de Overclock</h3>
-                    <p>Usa herramientas externas como <strong>MSI Afterburner</strong> para modificar el reloj de núcleo y memoria.</p>
-                    <button class="btn-primary" onclick="runCommand('ms-settings:gaming-gamemode')">MODO JUEGO DIRECTO</button>
+                    <h2>MSI Afterburner (OC)</h2>
+                    <p>Descarga la herramienta oficial para controlar frecuencias, ventiladores y voltajes de tu GPU.</p>
+                    <a href="https://www.msi.com/Landing/afterburner/graphics-cards" target="_blank" class="btn-primary">IR A WEB OFICIAL MSI</a>
                 </div>
             </section>
         </main>
