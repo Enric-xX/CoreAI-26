@@ -1,37 +1,47 @@
 :root {
-    --neon: #00f3ff;
-    --danger: #ff003c;
-    --bg-deep: #020202;
-    --glass: rgba(255, 255, 255, 0.05);
+    --accent: #00f3ff;
+    --bg: #0b0e14;
+    --side: #11151c;
+    --card: #1a1f29;
+    --text: #ffffff;
 }
 
-/* Pantalla de Login */
-.login-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: var(--bg-deep); z-index: 9999;
-    display: flex; align-items: center; justify-content: center;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+body { background: var(--bg); color: var(--text); overflow: hidden; }
 
-.login-box {
-    width: 400px; padding: 40px; text-align: center;
-    border: 1px solid var(--neon); box-shadow: 0 0 30px rgba(0, 243, 255, 0.1);
-}
+/* Auth Overlay */
+.auth-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 100; display: flex; align-items: center; justify-content: center; }
+.auth-card { background: var(--card); padding: 40px; border-radius: 12px; border: 1px solid var(--accent); width: 400px; text-align: center; }
+.auth-buttons { display: flex; gap: 10px; margin: 20px 0; }
+.btn-auth { flex: 1; padding: 10px; background: #000; border: 1px solid #333; color: white; cursor: pointer; }
+input { width: 100%; padding: 12px; margin-bottom: 20px; background: #000; border: 1px solid #333; color: white; }
 
-.auth-btn {
-    width: 100%; padding: 12px; margin: 10px 0;
-    background: transparent; border: 1px solid var(--neon);
-    color: var(--neon); font-family: 'JetBrains Mono'; cursor: pointer;
-}
+/* Layout */
+.app-container { display: flex; width: 100vw; height: 100vh; }
+.sidebar { width: 280px; background: var(--side); padding: 30px; display: flex; flex-direction: column; }
+.logo { font-weight: 800; font-size: 1.5rem; color: var(--accent); margin-bottom: 40px; }
+.nav-item { background: none; border: none; color: #888; text-align: left; padding: 15px; cursor: pointer; border-radius: 8px; font-weight: 600; margin-bottom: 5px; }
+.nav-item.active, .nav-item:hover { background: var(--card); color: var(--accent); }
 
-.auth-btn:hover { background: var(--neon); color: #000; }
+/* Content Area */
+.content { flex: 1; padding: 50px; overflow-y: auto; }
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-/* Estilo de Comparación */
-.vs-container { display: flex; align-items: center; justify-content: space-between; margin-top: 40px; }
-.hw-node { flex: 1; padding: 20px; background: var(--glass); }
-.power-bar { height: 6px; background: #111; margin-top: 15px; overflow: hidden; }
-.power-bar .fill { height: 100%; background: var(--neon); box-shadow: 0 0 10px var(--neon); transition: 1s ease; }
-.vs-sign { font-family: 'Syncopate'; font-size: 2rem; color: var(--danger); margin: 0 20px; }
+/* Grid */
+.grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.card { background: var(--card); padding: 30px; border-radius: 12px; border: 1px solid #252b36; cursor: pointer; transition: 0.3s; }
+.card:hover { border-color: var(--accent); transform: translateY(-5px); }
 
-/* Status Colors */
-.status-low { color: #555; }
-.status-ok { color: var(--neon); text-shadow: 0 0 10px var(--neon); }
+/* IA Chat */
+.ia-box { background: var(--card); border-radius: 12px; padding: 20px; height: 400px; display: flex; flex-direction: column; }
+.ia-chat { flex: 1; font-family: 'JetBrains Mono'; color: var(--accent); overflow-y: auto; margin-bottom: 20px; }
+.ia-input { display: flex; gap: 10px; }
+.ia-input input { margin-bottom: 0; }
+
+/* Speedtest */
+.circle-gauge { width: 200px; height: 200px; border: 10px solid #252b36; border-top-color: var(--accent); border-radius: 50%; margin: 40px auto; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+#speed-val { font-size: 3rem; font-weight: 800; }
+
+.btn-primary { background: var(--accent); color: black; border: none; padding: 15px 30px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; }
