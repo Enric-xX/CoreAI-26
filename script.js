@@ -1,64 +1,82 @@
-// --- CONFIGURACIÓN DE FIREBASE (Login Real) ---
-// Aquí pondrías tus claves de Firebase para que el login funcione de verdad.
-const firebaseConfig = {
-    apiKey: "TU_API_KEY",
-    authDomain: "tu-app.firebaseapp.com",
-    projectId: "tu-app-id"
-};
-firebase.initializeApp(firebaseConfig);
-
-function realLogin(type) {
-    if(type === 'email') {
-        const email = document.getElementById('user-email').value;
-        const pass = document.getElementById('user-pass').value;
-        // Simulación de Auth Real - En producción usaría firebase.auth().signInWithEmailAndPassword
-        if(email && pass) {
-            unlockApp({displayName: email.split('@')[0], photoURL: 'https://cdn-icons-png.flaticon.com/512/1144/1144760.png'});
-        }
-    } else {
-        alert("Redirigiendo a API segura de " + type);
-        // Aquí disparas el Provider de Google/Github
-        unlockApp({displayName: "S4vitar_Guest", photoURL: "https://via.placeholder.com/50"});
-    }
+// SISTEMA DE NAVEGACIÓN
+function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.currentTarget.classList.add('active');
 }
 
-function unlockApp(user) {
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('main-app').style.display = 'flex';
-    document.getElementById('user-name').innerText = user.displayName.toUpperCase();
-    document.getElementById('user-avatar').src = user.photoURL;
-    logTerminal("PROTOCOLO_ACCESO: AUTENTICACIÓN_CORRECTA");
-}
-
-// --- COMPARADOR DE HARDWARE (Technical City Clone) ---
-function compareHardware() {
-    const selected = document.getElementById('gpu-select').value;
-    const refPower = document.getElementById('ref-power');
-    const refName = document.getElementById('ref-name');
-    
-    if(selected === '4090') { refPower.style.width = "100%"; refName.innerText = "RTX 4090"; }
-    if(selected === '3080') { refPower.style.width = "70%"; refName.innerText = "RTX 3080"; }
-    if(selected === 'rx7900') { refPower.style.width = "90%"; refName.innerText = "RX 7900 XTX"; }
-    
-    logTerminal(`COMPARACIÓN_UPDATE: TARGET_SET_TO_${refName.innerText}`);
-}
-
-// --- AUDITORÍA DE SEGURIDAD (S4vitar Style) ---
-function runSecurityScan(type) {
-    const el = type === 'firewall' ? 'fw-status' : 'port-status';
-    document.getElementById(el).innerText = "SCANNING...";
-    
+// DESBLOQUEO REAL
+function unlock() {
+    document.getElementById('auth-layer').style.fadeOut = "slow";
     setTimeout(() => {
-        document.getElementById(el).innerText = "SECURE_BY_COREAI";
-        document.getElementById(el).className = "status-ok";
-        logTerminal(`SECURITY_AUDIT: ${type.toUpperCase()}_CHECK_COMPLETE`);
-    }, 2000);
+        document.getElementById('auth-layer').style.display = 'none';
+        document.getElementById('app').style.display = 'flex';
+        initHardware();
+    }, 500);
 }
 
-// --- APERTURA DIRECTA DE AJUSTES ---
+// APERTURA DIRECTA AJUSTES WINDOWS (SIN PREGUNTAS)
 function openConfig(uri) {
-    // Sin preguntas, directo al sistema
     window.location.href = uri;
 }
 
-// Funciones de utilidad anteriores (Terminal, Ping, etc.)
+// IA COMMAND GENERATOR
+const iaKnowledge = {
+    "red": "netsh int tcp set global autotuninglevel=disabled",
+    "limpiar": "del /s /f /q %temp%\\*.*",
+    "dns": "ipconfig /flushdns",
+    "ram": "EmptyStandbyList.exe (Requiere Tool)"
+};
+
+function processIA() {
+    const q = document.getElementById('user-query').value.toLowerCase();
+    const out = document.getElementById('ia-output');
+    let cmd = "No reconozco esa petición. Prueba con 'limpiar' o 'red'.";
+    
+    for (let key in iaKnowledge) {
+        if (q.includes(key)) {
+            cmd = `COMANDO_GENERADO: <br><code style="color:white; background:#000; padding:10px; display:block; margin-top:10px;">${iaKnowledge[key]}</code>`;
+            break;
+        }
+    }
+    out.innerHTML = cmd;
+}
+
+// SPEEDTEST REALISTA
+function startSpeedTest() {
+    let s = 0;
+    const interval = setInterval(() => {
+        s += Math.random() * 85;
+        document.getElementById('speed-val').innerText = Math.floor(s);
+        if(s >= 900) {
+            clearInterval(interval);
+            document.getElementById('speed-val').innerText = "941.0";
+        }
+    }, 100);
+}
+
+// DETECCIÓN HARDWARE REAL
+function initHardware() {
+    const canvas = document.createElement('canvas');
+    const gl = canvas.getContext('webgl');
+    const ext = gl.getExtension('WEBGL_debug_renderer_info');
+    const gpu = gl.getParameter(ext.UNMASKED_RENDERER_WEBGL);
+    document.getElementById('gpu-name').innerText = gpu || "GPU GENÉRICA";
+}
+
+// GENERAR .BAT DE LIMPIEZA
+function generateCleanBat() {
+    const code = `@echo off\necho CoreAI Limpiando...\ndel /s /f /q %temp%\\*.*\nipconfig /flushdns\necho LISTO.\npause`;
+    const blob = new Blob([code], {type: 'text/plain'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'CoreAI_System_Purge.bat';
+    a.click();
+}
+
+// SIMULADOR DE STATS
+setInterval(() => {
+    document.getElementById('cpu-temp').innerText = Math.floor(Math.random() * 10 + 40) + "°C";
+    document.getElementById('ram-load').innerText = Math.floor(Math.random() * 15 + 10) + "%";
+}, 3000);
