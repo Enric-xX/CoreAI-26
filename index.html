@@ -7,113 +7,96 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="auth-layer" class="auth-overlay">
-        <div class="auth-card">
-            <div class="auth-header">COREAI_SECURE_GATE</div>
-            <p>Selecciona tu método de acceso profesional</p>
-            <div class="auth-buttons">
-                <button onclick="realAuth('Google')" class="btn-auth google">GOOGLE_ID</button>
-                <button onclick="realAuth('Steam')" class="btn-auth steam">STEAM_LINK</button>
-            </div>
-            <div class="auth-form">
-                <input type="email" id="email" placeholder="Correo Electrónico">
-                <input type="password" id="pass" placeholder="Contraseña">
-                <button onclick="realAuth('Email')" class="btn-primary">INICIAR_SESIÓN</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="app-container" id="app" style="display:none;">
+    <div class="app-container">
         <aside class="sidebar">
-            <div class="logo">CORE<span>AI</span> <small>STABLE</small></div>
+            <div class="logo-area">
+                <img src="logo.png" alt="C26" class="app-logo"> <div class="logo-text">CORE<span>AI</span></div>
+            </div>
             <nav>
-                <button onclick="showTab('dash')" class="nav-item active">DASHBOARD</button>
-                <button onclick="showTab('hardware')" class="nav-item">SPECS_DETECTOR</button>
-                <button onclick="showTab('network')" class="nav-item">NETWORK_CENTER</button>
-                <button onclick="showTab('drivers')" class="nav-item">DRIVERS_OC</button>
+                <button onclick="showTab('dash')" class="nav-item active">OPTIMIZACIÓN</button>
+                <button onclick="showTab('hardware')" class="nav-item">SISTEMA_INFO</button>
+                <button onclick="showTab('network')" class="nav-item">TEST_VELOCIDAD</button>
+                <button onclick="showTab('drivers')" class="nav-item">DRIVERS_&_OC</button>
             </nav>
             <div class="live-metrics">
-                <div class="metric">PING: <span id="live-ping">--</span> ms</div>
-                <div class="metric">SESSION: <span id="user-display">---</span></div>
+                <div class="metric">LATENCIA: <span id="live-ping">--</span> ms</div>
+                <div class="status-box">SYSTEM_STABLE</div>
             </div>
         </aside>
 
         <main class="content">
             <section id="dash" class="tab-content active">
-                <div class="header"><h1>OPTIMIZACIÓN_<span>SISTEMA</span></h1></div>
+                <div class="header"><h1>AJUSTES_<span>CRÍTICOS</span></h1></div>
                 <div class="grid-cards">
-                    <div class="card opti" onclick="openConfig('ms-settings:gaming-gamemode')">
-                        <div class="status-dot on"></div>
-                        <h3>Game Mode</h3>
-                        <p><strong>ESTADO: ACTIVAR.</strong> Prioriza los procesos del juego sobre las tareas de fondo de Windows.</p>
+                    <div class="card opti" onclick="runCommand('sysdm.cpl')">
+                        <div class="icon">⚡</div>
+                        <h3>Rendimiento Visual</h3>
+                        <p>Abre <strong>sysdm.cpl</strong>. Ve a Opciones avanzadas > Rendimiento. Selecciona <strong>"Ajustar para obtener el mejor rendimiento"</strong>.</p>
                     </div>
-                    <div class="card opti" onclick="openConfig('ms-settings:display-advancedgraphics')">
-                        <div class="status-dot on"></div>
-                        <h3>HAGS (Aceleración GPU)</h3>
-                        <p><strong>ESTADO: ACTIVAR.</strong> Reduce la latencia de entrada permitiendo que la GPU gestione su propia memoria.</p>
+                    <div class="card opti" onclick="runCommand('msconfig')">
+                        <div class="icon">⚙️</div>
+                        <h3>Arranque Avanzado</h3>
+                        <p>Abre <strong>msconfig</strong>. En Arranque > Opciones avanzadas, marca <strong>"Número de procesadores"</strong> al máximo disponible.</p>
                     </div>
-                    <div class="card opti" onclick="openConfig('control /name Microsoft.PowerOptions')">
-                        <div class="status-dot on"></div>
-                        <h3>Plan de Energía</h3>
-                        <p><strong>ESTADO: MÁXIMO RENDIMIENTO.</strong> Evita que la CPU baje de frecuencia para ahorrar energía.</p>
+                    <div class="card opti" onclick="runCommand('taskmgr /0 /startup')">
+                        <div class="icon">🚀</div>
+                        <h3>Apps de Inicio</h3>
+                        <p>Deshabilita programas innecesarios que ralentizan el encendido del sistema.</p>
                     </div>
-                    <div class="card opti warn" onclick="openConfig('ms-settings:privacy-backgroundapps')">
-                        <div class="status-dot off"></div>
-                        <h3>Apps en Segundo Plano</h3>
-                        <p><strong>ESTADO: DESACTIVAR.</strong> Libera RAM y ciclos de CPU cerrando basura que no usas mientras juegas.</p>
+                    <div class="card opti" onclick="runCommand('desk.cpl')">
+                        <div class="icon">🖥️</div>
+                        <h3>Refresco (Hz)</h3>
+                        <p>Verifica que tu monitor esté usando la frecuencia de actualización (Hz) máxima disponible.</p>
                     </div>
                 </div>
+                <button class="btn-primary" onclick="generateMegaBat()">GENERAR SCRIPT DE LIMPIEZA PROFUNDA</button>
             </section>
 
             <section id="hardware" class="tab-content">
-                <div class="header"><h1>DETECTOR_<span>HARDWARE</span></h1></div>
-                <div class="hw-pro-grid">
-                    <div class="hw-box">
-                        <label>PROCESADOR (CPU)</label>
-                        <h2 id="cpu-info">Detectando...</h2>
-                        <small id="cpu-cores">Hilos lógicos disponibles</small>
+                <div class="header"><h1>HARDWARE_<span>INFO</span></h1></div>
+                <div class="hw-display">
+                    <div class="hw-item">
+                        <label>GPU (GRÁFICA)</label>
+                        <h2 id="gpu-real">Detectando...</h2>
                     </div>
-                    <div class="hw-box">
-                        <label>GRÁFICA (GPU)</label>
-                        <h2 id="gpu-info">Analizando...</h2>
+                    <div class="hw-item">
+                        <label>NÚCLEOS LÓGICOS (CPU)</label>
+                        <h2 id="cpu-real">--</h2>
                     </div>
-                    <div class="hw-box">
-                        <label>MEMORIA RAM</label>
-                        <h2 id="ram-info">--- GB</h2>
+                    <div class="hw-item">
+                        <label>RAM ESTIMADA</label>
+                        <h2 id="ram-real">-- GB</h2>
                     </div>
-                    <div class="hw-box">
-                        <label>ALMACENAMIENTO</label>
-                        <h2 id="disk-info">System Drive: OK</h2>
+                    <div class="hw-item">
+                        <label>RENDERER</label>
+                        <p id="renderer-real">---</p>
                     </div>
                 </div>
             </section>
 
             <section id="network" class="tab-content">
-                <div class="header"><h1>TEST_<span>VELOCIDAD</span></h1></div>
-                <div class="net-ui">
-                    <div class="gauge-container">
-                        <div class="net-stat">
-                            <span id="download-val">0</span>
-                            <label>DOWNLOAD MBPS</label>
+                <div class="header"><h1>SPEED_<span>INTEGRITY</span></h1></div>
+                <div class="glow-meter">
+                    <div class="gauge-ring">
+                        <div class="speed-data">
+                            <span id="download-val">00</span>
+                            <label>MBPS</label>
                         </div>
                     </div>
-                    <button class="btn-primary" onclick="runRealSpeedTest()">INICIAR TEST REAL</button>
-                    <p id="net-log">Listo para escaneo de red...</p>
+                    <button class="btn-glow" onclick="runSpeedTest()">INICIAR TEST DE RED</button>
                 </div>
             </section>
 
             <section id="drivers" class="tab-content">
-                <div class="header"><h1>DRIVERS_<span>&_OC</span></h1></div>
-                <div class="driver-buttons">
-                    <a href="https://www.nvidia.com/es-es/geforce/drivers/" target="_blank" class="big-driver nv">DESCARGAR NVIDIA</a>
-                    <a href="https://www.amd.com/es/support/download/drivers.html" target="_blank" class="big-driver amd">DESCARGAR AMD</a>
+                <div class="header"><h1>CONTROL_<span>EXTREMO</span></h1></div>
+                <div class="driver-zone">
+                    <a href="https://www.nvidia.com/es-es/geforce/drivers/" target="_blank" class="driver-btn nvid">NVIDIA DRIVERS</a>
+                    <a href="https://www.amd.com/es/support/download/drivers.html" target="_blank" class="driver-btn amd">AMD RADEON</a>
                 </div>
-                <div class="oc-guide card">
-                    <h3>GUÍA DE OVERCLOCK (OC)</h3>
-                    <p>1. <strong>Instala MSI Afterburner.</strong> Es la herramienta estándar.</p>
-                    <p>2. <strong>Sube el Power Limit</strong> al máximo permitido por tu gráfica.</p>
-                    <p>3. <strong>Core Clock:</strong> Sube en intervalos de +25MHz y testea estabilidad.</p>
-                    <button onclick="openConfig('ms-settings:gaming-gamemode')" class="btn-auth">AJUSTES GRÁFICOS OC</button>
+                <div class="oc-card">
+                    <h3>Panel de Control de Overclock</h3>
+                    <p>Usa herramientas externas como <strong>MSI Afterburner</strong> para modificar el reloj de núcleo y memoria.</p>
+                    <button class="btn-primary" onclick="runCommand('ms-settings:gaming-gamemode')">MODO JUEGO DIRECTO</button>
                 </div>
             </section>
         </main>
